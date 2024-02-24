@@ -1,0 +1,46 @@
+@import './styles/base.css';
+
+@layer vocs_preflight {
+  @tailwind base;
+}
+
+@tailwind components;
+@tailwind utilities;
+
+
+#home-install .vocs_CodeGroup {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+}
+
+#home-install .vocs_Tabs_content {
+  flex: 1;
+}
+
+#home-install .vocs_Code {
+  font-size: 18px;
+}
+
+ /* :root.dark {
+  --vocs-color_background: black;
+} */
+
+.vocs_Anchor {
+  /* color: red; */
+  /* --vocs-color_link: yellow; */
+}
+
+/* 
+.vocs_H1 {
+  color: red;
+} */
+
+/* TODO: can we move the menu to left..? */
+/* TODO: put search on right..? ya.. */
+/* TODO: add "Build >" button */
+
+/* TODO: perhaps re-sink it.. just make it an icon */
+.vocs_DesktopSearch_search {
+  width: 175px;
+}

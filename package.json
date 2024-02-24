@@ -1,0 +1,17 @@
+{
+  "name": "sequence",
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vocs dev",
+    "build": "vocs build --searchIndex false && vocs search-index",
+    "preview": "vocs preview"
+  },
+  "dependencies": {
+    "@types/react": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "typescript": "latest",
+    "vocs": "latest"
+  }
+}
