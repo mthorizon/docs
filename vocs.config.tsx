@@ -12,13 +12,13 @@ export default defineConfig({
   //     'https://vocs.dev/api/og?logo=%logo&title=%title&description=%description',
   // },
   // iconUrl: { light: '/favicons/light.png', dark: '/favicons/dark.png' },
-  logoUrl: '/imgs/sequence-composite-dark.svg',
+  logoUrl: { light: '/imgs/sequence-composite-light.svg', dark: '/imgs/sequence-composite-dark.svg' },
 
   // rootDir: '.',
   basePath: '/',
 
   topNav,
-  sidebar,
+  sidebar
 
 
   // NOTE: taking up valuable space, will move those
@@ -38,33 +38,4 @@ export default defineConfig({
   //   },
   // ],
 
-  theme: {
-    accentColor: {
-      light: '#442CA8',
-      dark: '#99ADED',
-    },
-    variables: {
-      fontFamily: {
-        // NOTE: we'll just stick to default, it looks better
-        // default: 'Inter',
-        // mono: 'Roboto Mono'
-      },
-      color: {
-        background: {
-          light: '#eeeeee',
-          dark: '#111111',
-        },
-        // background5: {
-        //   light: '#dddddd',
-        //   dark: '#111111',
-        // }
-
-        backgroundDark: {
-          light: '#dddddd',
-          dark: '#151515'
-        }
-
-      }
-    }
-  }
 })
