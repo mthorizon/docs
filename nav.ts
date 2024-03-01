@@ -14,50 +14,45 @@ import type { Sidebar, TopNav } from 'vocs'
 
 
 export const topNav = [
-  { text: 'Overview', link: '/', match: '/intro' },
+  { text: 'Solutions', link: '/solutions', match: '/solutions' },
 
-  { text: 'Wallets', link: '/wallet', match: '/wallet' },
-
-  { 
-    text: 'Stack',
-    items: [
-      { text: 'Wallet-as-a-service', link: '/waas' },
-      { text: 'Indexer', link: '/indexer' },
-      { text: 'Relayer', link: '/relayer' },
-      { text: 'Metadata', link: '/relayer' },
-      { text: 'Node Gateway', link: '/node-gateway' },
-      { text: 'Marketplace API', link: '/marketplace-api' },
-      // { text: 'Builder', link: '/builder', match: false },
-    ]
-  },
-
-  { 
-    text: 'SDKs',
-    items: [
-      { text: 'Web', link: '/sdk/web', match: '/sdk/web' },
-      { text: 'Server-side', link: '/sdk/backend', match: '/sdk/backend' },
-      { text: 'Mobile', link: '/sdk/mobile', match: '/sdk/moble' },
-      { text: 'Unity 3D', link: '/sdk/unity', match: '/sdk/unity' },
-      { text: 'Unreal Engine', link: '/sdk/unreal', match: '/sdk/unreal' }
-    ]
-  },
 
   { 
     text: 'Guides',
     items: [
-      { text: 'Getting Started', link: '/guides/getting-started', match: '/guides/getting-started' },
-      { text: 'Building web3 games', link: '/guides/stub', match: '/guides/stub' },
-      { text: 'Building web3 apps', link: '/guides/stub', match: '/guides/stub' },
-      { text: 'Minting NFTs', link: '/guides/minting-nfts', match: '/guides/minting-nfts' },
-      { text: 'Deploying a contract', link: '/guides/stub', match: '/guides/stub' },
-      { text: 'Signature Validation', link: '/guides/stub', match: '/guides/stub' },
-      { text: 'Royalties', link: '/guides/stub', match: '/guides/stub' },
-      { text: 'Airdrops', link: '/guides/stub', match: '/guides/stub' },
-      { text: 'Writing custom contracts', link: '/guides/stub', match: '/guides/stub' },
+      { text: 'Web3 Game with WebGL', link: '/guides/getting-started', match: '/guides/getting-started' },
+      { text: 'Web3 Game with Unity', link: '/guides/stub', match: '/guides/stub' },
+      { text: 'Lootboxes', link: '/guides/stub', match: '/guides/stub' },
+      { text: 'Custom Marketplace', link: '/guides/minting-nfts', match: '/guides/minting-nfts' }
+    ]
+  },
+  { 
+    text: 'SDKs',
+    items: [
+      { text: 'Unity', link: '/sdk/unity', match: '/sdk/unity' },
+      { text: 'Unreal', link: '/sdk/unreal', match: '/sdk/unreal' },
+      { text: 'Node.js', link: '/sdk/nodejs', match: '/sdk/nodejs' },
+      { text: 'Sequence Kit', link: '/sdk/sequencekit', match: '/sdk/sequencekit' },
+      { text: 'Go', link: '/sdk/go', match: '/sdk/go' },
+      { text: 'Android', link: '/sdk/android', match: '/sdk/android' },
+      { text: 'React Native', link: '/sdk/reactnative', match: '/sdk/reactnative' },
+      { text: 'iOS', link: '/sdk/iOS', match: '/sdk/iOS' }
     ]
   },
 
-  {  text: 'Builder', link: '/builder', match: '/builder' },
+  // replace links.
+  { 
+    text: 'APIs',
+    items: [
+      { text: 'Marketplace API', link: '/waas' },
+      { text: 'Transactions API', link: '/indexer' },
+      { text: 'Indexer API', link: '/relayer' },
+      { text: 'Embedded Wallets API', link: '/relayer' },
+      { text: 'Metadata API', link: '/node-gateway' },
+      { text: 'Node Gateway', link: '/marketplace-api' },
+      // { text: 'Builder', link: '/builder', match: false },
+    ]
+  },
 
   { 
     text: 'Support',
