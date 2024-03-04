@@ -14,16 +14,24 @@ import type { Sidebar, TopNav } from 'vocs'
 
 
 export const topNav = [
-  { text: 'Solutions', link: '/solutions', match: '/solutions' },
+  { text: 'Solutions',
+  items: [
+    { text: 'Wallets', link: '/solutions/embedded-wallet', match: '/solutions/embedded-wallet' },
+    { text: 'Marketplace', link: '/solutions/white-label-marketplace', match: '/solutions/white-label-marketplace' },
+    { text: 'Collectibles', link: '/solutions/contracts', match: '//solutions/contracts' },
+    { text: 'Payments', link: '/solutions/nft-checkout', match: '/solutions/nft-checkout' },
+    { text: 'No-code Builder', link: '/solutions/builder', match: '/solutions/builder' }
+  ]
+},
 
 
   { 
     text: 'Guides',
     items: [
-      { text: 'Web3 Game with WebGL', link: '/guides/getting-started', match: '/guides/getting-started' },
-      { text: 'Web3 Game with Unity', link: '/guides/stub', match: '/guides/stub' },
-      { text: 'Lootboxes', link: '/guides/stub', match: '/guides/stub' },
-      { text: 'Custom Marketplace', link: '/guides/minting-nfts', match: '/guides/minting-nfts' }
+      { text: 'Web3 Game with WebGL', link: '/guides/webgl-guide', match: '/guides/webgl-guide' },
+      { text: 'Web3 Game with Unity', link: '/guides/unity-guide', match: '/guides/unity-guide' },
+      { text: 'Lootboxes', link: '/guides/lootbox', match: '/guides/lootbox' },
+      { text: 'Custom Marketplace', link: '/guides/template-marketplace-api', match: '/guides/template-marketplace-api' }
     ]
   },
   { 
@@ -32,7 +40,7 @@ export const topNav = [
       { text: 'Unity', link: '/sdk/unity', match: '/sdk/unity' },
       { text: 'Unreal', link: '/sdk/unreal', match: '/sdk/unreal' },
       { text: 'Node.js', link: '/sdk/nodejs', match: '/sdk/nodejs' },
-      { text: 'Sequence Kit', link: '/sdk/sequencekit', match: '/sdk/sequencekit' },
+      { text: 'Sequence Kit', link: '/sdk/sequence-kit', match: '/sdk/sequence-kit' },
       { text: 'Go', link: '/sdk/go', match: '/sdk/go' },
       { text: 'Android', link: '/sdk/android', match: '/sdk/android' },
       { text: 'React Native', link: '/sdk/reactnative', match: '/sdk/reactnative' },
@@ -44,14 +52,13 @@ export const topNav = [
   { 
     text: 'APIs',
     items: [
-      { text: 'Marketplace API', link: '/waas' },
-      { text: 'Transactions API', link: '/indexer' },
-      { text: 'Indexer API', link: '/relayer' },
-      { text: 'Embedded Wallets API', link: '/relayer' },
-      { text: 'Metadata API', link: '/node-gateway' },
-      { text: 'Node Gateway', link: '/marketplace-api' },
-      // { text: 'Builder', link: '/builder', match: false },
-    ]
+      { text: 'Marketplace API', link: '/api/marketplace' },
+      { text: 'Transactions API', link: '/api/transaction' },
+      { text: 'Indexer API', link: '/api/indexer' },
+      { text: 'Embedded Wallets API', link: '/api/embedded-wallet' },
+      { text: 'Metadata API', link: '/api/metadata' },
+      { text: 'Node Gateway', link: '/api/node-gateway' }
+        ]
   },
 
   { 
@@ -68,200 +75,166 @@ export const topNav = [
 
 export const sidebar = {
   // Overview
-  '/': [
+  '/solutions': [
     {
-      text: 'Introduction',
+      text: 'Wallets',
       items: [
-        { text: 'The Sequence Web3 Stack', link: '/intro/getting-started' },
-        { text: 'Our Vision for web3', link: '/intro/vision' },
-        { text: 'Ethereum Compatability', link: '/intro/eth-compat' },
-        { text: 'Open Source', link: '/intro/open-source' },
+        { text: 'Embedded Wallet', link: '/solutions/embedded-wallet', 
+        
+        // collapsed: true,
+        
+        // items: [
+          
+        // { text: 'Rainbow Kit', link: '/' },
+        // { text: 'Web3Modal', link: '/wallet/web3modal' }
+        // ]
+      
+      
+      
+      },
+        { text: 'Universal Wallet', link: '/solutions/universal-wallet' }
       ]
     },
     {
-      text: 'Building on web3',
+      text: 'Marketplace',
       // collapsed: true,
       items: [
-        { text: 'Welcome to web3', link: '/intro/welcome-to-web3' },
-        { text: 'Tokens, NFTs & Contracts', link: '/intro/tokens-nfts-contracts' },
-        { text: 'Wallets', link: '/intro/wallets' },
-        { text: 'APIs', link: '/intro/apis' },
-        { text: 'Payments', link: '/intro/payments' },
-        { text: 'Marketplaces', link: '/intro/marketplaces' },
-        { text: 'Tools', link: '/intro/tools' },
-        { text: 'Let\s build some games!', link: '/intro/lets-build-games' },
-        { text: 'Let\s build some apps!', link: '/intro/lets-build-apps' },
+        { text: 'White-label Marketplace', link: '/solutions/white-label-marketplace' },
+        { text: 'Build your Custom Marketplace', link: '/solutions/orderbook' }
       ]
     },
     {
-      text: 'Chains',
+      text: 'Collectibles',
       // collapsed: true,
       items: [
-        { text: 'List of supported chains', link: '/intro/chains' },
-        { text: 'Multi-chain support', link: '/intro/multi-chain' },
-        { text: 'L2 & L3 chains', link: '/intro/l2-l3-chains' },
+        { text: 'Deployable Contracts', link: '/solutions/contracts' },
+        { text: 'Metadata Manager', link: '/solutions/metadata-manager' },
+        { text: 'Minter', link: '/solutions/minter' }
       ]
     },
     {
-      text: 'Research',
+      text: 'Payments',
+      items: [
+        { text: 'NFT Checkout', link: '/solutions/nft-checkout' },
+        { text: 'Onramps', link: '/solutions/onramps' },
+      ]
+    },
+    {
+      text: 'No-code Builder',
+      items: [
+        { text: 'Overview', link: '/solutions/builder' }
+      ]
+    },
+    {
+      text: 'Technical References',
+      items: [
+        { text: 'Ethereum Compatibility', link: '/solutions/ethereum-compatibility' },
+        { text: 'Chain Support', link: '/solutions/chain-support' },
+      ]
+    },
+    
+  ],
+
+  '/guides': [
+    {
+      text: 'Build a game with WebGL',
       collapsed: true,
       items: [
-        { text: 'Smart Wallets / Account Abstraction', link: '/intro/account-abstraction' },
-        { text: 'ERC1271', link: '/intro/erc1271' },
-        { text: 'P2P Transaction Bundler (ERC5189)', link: '/intro/erc5189' },
-      ]
-    },
-
-  ],
-
-  // Wallets
-  // TODO: this is just a WIP ToC ... still need lots more thinking..
-  '/wallet': [
-    {
-      text: 'Introduction',
-      items: [
-        { text: 'Overview', link: '/wallet' },
-        { text: 'Etc', link: '/wallet/getting-started' },
+        { text: 'Integrate SequenceKit with WaaS', link: '/guides/webgl-guide#integrate-sequencekit-with-waas' },
+        { text: 'Deploy a collectibles contract', link: '/guides/webgl-guide#deploy-a-collectibles-contract' },
+        { text: 'Deploy a remote minter', link: '/guides/webgl-guide#deploy-a-remote-minter' },
+        { text: 'Mint in-game achievement tokens', link: '/guides/webgl-guide#mint-in-game-achievement-tokens' },
+        { text: 'Burn in-game achievement tokens', link: '/guides/webgl-guide#burn-in-game-achievement-tokens' },
+        { text: 'Integrate an embedded marketplace', link: '/guides/webgl-guide#integrate-an-embedded-marketplace' },
+        { text: 'Leverage purchased items in-game', link: '/guides/webgl-guide#leverage-purchased-items-in-game' },
       ]
     },
     {
-      text: 'Sequence Kit',
-      items: [
-        { text: 'Getting started', link: '/wallet/kit/getting-started' },
-        { text: 'Connect', link: '/wallet/kit/connect' },
-        // TODO: .. other topic ideas....:
-        // authentication .. email auth, social sign-in
-        // metamask, wallet connect, ...etc...
-        { text: 'Embedded Wallet UI', link: '/wallet/kit/wallet-ui' },
-        { text: 'NFT Checkout', link: '/wallet/kit/nft-checkout' },
-      ]
-    },
-    {
-      text: 'Smart WaaS',
-      items: [
-        { text: 'What is Smart WaaS?', link: '/waas' },
-        { text: 'Authentication', link: '/waas/auth' },
-        // ...
-      ]
-    },
-    {
-      text: 'Integrations',
-      items: [
-        { text: 'Email', link: '/wallet/email' },
-        { text: 'OAuth', link: '/wallet/oauth' },
-        { text: 'Social sign-in', link: '/wallet/social' },
-        { text: 'MetaMask', link: '/wallet/metamask' },
-        { text: 'Wallet Connect', link: '/wallet/wallet-connect' },
-        { text: 'Coinbase Wallet', link: '/wallet/coinbase-wallet' },
-      ]
-    },
-    {
-      text: 'Signature Validation',
-      items: [
-        { text: 'etc', link: '/wallet/sig-validation' },
-        { text: 'etc..', link: '/wallet/sig-validation' },
-        // ...
-      ]
-    },
-    {
-      text: 'Other Wallet Connectors',
+      text: 'Build a mobile Unity game',
       collapsed: true,
       items: [
-        { text: 'Rainbow Kit', link: '/wallet/rainbow-kit' },
-        { text: 'Web3Modal', link: '/wallet/web3modal' },
-      ]
-    }
-  ],
-
-  // WaaS
-  '/waas': [
-    {
-      text: 'Introduction',
-      items: [
-        { text: 'Overview', link: '/waas' },
-        { text: 'Etc', link: '/waas/getting-started' },
+        { text: 'Integrate SequenceKit with WaaS', link: '/guides/unity-guide#integrate-sequencekit-with-waas' },
+        { text: 'Deploy a collectibles contract', link: '/guides/unity-guide#deploy-a-collectibles-contract' },
+        { text: 'Deploy a remote minter', link: '/guides/unity-guide#deploy-a-remote-minter' },
+        { text: 'Mint in-game achievement tokens', link: '/guides/unity-guide#mint-in-game-achievement-tokens' },
+        { text: 'Burn in-game achievement tokens', link: '/guides/unity-guide#burn-in-game-achievement-tokens' },
+        { text: 'Integrate an embedded marketplace', link: '/guides/unity-guide#integrate-an-embedded-marketplace' },
+        { text: 'Leverage purchased items in-game', link: '/guides/unity-guide#leverage-purchased-items-in-game' },
       ]
     },
     {
-      text: 'Authentication',
-      items: [
-        { text: 'Getting started', link: '/waas/auth/getting-started' },
-        { text: 'Connect', link: '/waas/auth/connect' },
-      ]
-    }
-  ],
-
-  // Indexer
-  '/indexer': [
-    {
-      text: 'Introduction',
-      items: [
-        { text: 'Overview', link: '/indexer' },
-      ]
+      text: 'Build a lootbox with AI minting',
+      link: '/guides/lootbox'
     },
     {
-      text: 'Blah',
+      text: 'Integrate token rewards into your Discord server',
+      link: '/guides/discord'
+    },
+    {
+      text: 'Templates',
       items: [
-        { text: 'Getting started', link: '/indexer/getting-started' },
-        { text: 'Blah blah', link: '/indexer/blah' },
+        { text: 'Embedded Wallet Demo', link: '/guides/template-embedded-wallet' },
+        { text: 'Go Relayer', link: '/guides/template-go-relayer' },
+        { text: 'Serverless Relayer using Cloudflare', link: '/guides/template-cloudflare-relayer' },
+        { text: 'Marketplace API Demo', link: '/guides/template-marketplace-api' }
       ]
     }
   ],
-
-  // TODO: ... need to add for relayer, metadata, node-gateway, marketplace-api, etc...
-  // ...............
 
   // SDKs
-  '/sdk/web': [
+  '/sdk': [
     {
-      text: 'Introduction',
+      text: 'Game Engine',
+      // collapsed: true,
       items: [
-        { text: 'Intro', link: '/sdk/web' },
-        { text: 'Getting Started', link: '/sdk/web/getting-started' },
+        { text: 'Unreal', link: '/sdk/unreal' },
+        { text: 'Unity', link: '/sdk/unity' }
       ]
     },
     {
-      // TODO: just a stub for now..
-      text: 'Examples',
+      text: 'Mobile',
+      // collapsed: true,
       items: [
-        { text: 'Demo Dapp', link: '/sdk/web/blah' },
+        { text: 'Android', link: '/sdk/android' },
+        { text: 'iOS', link: '/sdk/iOS' },
+        { text: 'React Native', link: '/sdk/react-native' }
       ]
-    }
+    },
+    {
+      text: 'Web3',
+      // collapsed: true,
+      items: [
+        { text: 'SequenceKit', link: '/sdks/sequence-kit' },
+        { text: 'TypeScript', link: '/sdk/typescript' },
+        { text: 'Go', link: '/sdk/go' }
+      ]
+    },
+    {
+      text: 'Common Questions',
+      collapsed: true,
+      items: [
+        { text: 'How do I do signature validation?', link: '/wallet/sig-validation' }
+        // ...
+      ]
+    },
   ],
 
-  // Guides -- Getting Started
-  '/guides/getting-started': [
-    {
-      text: 'Getting Started',
-      items: [
-        { text: 'Lets Go', link: '/guides/getting-started' },
-        { text: 'Setting up your project', link: '/guides/getting-started/project' },
-      ]
-    },
-    {
-      text: 'Etc',
-      items: [
-        { text: 'More stuff', link: '/guides/getting-started/more' },
-      ]
-    }
-  ],
-
-  // Guides -- Minting NFTs
-  '/guides/minting-nfts': [
-    {
-      text: 'Getting Started',
-      items: [
-        { text: 'Lets Go', link: '/guides/minting-nfts' },
-        { text: 'Setting up your project', link: '/guides/minting-nfts/project' },
-      ]
-    },
-    {
-      text: 'Etc',
-      items: [
-        { text: 'More stuff', link: '/guides/minting-nfts/more' },
-      ]
-    }
-  ],
+    // SDKs
+    '/api': [
+      {
+        text: 'APIs',
+        // collapsed: true,
+        items: [
+          { text: 'Embedded Wallet', link: '/api/embedded-wallet' },
+          { text: 'Indexer', link: '/api/indexer' },
+          { text: 'Marketplace', link: '/api/marketplace' },
+          { text: 'Metadata', link: '/api/metadata' },
+          { text: 'Transaction', link: '/api/transaction' },
+          { text: 'Node Gateway', link: '/api/node-gateway' },
+        ]
+      },
+    ],
+  
 
 
   // Builder
