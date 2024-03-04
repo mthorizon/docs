@@ -18,7 +18,7 @@ export default defineConfig({
   basePath: '/',
 
   topNav,
-  sidebar
+  sidebar,
 
 
   // NOTE: taking up valuable space, will move those
@@ -37,5 +37,35 @@ export default defineConfig({
   //     link: 'https://x.com/0xsequence',
   //   },
   // ],
+
+  theme: {
+    accentColor: {
+      light: '#442CA8',
+      dark: '#99ADED',
+    },
+    variables: {
+      fontFamily: {
+        default: 'Inter',
+        // mono: 'Roboto Mono'
+      },
+      color: {
+        background: {
+          light: '#eeeeee',
+          dark: '#111111',
+        },
+        // background5: {
+        //   light: '#dddddd',
+        //   dark: '#111111',
+        // }
+
+        backgroundDark: {
+          light: '#dddddd',
+          dark: '#151515'
+        }
+
+      }
+    }
+  }
+
 
 })
