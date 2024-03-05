@@ -39,33 +39,31 @@ export default defineConfig({
   // ],
 
   theme: {
-    accentColor: {
-      light: '#442CA8',
-      dark: '#99ADED',
-    },
+    // accentColor: {
+    //   light: '#442CA8',
+    //   dark: '#99ADED',
+    // },
     variables: {
       fontFamily: {
         default: 'Inter',
         // mono: 'Roboto Mono'
-      },
-      color: {
-        background: {
-          light: '#eeeeee',
-          dark: '#111111',
-        },
+      }
+      // color: {
+      //   background: {
+      //     light: '#eeeeee',
+      //     dark: '#111111',
+      //   },
         // background5: {
         //   light: '#dddddd',
         //   dark: '#111111',
         // }
 
-        backgroundDark: {
-          light: '#dddddd',
-          dark: '#151515'
-        }
+        // backgroundDark: {
+        //   light: '#dddddd',
+        //   dark: '#151515'
+        // }
 
       }
     }
-  }
-
 
 })
