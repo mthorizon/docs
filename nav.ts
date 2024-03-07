@@ -1,29 +1,16 @@
 import type { Sidebar, TopNav } from 'vocs'
 
-// NOTE/TODO: below are a WIP ... just trying to think
-// of the site structure, and how to organize the content.
-//
-// Trying to think from the perspective of the reader, that
-// is a game developer or app developer. And want to speak
-// into their filters, etc..
-//
-// As well, we want it to be educational, easy to follow,
-// how-to, etc... and comprehensive too.. 
-//
-// We can add / link API references too (can be external links)
-
 
 export const topNav = [
   { text: 'Solutions',
   items: [
-    { text: 'Wallets', link: '/solutions/embedded-wallet', match: '/solutions/embedded-wallet' },
-    { text: 'Marketplace', link: '/solutions/white-label-marketplace', match: '/solutions/white-label-marketplace' },
-    { text: 'Collectibles', link: '/solutions/contracts', match: '//solutions/contracts' },
+    { text: 'Wallets', link: '/solutions/wallets/embedded-wallet/01-overview', match: '/solutions/wallets/embedded-wallet/01-overview' },
+    { text: 'Marketplace', link: '/solutions/marketplaces/white-label-marketplace', match: '/solutions/marketplaces/white-label-marketplace' },
+    { text: 'Collectibles', link: '/solutions/collectibles/contracts/900-mint-items-from-ERC1155', match: '/solutions/collectibles/contracts/900-mint-items-from-ERC1155' },
     { text: 'Payments', link: '/solutions/nft-checkout', match: '/solutions/nft-checkout' },
-    { text: 'No-code Builder', link: '/solutions/builder', match: '/solutions/builder' }
+    { text: 'No-code Builder', link: '/solutions/builder/overview', match: '/solutions/builder/overview' }
   ]
 },
-
 
   { 
     text: 'Guides',
@@ -79,56 +66,90 @@ export const sidebar = {
     {
       text: 'Wallets',
       items: [
-        { text: 'Embedded Wallet', link: '/solutions/embedded-wallet', 
-        
-        // collapsed: true,
-        
-        // items: [
-          
-        // { text: 'Rainbow Kit', link: '/' },
-        // { text: 'Web3Modal', link: '/wallet/web3modal' }
-        // ]
-      
-      
-      
+        { text: 'Embedded Wallet', collapsed: true, items: [
+          {text: 'Overview', link: '/solutions/wallets/embedded-wallet/01-overview'},
+          {text: 'Quickstart', link: '/solutions/wallets/embedded-wallet/02-quickstart'},
+          {text: 'Manage Sessions', link: '/solutions/wallets/embedded-wallet/03-manage-sessions'},
+          {text: 'Use Wallets', link: '/solutions/wallets/embedded-wallet/04-use-wallets'},
+          {text: 'Validation', link: '/solutions/wallets/embedded-wallet/05-validation'},
+          {text: 'Transaction Receipts', link: '/solutions/wallets/embedded-wallet/06-transaction-receipts'},
+        ]
       },
-        { text: 'Universal Wallet', link: '/solutions/universal-wallet' }
+        { text: 'Universal Wallet', collapsed: true, 
+        items: [
+          {text: 'Overview', link: '/solutions/wallets/universal-wallet/01-overview'},
+          {text: 'Quickstart', link: '/solutions/wallets/universal-wallet/02-quickstart'},
+          {text: 'Guides', collapsed: true, items: [
+            {text: 'Connect Wallet', link: '/solutions/wallets/universal-wallet/03-guides/01-connect-wallet'},
+            {text: 'Authenticate Users with Message Signature', link: '/solutions/wallets/universal-wallet/03-guides/02-auth-address'},
+            {text: 'Signing & Verifying Messages', link: '/solutions/wallets/universal-wallet/03-guides/03-sign-message'},
+            {text: 'No-wallet confirmation signatures', link: '/solutions/wallets/universal-wallet/03-guides/04-session-keys'},
+            {text: 'Sending Transactions', link: '/solutions/wallets/universal-wallet/03-guides/05-send-transaction'},
+            {text: 'Sending ERC-20 Tokens', link: '/solutions/wallets/universal-wallet/03-guides/06-send-erc20'},
+            {text: 'Sending ERC-721 (NFT) Tokens', link: '/solutions/wallets/universal-wallet/03-guides/07-send-erc721'},
+            {text: 'Sending ERC-1155 (Collectible) Tokens', link: '/solutions/wallets/universal-wallet/03-guides/08-send-erc1155'},
+            {text: 'Sending a Batch of Transactions', link: '/solutions/wallets/universal-wallet/03-guides/09-send-batch-transactions'},
+            {text: 'Building Backends with Sequence', link: '/solutions/wallets/universal-wallet/03-guides/10-building-backends'},
+          ]
+        },
+          {text: 'Supported Platforms', link: '/solutions/wallets/universal-wallet//04-platforms'},
+          {text: 'Validation', link: '/solutions/wallets/universal-wallet/05-fiat-on-ramps'},
+          {text: 'Transaction Receipts', link: '/solutions/wallets/universal-wallet/06-key-management'},
+          {text: 'Sequence Kit', link: '/solutions/wallets/universal-wallet/07-sequence-kit'}
+        ]
+        }
       ]
     },
     {
       text: 'Marketplace',
       // collapsed: true,
       items: [
-        { text: 'White-label Marketplace', link: '/solutions/white-label-marketplace' },
-        { text: 'Build your Custom Marketplace', link: '/solutions/orderbook' }
-      ]
+        { text: 'White-label Marketplace', link: '/solutions/marketplaces/white-label-marketplace' },
+        { text: 'Build your Custom Marketplace', collapsed: true, items: [
+          {text: 'Overview', link: '/solutions/marketplaces/orderbook/01-overview'},
+          {text: 'Quickstart', link: '/solutions/marketplaces/orderbook/02-quickstart'},
+        ]
+       }
+      ] 
     },
     {
       text: 'Collectibles',
-      // collapsed: true,
       items: [
-        { text: 'Deployable Contracts', link: '/solutions/contracts' },
-        { text: 'Metadata Manager', link: '/solutions/metadata-manager' },
-        { text: 'Minter', link: '/solutions/minter' }
+        { text: 'Deployable Contracts' , collapsed: true, items: [
+          {text: 'Mint In-Game Items and Achievements (ERC1155)', link: '/solutions/collectibles/contracts/900-mint-items-from-ERC1155'},
+          {text: 'Mint Digital Collectibles (ERC721)', link: '/solutions/collectibles/contracts/902-mint-collectibles-from-ERC721'},
+          {text: 'Mint In-Game Currency (ERC20)', link: '/solutions/collectibles/contracts/903-mint-currency-from-ERC20'},
+        ],
+      },
+        { text: 'Metadata Manager', link: '/solutions/collectibles/metadata/800-manage-contract-metadata-builder' },
+        // { text: 'Minter', link: '/solutions/minter' }
       ]
     },
     {
       text: 'Payments',
       items: [
         { text: 'NFT Checkout', link: '/solutions/nft-checkout' },
-        { text: 'Onramps', link: '/solutions/onramps' },
+        { text: 'Onramps', link: '/solutions/payments/onramps/01-fiat-on-ramps' },
       ]
     },
     {
       text: 'No-code Builder',
+      collapsed: true,
       items: [
-        { text: 'Overview', link: '/solutions/builder' }
+        { text: 'Overview', link: '/solutions/builder/overview' },
+        {text: 'Project Management', link: '/solutions/builder/project-management'},
+        {text: 'Contracts', link: '/solutions/builder/contracts'},
+        {text: 'Wallet SDKs', link: '/solutions/builder/wallet-sdks'},
+        {text: 'Gas Tank', link: '/solutions/builder/gas-tank'},
+        {text: 'Node Gateway', link: '/solutions/builder/node-gateway'},
+        {text: 'Marketplaces', link: '/solutions/builder/marketplaces'},
+        {text: 'Indexer', link: '/solutions/builder/indexer'},
+        {text: 'Settings', link: '/solutions/builder/project-settings'},
       ]
     },
     {
       text: 'Technical References',
       items: [
-        { text: 'Ethereum Compatibility', link: '/solutions/ethereum-compatibility' },
         { text: 'Chain Support', link: '/solutions/chain-support' },
       ]
     },
@@ -219,7 +240,7 @@ export const sidebar = {
     },
   ],
 
-    // SDKs
+    // apis
     '/api': [
       {
         text: 'APIs',
@@ -235,85 +256,6 @@ export const sidebar = {
       },
     ],
   
-
-
-  // Builder
-  // TODO: I just mocked below for some structure.. but
-  // we should change it up as we go..
-  '/builder': [
-    {
-      text: 'Introduction',
-      items: [
-        { text: 'Overview', link: '/builder' },
-        { text: 'Setting up your project', link: '/builder/stub' },
-        { text: 'API Access Keys', link: '/builder/stub' },
-      ]
-    },
-    {
-      text: 'Contracts',
-      // collapsed: true,
-      items: [
-        { text: 'Getting started', link: '/builder/contracts/getting-started' },
-        { text: 'Creating a contract', link: '/builder/contracts/create' },
-      ]
-    },
-    {
-      text: 'Collections',
-      // collapsed: true,
-      items: [
-        { text: 'Getting started', link: '/builder/collections/getting-started' },
-        { text: 'Creating a collection', link: '/builder/collections/create' },
-      ]
-    },
-    {
-      text: 'NFT Metadata',
-      // collapsed: true,
-      items: [
-        { text: 'Getting started', link: '/builder/metadata/getting-started' },
-        { text: 'Creating metadata', link: '/builder/metadata/create' },
-      ]
-    },
-    {
-      text: 'Transactions',
-      // collapsed: true,
-      items: [
-        { text: 'Getting started', link: '/builder/transactions/getting-started' },
-        { text: 'Gas Tanks', link: '/builder/transactions/gas-tanks' }, // TODO ..
-      ]
-    },
-    {
-      text: 'Payments',
-      // collapsed: true,
-      items: [
-        { text: 'Getting started', link: '/builder/etc' },
-        { text: 'etc', link: '/builder/etc' },
-      ]
-    },
-    {
-      text: 'Marketplaces',
-      // collapsed: true,
-      items: [
-        { text: 'Getting started', link: '/builder/etc' },
-        { text: 'etc', link: '/builder/etc' },
-      ]
-    },
-    {
-      text: 'Analytics',
-      // collapsed: true,
-      items: [
-        { text: 'Getting started', link: '/builder/etc' },
-        { text: 'etc', link: '/builder/etc' },
-      ]
-    },
-    {
-      text: 'Settings',
-      // collapsed: true,
-      items: [
-        { text: 'Getting started', link: '/builder/etc' },
-        { text: 'etc', link: '/builder/etc' },
-      ]
-    }
-  ],
 
   // Support
   '/support': {
