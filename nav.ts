@@ -116,6 +116,7 @@ export const sidebar = {
       text: 'Collectibles',
       items: [
         { text: 'Deployable Contracts' , collapsed: true, items: [
+          {text: 'Deploy an Item Collection Contract  ', link: '/solutions/collectibles/contracts/200-deploy-an-item-collection-contract'},
           {text: 'Mint In-Game Items and Achievements (ERC1155)', link: '/solutions/collectibles/contracts/900-mint-items-from-ERC1155'},
           {text: 'Mint Digital Collectibles (ERC721)', link: '/solutions/collectibles/contracts/902-mint-collectibles-from-ERC721'},
           {text: 'Mint In-Game Currency (ERC20)', link: '/solutions/collectibles/contracts/903-mint-currency-from-ERC20'},
@@ -137,6 +138,7 @@ export const sidebar = {
       collapsed: true,
       items: [
         { text: 'Overview', link: '/solutions/builder/overview' },
+        { text: 'Get Started', link: '/solutions/builder/getting-started' },
         {text: 'Project Management', link: '/solutions/builder/project-management'},
         {text: 'Contracts', link: '/solutions/builder/contracts'},
         {text: 'Wallet SDKs', link: '/solutions/builder/wallet-sdks'},
@@ -150,7 +152,21 @@ export const sidebar = {
     {
       text: 'Technical References',
       items: [
-        { text: 'Chain Support', link: '/solutions/chain-support' },
+        { text: 'Chain Support', link: '/solutions/technical-references/chain-support' },
+        { text: 'Wallet Contracts', collapsed: true, items: [
+          { text: 'Why smart contract wallets?', link: 'solutions/technical-references/wallet-contracts/01-why' },
+          { text: 'Universal Deployer', link: 'solutions/technical-references/wallet-contracts/02-universal-deployer' },
+          {text: 'Wallet Factory', link: 'solutions/technical-references/wallet-contracts/03-wallet-factory'},
+          {text: 'Wallet Configuration', link: 'solutions/technical-references/wallet-contracts/04-wallet-configuration'},
+          // {text: 'Modules & Wallet update', link: 'solutions/technical-references/wallet-contracts/05-modules-and-updates'},
+          // {text: 'MainModuleUpgradeable & configuration migration', link: 'solutions/technical-references/wallet-contracts/06-main-module-upgradeable'},
+          {text: 'Transaction Encoding', link: 'solutions/technical-references/wallet-contracts/07-transaction-encoding'},
+          {text: 'Signature Encoding', link: '/solutions/technical-references/wallet-contracts/08-signature-encoding'},
+          // {text: 'Nested Transaction Batching', link: 'solutions/technical-references/wallet-contracts/09-nested-transaction-batching'},
+          // {text: 'GuestModule and on-demand deployment', link: 'solutions/technical-references/wallet-contracts/10-guest-module'},
+          {text: 'Wallet Context', link: 'solutions/technical-references/wallet-contracts/11-wallet-context'},
+          {text: 'Contract Audits', link: 'solutions/technical-references/wallet-contracts/12-contract-audits'},
+        ] }
       ]
     },
     
@@ -194,10 +210,10 @@ export const sidebar = {
     {
       text: 'Templates',
       items: [
-        { text: 'Embedded Wallet Demo', link: '/guides/template-embedded-wallet' },
-        { text: 'Go Relayer', link: '/guides/template-go-relayer' },
-        { text: 'Serverless Relayer using Cloudflare', link: '/guides/template-cloudflare-relayer' },
-        { text: 'Marketplace API Demo', link: '/guides/template-marketplace-api' }
+        { text: 'Embedded Wallet Demo', link: '/guides/templates/template-embedded-wallet' },
+        { text: 'Go Relayer', link: '/guides/templates/template-go-relayer' },
+        { text: 'Serverless Relayer using Cloudflare', link: '/guides/templates/template-cloudflare-relayer' },
+        { text: 'Marketplace API Demo', link: '/guides/templates/template-marketplace-api' }
       ]
     }
   ],
