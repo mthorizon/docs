@@ -8,8 +8,11 @@ export const topNav = [
     { text: 'Marketplace', link: '/solutions/marketplaces/white-label-marketplace', match: '/solutions/marketplaces/white-label-marketplace' },
     { text: 'Collectibles', link: '/solutions/collectibles/contracts/900-mint-items-from-ERC1155', match: '/solutions/collectibles/contracts/900-mint-items-from-ERC1155' },
     { text: 'Payments', link: '/solutions/nft-checkout', match: '/solutions/nft-checkout' },
-    { text: 'No-code Builder', link: '/solutions/builder/overview', match: '/solutions/builder/overview' }
-  ]
+    { text: 'No-code Builder', link: '/solutions/builder/overview', match: '/solutions/builder/overview', items: [
+      { text: 'Overview', link: '/solutions/builder/overview', match: '/solutions/builder/overview' }, 
+    ]
+  }
+]
 },
 
   { 
