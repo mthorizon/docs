@@ -1,8 +1,4 @@
 
-import Tabs from '@theme/Tabs'
-import TabItem from '@theme/TabItem'
-
-
 # Wallet Configuration
 
 Every Sequence wallet has a configuration defined by a threshold and a list of signers with their corresponding weights.
@@ -66,44 +62,7 @@ Wallets that never have been updated don't store the `imageHash` directly, inste
 
 #### Compute image hash
 
-<Tabs>
-  <TabItem value="solidity" label="Solidity" default>
-
-```solidity
-keccak256(abi.encode(
-    uint8 weight_1, address signer_1,
-    keccak256(abi.encode(
-        uint8 weight_2, address signer_2,
-        keccak256(abi.encode(
-            uint8 weight_3, address signer_3,
-            keccak256(abi.encode(
-                uint256 threshold
-            ))
-        ))
-    ))
-))
-```
-
-  </TabItem>
-  <TabItem value="js" label="Javascript">
-
-```js
-let tmp = ethers.utils.solidityPack(['uint256'], [configuration.threshold])
-
-for (const signer of configuration.signers) {
-  tmp = ethers.utils.keccak256(
-    ethers.utils.defaultAbiCoder.encode(
-      ['bytes32', 'uint8', 'address'],
-      [tmp, signer.weight, signer.address]
-    )
-  )
-}
-
-const imageHash = tmp
-```
-
-  </TabItem>
-</Tabs>
+## TODO Implement table from v1 docs
 
 
 ## Initial wallet configuration
