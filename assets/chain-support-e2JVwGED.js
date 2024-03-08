@@ -1,0 +1,6 @@
+import{u as s,j as e}from"./index-CPrfv8M9.js";const i={title:"Multi-Chain Support",description:"undefined"};function r(t){const n={a:"a",div:"div",h1:"h1",h2:"h2",header:"header",p:"p",strong:"strong",...s(),...t.components};return e.jsxs(e.Fragment,{children:[e.jsx(n.header,{children:e.jsxs(n.h1,{id:"multi-chain-support",children:["Multi-Chain Support",e.jsx(n.a,{"aria-hidden":"true",tabIndex:"-1",href:"#multi-chain-support",children:e.jsx(n.div,{"data-autolink-icon":!0})})]})}),`
+`,e.jsx(n.p,{children:`Sequence can support all EVM compatible chains. The following networks are currently supported by Sequence Wallet, Sequence Indexer,
+Sequence Relayer and all Sequence SDKs:`}),`
+`,e.jsxs(n.strong,{children:["Sequence Status Page: ",e.jsx(n.a,{href:"https://status.sequence.info",children:"https://status.sequence.info"})]}),`
+`,e.jsxs(n.h2,{id:"networks",children:["Networks",e.jsx(n.a,{"aria-hidden":"true",tabIndex:"-1",href:"#networks",children:e.jsx(n.div,{"data-autolink-icon":!0})})]}),`
+`,e.jsx(n.p,{children:"TODO: import tablecomponent"})]})}function o(t={}){const{wrapper:n}={...s(),...t.components};return n?e.jsx(n,{...t,children:e.jsx(r,{...t})}):r(t)}export{o as default,i as frontmatter};
