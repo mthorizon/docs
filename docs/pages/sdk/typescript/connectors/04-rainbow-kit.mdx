@@ -57,7 +57,7 @@ Chains supported by app. This is the same parameter as would be passed to other 
 
 ### connect (optional)
 Connect options for Sequence, including the name of the app and the default network id the wallet will attempt connection to.
-A more in depth description of the connect options is available [here](/wallet/guides/connect-wallet#wallet-login-and-connect-options).
+A more in depth description of the connect options is available [here](/solutions/wallets/universal-wallet/03-guides/01-connect-wallet#wallet-login-and-connect-options).
 
 ### defaultNetwork (optional)
 The default network to connect to. Sequence will default all operations to this network. It can also be defined using a number (e.g. 1 for Mainnet, 5 for Goerli, etc...).
@@ -66,10 +66,10 @@ The default network to connect to. Sequence will default all operations to this 
 There are special considerations to take into account when using NextJs with Wagmi-based libraries like RainbowKit, such that it functions harmoniously with the server-side rendering of NextJs.
 The correct technique to use differs depending on whether the application uses the older `pages` router or the more recent `app` router.
 
-See [this section](https://docs.sequence.xyz/wallet/connectors/FAQ/#how-do-i-use-a-wallet-library-and-connector-with-nextjs-using-the-app-directory-version-13-and-above-only) for an explanation on using Wagmi or Wagmi-based libraries with `app` router.  
+See [this section](/sdk/typescript/connectors/08-FAQ#how-do-i-use-a-wallet-library-and-connector-with-nextjs-using-the-app-directory-version-13-and-above-only) for an explanation on using Wagmi or Wagmi-based libraries with `app` router.  
 See [the example app](https://github.com/0xsequence/demo-dapp-wagmi-next/tree/use-client-method) which uses the `app` router structure.  
 
-See [this section](https://docs.sequence.xyz/wallet/connectors/FAQ/#how-do-i-use-a-wallet-library-and-connector-with-nextjs-using-the-pages-directory-all-versions-of-nextjs) for an explanation on using Wagmi or Wagmi-based libraries with `pages` router.  
+See [this section](/sdk/typescript/connectors/08-FAQ#how-do-i-use-a-wallet-library-and-connector-with-nextjs-using-the-app-directory-version-13-and-above-only) for an explanation on using Wagmi or Wagmi-based libraries with `pages` router.  
 See [the example app](https://github.com/0xsequence/demo-dapp-wagmi-next/tree/mount-hook) which uses the `pages` router structure.  
 
 ## Using older versions of Wagmi (\<\= 0.12.x)
