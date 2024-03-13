@@ -12,7 +12,7 @@ export default defineConfig({
   //     'https://vocs.dev/api/og?logo=%logo&title=%title&description=%description',
   // },
   // iconUrl: { light: '/favicons/light.png', dark: '/favicons/dark.png' },
-  logoUrl: { light: '/imgs/sequence-composite-light.svg', dark: '/imgs/sequence-composite-dark.svg' },
+  logoUrl: { light: '/img/sequence-composite-light.svg', dark: '/img/sequence-composite-dark.svg' },
 
   // rootDir: '.',
   basePath: '/',

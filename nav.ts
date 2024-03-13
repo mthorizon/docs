@@ -21,17 +21,17 @@ export const topNav = [
       { text: 'Web3 Game with WebGL', link: '/guides/webgl-guide', match: '/guides/webgl-guide' },
       { text: 'Web3 Game with Unity', link: '/guides/unity-guide', match: '/guides/unity-guide' },
       { text: 'Lootboxes', link: '/guides/lootbox', match: '/guides/lootbox' },
-      { text: 'Custom Marketplace', link: '/guides/template-marketplace-api', match: '/guides/template-marketplace-api' }
+      { text: 'Custom Marketplace', link: '/guides/templates/template-marketplace-api', match: '/guides/templates/template-marketplace-api' }
     ]
   },
   { 
     text: 'SDKs',
     items: [
-      { text: 'Unity', link: '/sdk/unity', match: '/sdk/unity' },
+      { text: 'Unity', link: '/sdk/unity/01-overview', match: '/sdk/unity/01-overview' },
       { text: 'Unreal', link: '/sdk/unreal', match: '/sdk/unreal' },
       { text: 'Node.js', link: '/sdk/nodejs', match: '/sdk/nodejs' },
-      { text: 'Sequence Kit', link: '/sdk/sequence-kit', match: '/sdk/sequence-kit' },
-      { text: 'Go', link: '/sdk/go', match: '/sdk/go' },
+      { text: 'Sequence Kit', link: '/sdk/sequence-kit/01-overview', match: '/sdk/sequence-kit/01-overview' },
+      { text: 'Go', link: '/sdk/go/go', match: '/sdk/go/overview' },
       { text: 'Android', link: '/sdk/android', match: '/sdk/android' },
       { text: 'React Native', link: '/sdk/reactnative', match: '/sdk/reactnative' },
       { text: 'iOS', link: '/sdk/iOS', match: '/sdk/iOS' }
@@ -214,8 +214,8 @@ export const sidebar = {
       text: 'Templates',
       items: [
         { text: 'Embedded Wallet Demo', link: '/guides/templates/template-embedded-wallet' },
-        { text: 'Go Relayer', link: '/guides/templates/template-go-relayer' },
-        { text: 'Serverless Relayer using Cloudflare', link: '/guides/templates/template-cloudflare-relayer' },
+        { text: 'Building Backend Relaying Server', link: '/guides/templates/02-building-relaying-server' },
+        { text: 'Serverless Minting of Collectibles', link: '/guides/templates/03-mint-collectibles-serverless' },
         { text: 'Marketplace API Demo', link: '/guides/templates/template-marketplace-api' }
       ]
     }
@@ -228,25 +228,78 @@ export const sidebar = {
       // collapsed: true,
       items: [
         { text: 'Unreal', link: '/sdk/unreal' },
-        { text: 'Unity', link: '/sdk/unity' }
+        { text: 'Unity', collapsed: true, items: [
+          { text: 'Overview', link: '/sdk/unity/01-overview' },
+          { text: 'Installation', link: '/sdk/unity/02-installation' },
+          { text: 'Setup', link: '/sdk/unity/03-setup' },
+          { text: 'Authentication', link: '/sdk/unity/04-authentication' },
+          { text: 'Write to blockchain', link: '/sdk/unity/05-write-to-blockchain' },
+          { text: 'Read from Blockchain', link: '/sdk/unity/06-read-from-blockchain' },
+          { text: 'Sign Messages', link: '/sdk/unity/07-sign-messages' },
+          { text: 'Deploy Contracts', link: '/sdk/unity/08-deploy-contracts' },
+          { text: 'Wallet UI', link: '/sdk/unity/09-wallet-ui' },
+          { text: 'Advanced', collapsed: true,  items: [
+            { text: 'Introduction', link: '/sdk/unity/Advanced/01-introduction' },
+            { text: 'Wallets', link: '/sdk/unity/Advanced/02-wallets' },
+            { text: 'Clients', link: '/sdk/unity/Advanced/03-clients' },
+            { text: 'Transfers', link: '/sdk/unity/Advanced/04-transfers' },
+            { text: 'Contracts', link: '/sdk/unity/Advanced/05-contracts' },
+            { text: 'Tokens', link: '/sdk/unity/Advanced/06-tokens' }
+             ]
+           },
+          ]
+        }
       ]
     },
     {
       text: 'Mobile',
-      // collapsed: true,
       items: [
         { text: 'Android', link: '/sdk/android' },
         { text: 'iOS', link: '/sdk/iOS' },
         { text: 'React Native', link: '/sdk/react-native' }
       ]
     },
+
     {
       text: 'Web3',
-      // collapsed: true,
       items: [
-        { text: 'SequenceKit', link: '/sdks/sequence-kit' },
-        { text: 'TypeScript', link: '/sdk/typescript' },
-        { text: 'Go', link: '/sdk/go' }
+        { text: 'SequenceKit', collapsed: true, items: [
+          { text: 'Overview', link: '/sdk/sequence-kit/01-overview' },
+          { text: 'Quickstart', link: '/sdk/sequence-kit/02-getting-started' },
+          { text: 'Configuration', link: '/sdk/sequence-kit/03-configuration' },
+          { text: 'Checkout', link: '/sdk/sequence-kit/04-checkout' },
+          { text: 'Custom Connectors', link: '/sdk/sequence-kit/05-custom-connectors' }
+        ]
+       },
+
+        { text: 'TypeScript', collapsed: true, items: [
+          {text: 'Connect Wallet', link: '/sdk/typescript/03-guides/01-connect-wallet'},
+          {text: 'Authenticate Users with Message Signature', link: '/sdk/typescript/03-guides/02-auth-address'},
+          {text: 'Signing & Verifying Messages', link: '/sdk/typescript/03-guides/03-sign-message'},
+          {text: 'No-wallet confirmation signatures', link: '/sdk/typescript/03-guides/04-session-keys'},
+          {text: 'Sending Transactions', link: '/sdk/typescript/03-guides/05-send-transaction'},
+          {text: 'Sending ERC-20 Tokens', link: '/sdk/typescript/03-guides/06-send-erc20'},
+          {text: 'Sending ERC-721 (NFT) Tokens', link: '/sdk/typescript/03-guides/07-send-erc721'},
+          {text: 'Sending ERC-1155 (Collectible) Tokens', link: '/sdk/typescript/03-guides/08-send-erc1155'},
+          {text: 'Sending a Batch of Transactions', link: '/sdk/typescript/03-guides/09-send-batch-transactions'},
+          {text: 'Building Backends with Sequence', link: '/sdk/typescript/03-guides/10-building-backends'},
+          {text: 'Wallet Connectors', items: [
+            {text: 'Overview', link: '/sdk/typescript/03-guides/connectors/01-overview'},
+            {text: 'SequenceKit', link: '/sdk/sequence-kit/01-overview'},
+            {text: 'Wagmi', link: '/sdk/typescript/03-guides/connectors/03-wagmi'},
+            {text: 'RainbowKit', link: '/sdk/typescript/03-guides/connectors/04-rainbow-kit'},
+            {text: 'Web3 Onboard', link: '/sdk/typescript/03-guides/connectors/05-web3-onboard'},
+            {text: 'Web3 React V6', link: '/sdk/typescript/03-guides/connectors/06-web3-react-v6'},
+            {text: 'Web3Modal', link: '/sdk/typescript/03-guides/connectors/07-web3modal'},
+            {text: 'FAQ', link: '/sdk/typescript/03-guides/connectors/08-FAQ'},
+             ]
+          }
+        ] 
+      },
+        { text: 'Go', collapsed: true, items: [
+          {text: 'Overview', link: '/sdk/go/overview'},]
+        
+        }
       ]
     },
     {
