@@ -44,3 +44,214 @@
 .vocs_DesktopSearch_search {
   width: 175px;
 }
+
+
+.tabs {
+  display: flex;
+}
+
+.tabs button {
+  padding: 10px 20px;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  border-bottom: 3px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.tabs button.active {
+  border-bottom-color: white;
+  font-weight: bold;
+}
+
+.tab-panels {
+  padding-top: 20px;
+  animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjust minmax as needed */
+  gap: 1rem; /* Adjust the gap as needed */
+  padding: 1rem;
+  /* background-color: #1a1a1a; Dark background as shown in the image */
+}
+
+.card {
+  background-color: #3c393f;
+  border-radius: 10px;
+  height: 240px;
+  padding: 1rem;
+  color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-icon {
+  /* Add styles for your icon */
+  font-size: 2rem; /* Example size */
+}
+
+.card-content {
+  margin: auto;
+  margin-top: 1rem;
+}
+
+.card-title {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.card-description {
+  margin: 0;
+  font-size: 1rem;
+  opacity: 0.7;
+}
+
+.card-link {
+  text-decoration: none; /* Removes underline from links */
+  color: inherit; /* Inherits text color from parent */
+}
+
+table {
+  text-align: center;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+  text-align: left;
+  border: 1px solid #3e3e3e;
+  color: white; /* For readability on the dark background */
+}
+
+.network-logos {
+  width: 30px; /* Or your preferred size */
+  height: auto;
+  /* If you need the image to be a circle (often used for logos), uncomment below */
+  /* border-radius: 50%; */
+}
+
+.cell-content {
+  font-size: 14px;
+  float: left;
+  display: flex;
+  align-items: center; /* Vertical centering */
+  justify-content: center; /* Horizontal centering */
+}
+
+.cell-image {
+  width: 30px; /* Adjust as needed */
+  height: auto;
+  float: left;
+  margin: 5px;
+  /* Aligns the image vertically with the text */
+}
+
+.cell-text {
+  min-width: 140px;
+}
+
+.widget {
+  display: flex;
+  margin: auto;
+  margin-top: 10px;
+  border: 1px solid #3e3e3e;
+  background-color: #1a1a1a;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 400px; /* Adjust the width as needed */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centers the content horizontally */
+  padding: 20px; /* This adds space around everything inside the widget */
+}
+
+.widget-body {
+  width: 100%; /* Full width of the parent */
+  flex: 1; /* Allows the body to grow and take up available space */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center the image vertically */
+  align-items: center; /* Center the image horizontally */
+  margin-bottom: 0px; /* Adds space between the image/button and the footer */
+}
+
+.widget-footer {
+  width: 100%; /* Full width of the parent */
+  text-align: center;
+  color: grey;
+}
+
+.mint-image {
+  border: 1px solid #3e3e3e;
+  border-radius: 15px;
+  max-width: 100%; /* Ensure it fits within the parent */
+  max-height: auto; /* Adjust height automatically */
+  margin: 0; /* Remove any default margin */
+}
+
+.mint-button {
+  margin: 5px;
+  background-image: linear-gradient(to right, #7537f9, #651fff); 
+  color: #fff; /* Light text */
+  padding: 11px 24px; /* Spacing around the text */
+  border-radius: 30px; /* Rounded corners */
+  font-size: 16px; /* Adjust as needed */
+  font-weight: bold; /* Bold text */
+  border: none; /* No border */
+  cursor: pointer; /* Pointer cursor on hover */
+  text-align: center; /* Center the text */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+  transition: background-color 0.3s, box-shadow 0.3s; /* Transition for hover effects */
+}
+
+.mint-button:hover {
+  background-image: linear-gradient(to right, #612cd2, #541ad1); 
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* More pronounced shadow on hover */
+}
+
+.dashed-box {
+  margin: 20px;
+  padding: 5px;
+  border: 2px dashed #541ad1; /* Creates a dashed (broken) purple border */
+}
+
+.video-container {
+  position: relative;
+  width: 560px; 
+  height: 315px;
+}
+
+.preview-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.video-frame {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: none;
+}

@@ -8,9 +8,14 @@
     "preview": "vocs preview"
   },
   "dependencies": {
+    "0xsequence": "^1.9.11",
+    "@0xsequence/indexer": "^1.9.11",
     "@types/react": "latest",
+    "add": "^2.0.6",
+    "ethers": "5.7.2",
     "react": "latest",
     "react-dom": "latest",
+    "styled-components": "^6.1.8",
     "typescript": "latest",
     "vocs": "latest"
   }

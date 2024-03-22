@@ -1,3 +1,5 @@
+import { Callout } from "vocs/components";
+
 # Connect Wallet
 
 Sequence is a very flexible wallet which allow users multiple ways to connect / access their wallet. This includes:
@@ -23,17 +25,18 @@ using web3.js or ethers.js, Sequence will just work too. This is the beauty of i
 
 ## Connecting your dapp with `0xsequence`
 
-:::info A delightful wallet without requiring your users to install anything :D
-By integrating `0xsequence`, users may access your dapp without having to install any special extensions,
-and the wallet also works on mobile browsers!
-:::
+<Callout type="info">
+  A delightful wallet without requiring your users to install anything 😊 :D By
+  integrating `0xsequence`, users may access your dapp without having to install
+  any special extensions, and the wallet also works on mobile browsers!
+</Callout>
 
 Your dapp can connect to your user's wallet by first instantiating the Wallet provider:
 
 ```ts
 import { sequence } from "0xsequence";
 
-const projectAccessKey = '<access_key>'
+const projectAccessKey = "<access_key>";
 
 // This assumes your dapp runs on Ethereum mainnet
 const wallet = sequence.initWallet(projectAccessKey);
