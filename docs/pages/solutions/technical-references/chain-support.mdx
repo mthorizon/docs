@@ -1,5 +1,7 @@
 # Multi-Chain Support
 
+import Table from "../../../components/Table";
+
 Sequence can support all EVM compatible chains. The following networks are currently supported by Sequence Wallet, Sequence Indexer,
 Sequence Relayer and all Sequence SDKs:
 
@@ -7,4 +9,121 @@ Sequence Relayer and all Sequence SDKs:
 
 ## Networks
 
-TODO: import tablecomponent
+<Table 
+    columns={[
+        'Network',
+        'Chain Handle',
+        'Indexer Endpoint',
+    ]}
+    rows={[
+    {
+        networkImage: '/img/networks/1.png',
+        network: 'Ethereum',
+        chainHandle: 'mainnet',
+        indexerEndpoint: 'https://mainnet-indexer.sequence.app'
+    },{
+        networkImage: '/img/networks/42161.png',
+        network: 'Arbitrum One',
+        chainHandle: 'arbitrum',
+        indexerEndpoint: 'https://arbitrum-indexer.sequence.app'
+    },
+    {
+        networkImage: '/img/networks/42170.png',
+        network: 'Arbitrum Nova',
+        chainHandle: 'arbitrum-nova',
+        indexerEndpoint: 'https://arbitrum-nova-indexer.sequence.app'
+    },
+    {
+        networkImage: '/img/networks/137.png',
+        network: 'Polygon',
+        chainHandle: 'polygon',
+        indexerEndpoint: 'https://polygon-indexer.sequence.app'
+    },
+    {
+        networkImage: '/img/networks/1101.png',
+        network: 'Polygon zkEVM',
+        chainHandle: 'polygon-zkevm',
+        indexerEndpoint: 'https://polygon-zkevm-indexer.sequence.app'
+    },
+    {
+        networkImage: '/img/networks/8453.png',
+        network: 'Base',
+        chainHandle: 'base',
+        indexerEndpoint: 'https://base-indexer.sequence.app'
+    },
+    {
+        networkImage: '/img/networks/10.png',
+        network: 'Optimism',
+        chainHandle: 'optimism',
+        indexerEndpoint: 'https://optimism-indexer.sequence.app'
+    },
+    {
+        networkImage: '/img/networks/43114.png',
+        network: 'Avalanche',
+        chainHandle: 'avalanche',
+        indexerEndpoint: 'https://avalanche-indexer.sequence.app'
+    },
+    {
+        networkImage: '/img/networks/19011.png',
+        network: 'Homeverse',
+        chainHandle: 'homeverse',
+        indexerEndpoint: 'https://homeverse-indexer.sequence.app'
+    },
+    {
+        networkImage: '/img/networks/56.png',
+        network: 'BSC',
+        chainHandle: 'bsc',
+        indexerEndpoint: 'https://bsc-indexer.sequence.app'
+    },
+    {
+        networkImage: '/img/networks/100.png',
+        network: 'Gnosis',
+        chainHandle: 'gnosis',
+        indexerEndpoint: 'https://gnosis-indexer.sequence.app'
+    },
+
+]} />
+
+## Testnets
+
+<Table
+  columns={["Network", "Chain Handle", "Indexer Endpoint"]}
+  rows={[
+    {
+      networkImage: "/img/networks/1.png",
+      network: "Ethereum Sepolia",
+      chainHandle: "sepolia",
+      indexerEndpoint: "https://sepolia-indexer.sequence.app",
+    },
+    {
+      networkImage: "/img/networks/42161.png",
+      network: "Arbitrum Sepolia",
+      chainHandle: "arbitrum",
+      indexerEndpoint: "https://arbitrum-sepolia-indexer.sequence.app",
+    },
+    {
+      networkImage: "/img/networks/8453.png",
+      network: "Base Sepolia",
+      chainHandle: "base-sepolia",
+      indexerEndpoint: "https://base-sepolia-indexer.sequence.app",
+    },
+    {
+      networkImage: "/img/networks/10.png",
+      network: "Optimism Sepolia",
+      chainHandle: "optimism-sepolia",
+      indexerEndpoint: "https://optimism-indexer.sequence.app",
+    },
+    {
+      networkImage: "/img/networks/137.png",
+      network: "Polygon Mumbai",
+      chainHandle: "mumbai",
+      indexerEndpoint: "https://mumbai-indexer.sequence.app",
+    },
+    {
+      networkImage: "/img/networks/56.png",
+      network: "BSC Testnet",
+      chainHandle: "bsc-testnet",
+      indexerEndpoint: "https://bsc-testnet-indexer.sequence.app",
+    },
+  ]}
+/>

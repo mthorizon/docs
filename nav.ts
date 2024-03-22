@@ -1,6 +1,5 @@
 import type { Sidebar, TopNav } from 'vocs'
 
-
 export const topNav = [
   { text: 'Solutions',
   items: [
@@ -95,10 +94,10 @@ export const sidebar = {
             {text: 'Building Backends with Sequence', link: '/solutions/wallets/universal-wallet/03-guides/10-building-backends'},
           ]
         },
-          {text: 'Supported Platforms', link: '/solutions/wallets/universal-wallet//04-platforms'},
-          {text: 'Validation', link: '/solutions/wallets/universal-wallet/05-fiat-on-ramps'},
-          {text: 'Transaction Receipts', link: '/solutions/wallets/universal-wallet/06-key-management'},
-          {text: 'Sequence Kit', link: '/solutions/wallets/universal-wallet/07-sequence-kit'}
+          {text: 'Sequence Kit', link: '/solutions/wallets/universal-wallet/04-sequence-kit'},
+          {text: 'Supported Platforms', link: '/solutions/wallets/universal-wallet/05-platforms'},
+          {text: 'Fiat On-Ramps', link: '/solutions/wallets/universal-wallet/06-fiat-on-ramps'},
+          {text: 'Key Management', link: '/solutions/wallets/universal-wallet/07-key-management'}
         ]
         }
       ]
@@ -125,7 +124,11 @@ export const sidebar = {
           {text: 'Mint In-Game Currency (ERC20)', link: '/solutions/collectibles/contracts/903-mint-currency-from-ERC20'},
         ],
       },
-        { text: 'Metadata Manager', link: '/solutions/collectibles/metadata/800-manage-contract-metadata-builder' },
+        { 
+          text: 'Metadata', collapsed: true, items: [
+          { text: 'Manage Metadata in Builder',link: '/solutions/collectibles/metadata/800-manage-metadata-builder' }
+        ],
+      }
         // { text: 'Minter', link: '/solutions/minter' }
       ]
     },
