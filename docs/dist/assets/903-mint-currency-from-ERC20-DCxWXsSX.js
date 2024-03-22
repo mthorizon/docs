@@ -1,0 +1,39 @@
+import{u as r,j as e}from"./index-DvPQu5E4.js";const a={slug:"/solutions/collectibles/contracts/mint-currency-from-ERC20",title:"How to Mint in-game Currency in Builder",description:"undefined"};function i(n){const t={a:"a",code:"code",div:"div",h1:"h1",h2:"h2",h3:"h3",h4:"h4",header:"header",img:"img",p:"p",...r(),...n.components};return e.jsxs(e.Fragment,{children:[e.jsx(t.header,{children:e.jsxs(t.h1,{id:"how-to-mint-in-game-currency-in-builder",children:["How to Mint in-game Currency in Builder",e.jsx(t.a,{"aria-hidden":"true",tabIndex:"-1",href:"#how-to-mint-in-game-currency-in-builder",children:e.jsx(t.div,{"data-autolink-icon":!0})})]})}),`
+`,e.jsxs(t.h2,{id:"introduction",children:["Introduction",e.jsx(t.a,{"aria-hidden":"true",tabIndex:"-1",href:"#introduction",children:e.jsx(t.div,{"data-autolink-icon":!0})})]}),`
+`,e.jsx(t.p,{children:"In this guide, we’re going to walk through the process of creating your own in-game currency through minting from an ERC-20 contract."}),`
+`,e.jsx(t.p,{children:"Currency tokens add new and interesting dimensions to in-game economies, transactions, and player interactions."}),`
+`,e.jsxs(t.h4,{id:"what-is-an-erc-20-token",children:["What is an ERC-20 token?",e.jsx(t.a,{"aria-hidden":"true",tabIndex:"-1",href:"#what-is-an-erc-20-token",children:e.jsx(t.div,{"data-autolink-icon":!0})})]}),`
+`,e.jsxs(t.p,{children:["An ERC-20 token is a digital coin - what makes it special is that it follows a ",e.jsx(t.a,{href:"https://ethereum.org/en/developers/docs/standards/tokens/erc-20/",children:"set of rules called ERC-20"}),", making it easy to use in different places on the internet. These tokens often represent value or be used for specific purposes. Unlike the other common token - NFT's, these tokens are fungible."]}),`
+`,e.jsxs(t.h4,{id:"fungability-vs-non-fungibility",children:["Fungability vs Non-Fungibility",e.jsx(t.a,{"aria-hidden":"true",tabIndex:"-1",href:"#fungability-vs-non-fungibility",children:e.jsx(t.div,{"data-autolink-icon":!0})})]}),`
+`,e.jsx(t.p,{children:"This is the key distinction to understand."}),`
+`,e.jsx(t.p,{children:"Fungible tokens (like ERC-20 tokens) are interchangeable, and each unit is the same as every other unit, just like dollars or euros. They can easily be split or combined into different quantities."}),`
+`,e.jsx(t.p,{children:"Non-fungible tokens (like ERC-721 tokens) represent unique items with individual properties, such as digital art or collectibles. Each token is distinct and not directly exchangeable with another on a like-for-like basis."}),`
+`,e.jsxs(t.h3,{id:"prerequisite-create-a-project-and-deploy-a-smart-contract",children:["Prerequisite: Create a Project and deploy a Smart Contract",e.jsx(t.a,{"aria-hidden":"true",tabIndex:"-1",href:"#prerequisite-create-a-project-and-deploy-a-smart-contract",children:e.jsx(t.div,{"data-autolink-icon":!0})})]}),`
+`,e.jsxs(t.p,{children:["This guide assumes that you have already ",e.jsx(t.a,{href:"/solutions/builder/getting-started",children:"signed up for Builder and created a Project"}),"."]}),`
+`,e.jsxs(t.p,{children:["Before you get started creating (minting) currency, you will need to first deploy the smart contract you wish to mint from. If you have not done so already, go back and do ",e.jsx(t.a,{href:"/solutions/collectibles/contracts/200-deploy-an-item-collection-contract",children:"how to load an item collection through deploying a smart contract"}),"."]}),`
+`,e.jsxs(t.h2,{id:"step-1-select-the-contract-for-your-currency",children:["Step 1: Select the contract for your currency",e.jsx(t.a,{"aria-hidden":"true",tabIndex:"-1",href:"#step-1-select-the-contract-for-your-currency",children:e.jsx(t.div,{"data-autolink-icon":!0})})]}),`
+`,e.jsx(t.p,{children:"Start by selecting the contract you would like to create currency from."}),`
+`,e.jsx(t.p,{children:"Once in the contract dashboard, you should see the ERC-20 contract that you have deployed - select it."}),`
+`,e.jsx(t.p,{children:e.jsx(t.img,{src:"/img/builder/builder_choose_contract_mint_currency.png",alt:"Sequence builder choose contract"})}),`
+`,e.jsxs(t.h2,{id:"step-2-navigate-to-write-contract",children:["Step 2: Navigate to Write Contract",e.jsx(t.a,{"aria-hidden":"true",tabIndex:"-1",href:"#step-2-navigate-to-write-contract",children:e.jsx(t.div,{"data-autolink-icon":!0})})]}),`
+`,e.jsx(t.p,{children:"When opening the contract, you will see several options. Everything from details like your contract address, type, the network its deployed on - to options for adding gas or help setting up an indexer. Below those details, you have more options to view contract details and interact with it."}),`
+`,e.jsxs(t.p,{children:["Within that subset of options, select ",e.jsx(t.code,{children:"Write Contract"}),"."]}),`
+`,e.jsx(t.p,{children:e.jsx(t.img,{src:"/img/builder/builder_select_write_contract_mint_currency.png",alt:"Sequence builder choose contract"})}),`
+`,e.jsx(t.p,{children:"Selecting this will reveal a variety of methods on the smart contract."}),`
+`,e.jsxs(t.p,{children:["Select the ",e.jsx(t.code,{children:"mint"})," method."]}),`
+`,e.jsx(t.p,{children:e.jsx(t.img,{src:"/img/builder/builder_select_mint_method_mint_currency.png",alt:"Sequence builder choose contract"})}),`
+`,e.jsxs(t.h2,{id:"step-3-provide-details-for-the-mint-method",children:["Step 3: Provide details for the Mint method",e.jsx(t.a,{"aria-hidden":"true",tabIndex:"-1",href:"#step-3-provide-details-for-the-mint-method",children:e.jsx(t.div,{"data-autolink-icon":!0})})]}),`
+`,e.jsxs(t.p,{children:["Selecting ",e.jsx(t.code,{children:"mint"})," will expand the method, providing inputs."]}),`
+`,e.jsx(t.p,{children:"Enter the address you want your currency to be minted to, for this example put your own address in."}),`
+`,e.jsx(t.p,{children:"Enter the amount of currency you want to create."}),`
+`,e.jsxs(t.p,{children:["Then hit ",e.jsx(t.code,{children:"write"})," to send a transaction to mint."]}),`
+`,e.jsx(t.p,{children:e.jsx(t.img,{src:"/img/builder/builder_fill_mint_details_mint_currency.png",alt:"Sequence builder choose contract"})}),`
+`,e.jsxs(t.h2,{id:"step-4-mint-and-sign-your-transaction",children:["Step 4: Mint and sign your transaction",e.jsx(t.a,{"aria-hidden":"true",tabIndex:"-1",href:"#step-4-mint-and-sign-your-transaction",children:e.jsx(t.div,{"data-autolink-icon":!0})})]}),`
+`,e.jsxs(t.p,{children:["Once you hit ",e.jsx(t.code,{children:"write"}),", a modal with your wallet will pop-up. In order to create (mint) your currency, you will need to send a transaction."]}),`
+`,e.jsxs(t.p,{children:["Read the transaction details and execute the transaction by hitting ",e.jsx(t.code,{children:"confirm"})," on the signature."]}),`
+`,e.jsx(t.p,{children:e.jsx(t.img,{src:"/img/builder/builder_sign_transaction_mint_currency.png",alt:"Sequence builder choose contract"})}),`
+`,e.jsx(t.p,{children:"After you sign the transaction, the network will take a few seconds (maybe minutes depending on the network and other factors) to confirm your transaction."}),`
+`,e.jsx(t.p,{children:"When the transaction is complete, you will have created your own currency by minting them from the smart contract!"}),`
+`,e.jsxs(t.h2,{id:"step-5-confirm-your-minted-currency",children:["Step 5: Confirm your minted currency",e.jsx(t.a,{"aria-hidden":"true",tabIndex:"-1",href:"#step-5-confirm-your-minted-currency",children:e.jsx(t.div,{"data-autolink-icon":!0})})]}),`
+`,e.jsxs(t.p,{children:["Click the ",e.jsx(t.code,{children:"Balances"})," subsection to see the currency that we created and minted."]}),`
+`,e.jsx(t.p,{children:e.jsx(t.img,{src:"/img/builder/builder_confirm_mint_currency.png",alt:"Sequence builder choose contract"})})]})}function c(n={}){const{wrapper:t}={...r(),...n.components};return t?e.jsx(t,{...n,children:e.jsx(i,{...n})}):i(n)}export{c as default,a as frontmatter};

@@ -1,0 +1,44 @@
+import{u as r,j as e}from"./index-DvPQu5E4.js";const i={title:"How to Deploy an Item Collection Contract",description:"undefined"};function o(n){const t={a:"a",aside:"aside",code:"code",div:"div",h1:"h1",h2:"h2",h4:"h4",header:"header",img:"img",p:"p",strong:"strong",...r(),...n.components};return e.jsxs(e.Fragment,{children:[e.jsx(t.header,{children:e.jsxs(t.h1,{id:"how-to-deploy-an-item-collection-contract",children:["How to Deploy an Item Collection Contract",e.jsx(t.a,{"aria-hidden":"true",tabIndex:"-1",href:"#how-to-deploy-an-item-collection-contract",children:e.jsx(t.div,{"data-autolink-icon":!0})})]})}),`
+`,e.jsxs(t.p,{children:["This guide walks through how to setup and deploy a contract on Builder. If you haven't yet done so, make sure you have ",e.jsx(t.a,{href:"/solutions/builder/project-management",children:"signed up for Builder and created a Project"}),"."]}),`
+`,e.jsxs(t.h2,{id:"step-1-go-to-the-contracts-section",children:["Step 1: Go to the Contracts section",e.jsx(t.a,{"aria-hidden":"true",tabIndex:"-1",href:"#step-1-go-to-the-contracts-section",children:e.jsx(t.div,{"data-autolink-icon":!0})})]}),`
+`,e.jsxs(t.p,{children:["In the project dashboard, find the ",e.jsx(t.code,{children:"Contracts"})," tab on the left side."]}),`
+`,e.jsxs(t.h4,{id:"add-a-new-contract",children:["Add a new contract",e.jsx(t.a,{"aria-hidden":"true",tabIndex:"-1",href:"#add-a-new-contract",children:e.jsx(t.div,{"data-autolink-icon":!0})})]}),`
+`,e.jsxs(t.p,{children:["Once you have that open, click the ",e.jsx(t.code,{children:"+ New contract"})," button"]}),`
+`,e.jsx(t.p,{children:e.jsx(t.img,{src:"/img/builder/builder_create_new_contract_for_contract_deploy.png",alt:"Sequence builder new contract"})}),`
+`,e.jsxs(t.h2,{id:"step-2-choose-a-contract-for-your-item-collection",children:["Step 2: Choose a contract for your item collection",e.jsx(t.a,{"aria-hidden":"true",tabIndex:"-1",href:"#step-2-choose-a-contract-for-your-item-collection",children:e.jsx(t.div,{"data-autolink-icon":!0})})]}),`
+`,e.jsxs(t.h4,{id:"select-a-contract",children:["Select a contract",e.jsx(t.a,{"aria-hidden":"true",tabIndex:"-1",href:"#select-a-contract",children:e.jsx(t.div,{"data-autolink-icon":!0})})]}),`
+`,e.jsx(t.p,{children:"You have a couple of different options to load your item collection with."}),`
+`,e.jsx(t.p,{children:"We provide a few standard contracts to choose from, including an ERC1155, an ERC721, and an ERC20."}),`
+`,e.jsxs(t.p,{children:["If you plan to use one of our standard contracts, skip ahead to ",e.jsx(t.strong,{children:"Step 3: Deploy your smart contract"})]}),`
+`,e.jsx(t.p,{children:e.jsx(t.img,{src:"/img/builder/builder_select_contract_for_contract_deploy.png",alt:"Sequence builder select contract"})}),`
+`,e.jsxs(t.h4,{id:"bring-your-own-smart-contract",children:["Bring your own smart contract",e.jsx(t.a,{"aria-hidden":"true",tabIndex:"-1",href:"#bring-your-own-smart-contract",children:e.jsx(t.div,{"data-autolink-icon":!0})})]}),`
+`,e.jsxs(t.p,{children:["You can also click the ",e.jsx(t.code,{children:"+ View more contracts"})," button, which will open up a modal showing more standard contracts."]}),`
+`,e.jsxs(t.p,{children:["At the bottom of this modal, click the ",e.jsx(t.code,{children:"+ Upload Source"})," button to deploy your own contract."]}),`
+`,e.jsx(t.p,{children:e.jsx(t.img,{src:"/img/builder/builder_more_contracts_for_contract_deploy.png",alt:"Sequence builder more contracts"})}),`
+`,e.jsxs(t.h2,{id:"step-3-deploy-your-smart-contract",children:["Step 3: Deploy your smart contract",e.jsx(t.a,{"aria-hidden":"true",tabIndex:"-1",href:"#step-3-deploy-your-smart-contract",children:e.jsx(t.div,{"data-autolink-icon":!0})})]}),`
+`,e.jsxs(t.h4,{id:"selectconfirm-the-network",children:["Select/confirm the network",e.jsx(t.a,{"aria-hidden":"true",tabIndex:"-1",href:"#selectconfirm-the-network",children:e.jsx(t.div,{"data-autolink-icon":!0})})]}),`
+`,e.jsx(t.p,{children:"You may have already selected the network you want to deploy this contract too, so confirm that this is the right network."}),`
+`,e.jsxs(t.h4,{id:"provide-a-contract-name-and-symbol",children:["Provide a contract name and symbol",e.jsx(t.a,{"aria-hidden":"true",tabIndex:"-1",href:"#provide-a-contract-name-and-symbol",children:e.jsx(t.div,{"data-autolink-icon":!0})})]}),`
+`,e.jsx(t.p,{children:"Give your smart contract a name. If your contract is an ERC20 or ERC721, then you will need to give it a token symbol as well."}),`
+`,e.jsx(t.aside,{"data-callout":"note",children:e.jsx(t.p,{children:"Providing a token symbol at deployment is not necessary for ERC1155 as there will be several different tokens associated with this contract - token symbols are determined when a new token is created at minting."})}),`
+`,e.jsxs(t.h4,{id:"determine-a-contract-owner",children:["Determine a contract owner",e.jsx(t.a,{"aria-hidden":"true",tabIndex:"-1",href:"#determine-a-contract-owner",children:e.jsx(t.div,{"data-autolink-icon":!0})})]}),`
+`,e.jsx(t.p,{children:"Provide a wallet address for the contract owner. (This will likely be yourself)"}),`
+`,e.jsx(t.p,{children:e.jsx(t.img,{src:"/img/builder/builder_provide_contract_details_for_contract_deploy.png",alt:"Sequence builder contract details"})}),`
+`,e.jsxs(t.h2,{id:"step-4-sign-the-transaction",children:["Step 4: Sign the transaction",e.jsx(t.a,{"aria-hidden":"true",tabIndex:"-1",href:"#step-4-sign-the-transaction",children:e.jsx(t.div,{"data-autolink-icon":!0})})]}),`
+`,e.jsx(t.p,{children:"In order to complete the deployment of a smart contract, the contract deploy (that's you) will need to sign a transaction on the network that its being deployed to."}),`
+`,e.jsx(t.p,{children:"You will use your Sequence wallet to sign the transaction."}),`
+`,e.jsxs(t.h4,{id:"sequence-wallet",children:["Sequence wallet",e.jsx(t.a,{"aria-hidden":"true",tabIndex:"-1",href:"#sequence-wallet",children:e.jsx(t.div,{"data-autolink-icon":!0})})]}),`
+`,e.jsx(t.p,{children:"A Sequence wallet should have been created when you signed up for builder. You can confirm this by looking in the top right corner of then window anytime when you are in builder."}),`
+`,e.jsx(t.p,{children:"If you do not see this, then you need to signup and create a wallet."}),`
+`,e.jsx(t.p,{children:e.jsx(t.img,{src:"/img/builder/builder_see_wallet_for_contract_deploy.png",alt:"Sequence builder see wallet"})}),`
+`,e.jsxs(t.h4,{id:"signature-modal",children:["Signature modal",e.jsx(t.a,{"aria-hidden":"true",tabIndex:"-1",href:"#signature-modal",children:e.jsx(t.div,{"data-autolink-icon":!0})})]}),`
+`,e.jsxs(t.p,{children:["After you click the ",e.jsx(t.code,{children:"Deploy Contract"})," button, a modal will pop up - which is your sequence wallet. In your wallet you will see a request to sign a transaction. It will include transaction details along with network fee estimations."]}),`
+`,e.jsx(t.aside,{"data-callout":"warning",children:e.jsx(t.p,{children:"It costs a fee (called gas) to deploy on a network. Make sure you have some of the native network tokens in your wallet ahead of time to cover it."})}),`
+`,e.jsxs(t.p,{children:["Once you've read the transaction details, execute the transaction by hitting ",e.jsx(t.code,{children:"confirm"})," on the signature."]}),`
+`,e.jsx(t.p,{children:e.jsx(t.img,{src:"/img/builder/builder_sign_transaction_for_contract_deploy.png",alt:"Sequence builder sign transaction"})}),`
+`,e.jsxs(t.h2,{id:"step-5-collectible-contract-deployed",children:["Step 5: Collectible contract deployed",e.jsx(t.a,{"aria-hidden":"true",tabIndex:"-1",href:"#step-5-collectible-contract-deployed",children:e.jsx(t.div,{"data-autolink-icon":!0})})]}),`
+`,e.jsx(t.p,{children:"After you sign the transaction, the network will take a few seconds (maybe minutes depending on the network and other factors) to confirm your transaction."}),`
+`,e.jsx(t.p,{children:"When the transaction is complete, the contract will be deployed."}),`
+`,e.jsxs(t.h4,{id:"linked-contract-in-dashboard",children:["Linked contract in dashboard",e.jsx(t.a,{"aria-hidden":"true",tabIndex:"-1",href:"#linked-contract-in-dashboard",children:e.jsx(t.div,{"data-autolink-icon":!0})})]}),`
+`,e.jsxs(t.p,{children:["Now that your smart contract is deployed, return to the ",e.jsx(t.code,{children:"Contracts"})," section of Builder. There you should see your newly deployed contract. You should also be able to see what kind of contract it is, along with any roles you have - like ",e.jsx(t.code,{children:"owner"})," for example."]}),`
+`,e.jsx(t.p,{children:e.jsx(t.img,{src:"/img/builder/builder_confirm_deployment_for_contract_deploy.png",alt:"Sequence builder confirm deployment"})})]})}function c(n={}){const{wrapper:t}={...r(),...n.components};return t?e.jsx(t,{...n,children:e.jsx(o,{...n})}):o(n)}export{c as default,i as frontmatter};
