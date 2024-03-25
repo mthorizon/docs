@@ -6,6 +6,7 @@ export const topNav = [
     { text: 'Wallets', link: '/solutions/wallets/embedded-wallet/01-overview', match: '/solutions/wallets/embedded-wallet/01-overview' },
     { text: 'Marketplace', link: '/solutions/marketplaces/white-label-marketplace', match: '/solutions/marketplaces/white-label-marketplace' },
     { text: 'Collectibles', link: '/solutions/collectibles/contracts/900-mint-items-from-ERC1155', match: '/solutions/collectibles/contracts/900-mint-items-from-ERC1155' },
+    { text: 'Indexer', link: '/solutions/indexer/01-overview', match: '/solutions/indexer/01-overview' },
     { text: 'Payments', link: '/solutions/nft-checkout', match: '/solutions/nft-checkout' },
     { text: 'No-code Builder', link: '/solutions/builder/overview', match: '/solutions/builder/overview', items: [
       { text: 'Overview', link: '/solutions/builder/overview', match: '/solutions/builder/overview' }, 
@@ -42,12 +43,11 @@ export const topNav = [
     text: 'APIs',
     items: [
       { text: 'Marketplace API', link: '/api/marketplace' },
-      { text: 'Transactions API', link: '/api/transaction' },
+      { text: 'Relayer API', link: '/api/relayer' },
       { text: 'Indexer API', link: '/api/indexer' },
       { text: 'Embedded Wallets API', link: '/api/embedded-wallet' },
       { text: 'Metadata API', link: '/api/metadata' },
-      { text: 'Node Gateway', link: '/api/node-gateway' }
-        ]
+    ]
   },
 
   { 
@@ -82,16 +82,16 @@ export const sidebar = {
           {text: 'Overview', link: '/solutions/wallets/universal-wallet/01-overview'},
           {text: 'Quickstart', link: '/solutions/wallets/universal-wallet/02-quickstart'},
           {text: 'Examples', collapsed: true, items: [
-            {text: 'Connect Wallet', link: '/solutions/wallets/universal-wallet/03-guides/01-connect-wallet'},
-            {text: 'Authenticate Users with Message Signature', link: '/solutions/wallets/universal-wallet/03-guides/02-auth-address'},
-            {text: 'Signing & Verifying Messages', link: '/solutions/wallets/universal-wallet/03-guides/03-sign-message'},
-            {text: 'No-wallet confirmation signatures', link: '/solutions/wallets/universal-wallet/03-guides/04-session-keys'},
-            {text: 'Sending Transactions', link: '/solutions/wallets/universal-wallet/03-guides/05-send-transaction'},
-            {text: 'Sending ERC-20 Tokens', link: '/solutions/wallets/universal-wallet/03-guides/06-send-erc20'},
-            {text: 'Sending ERC-721 (NFT) Tokens', link: '/solutions/wallets/universal-wallet/03-guides/07-send-erc721'},
-            {text: 'Sending ERC-1155 (Collectible) Tokens', link: '/solutions/wallets/universal-wallet/03-guides/08-send-erc1155'},
-            {text: 'Sending a Batch of Transactions', link: '/solutions/wallets/universal-wallet/03-guides/09-send-batch-transactions'},
-            {text: 'Building Backends with Sequence', link: '/solutions/wallets/universal-wallet/03-guides/10-building-backends'},
+            {text: 'Connect Wallet', link: '/solutions/wallets/universal-wallet/examples/01-connect-wallet'},
+            {text: 'Authenticate Users with Message Signature', link: '/solutions/wallets/universal-wallet/examples/02-auth-address'},
+            {text: 'Signing & Verifying Messages', link: '/solutions/wallets/universal-wallet/examples/03-sign-message'},
+            {text: 'No-wallet confirmation signatures', link: '/solutions/wallets/universal-wallet/examples/04-session-keys'},
+            {text: 'Sending Transactions', link: '/solutions/wallets/universal-wallet/examples/05-send-transaction'},
+            {text: 'Sending ERC-20 Tokens', link: '/solutions/wallets/universal-wallet/examples/06-send-erc20'},
+            {text: 'Sending ERC-721 (NFT) Tokens', link: '/solutions/wallets/universal-wallet/examples/07-send-erc721'},
+            {text: 'Sending ERC-1155 (Collectible) Tokens', link: '/solutions/wallets/universal-wallet/examples/08-send-erc1155'},
+            {text: 'Sending a Batch of Transactions', link: '/solutions/wallets/universal-wallet/examples/09-send-batch-transactions'},
+            {text: 'Building Backends with Sequence', link: '/solutions/wallets/universal-wallet/examples/10-building-backends'},
           ]
         },
           {text: 'Sequence Kit', link: '/solutions/wallets/universal-wallet/04-sequence-kit'},
@@ -137,6 +137,20 @@ export const sidebar = {
       ]
     },
     {
+      text: 'Indexer',
+      collapsed: true,
+      items: [
+        { text: 'Overview', link: '/solutions/indexer/01-overview' },
+        { text: 'Installation', link: '/solutions/indexer/02-installation' },
+        { text: 'Tokens API', link: '/solutions/indexer/03-tokens-api' },
+        { text: 'Wallet Transaction History', link: '/solutions/indexer/04-wallet-transaction-history' },
+        { text: 'Unique Tokens', link: '/solutions/indexer/05-unique-tokens' },
+        { text: 'Token Contract History', link: '/solutions/indexer/06-token-contract-history' },
+        { text: 'Native Network Balance', link: '/solutions/indexer/07-native-network-balance' },
+        { text: 'Metadata Spam Help', link: '/solutions/indexer/08-metadata-spam-help' },
+      ] 
+    },
+    {
       text: 'Payments',
       items: [
         { text: 'NFT Checkout', link: '/solutions/nft-checkout' },
@@ -163,6 +177,7 @@ export const sidebar = {
       text: 'Technical References',
       items: [
         { text: 'Chain Support', link: '/solutions/technical-references/chain-support' },
+        { text: 'Node Gateway', link: '/solutions/technical-references/node-gateway' },
         { text: 'Smart Contract Wallets', collapsed: true, items: [
           { text: 'Why smart contract wallets?', link: '/solutions/technical-references/wallet-contracts/01-why' },
           { text: 'Universal Deployer', link: '/solutions/technical-references/wallet-contracts/02-universal-deployer' },
@@ -327,10 +342,9 @@ export const sidebar = {
         items: [
           { text: 'Embedded Wallet', link: '/api/embedded-wallet' },
           { text: 'Indexer', link: '/api/indexer' },
+          { text: 'Relayer', link: '/api/relayer' },
           { text: 'Marketplace', link: '/api/marketplace' },
           { text: 'Metadata', link: '/api/metadata' },
-          { text: 'Transaction', link: '/api/transaction' },
-          { text: 'Node Gateway', link: '/api/node-gateway' },
         ]
       },
     ],

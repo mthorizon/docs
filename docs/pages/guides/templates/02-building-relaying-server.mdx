@@ -8,7 +8,7 @@ With Sequence, you can create a smart contract wallet your server can use to dis
 without you having to be worried about transaction speed, throughput and re-orgs.
 
 :::info Sequentual Transactions
-By default, Sequence transactions will be executed sequentially. 
+By default, Sequence transactions will be executed sequentially.
 :::
 
 ## Nodejs Server
@@ -22,48 +22,50 @@ Also, the Sequence wallet should be sufficiently funded in order to pay fees nee
 Using this approach - versus the next section (with sponsoring) - includes the ability to pay for gas in any available currency by our relayer (e.g. 'MATIC', 'DAI', 'USDC', 'WETH').
 
 ```ts
-import { Session } from '@0xsequence/auth'
+import { Session } from "@0xsequence/auth";
 
 // Create your server EOA
-const walletEOA = new ethers.Wallet(serverPrivateKey, provider)
+const walletEOA = new ethers.Wallet(serverPrivateKey, provider);
 
 // Open a Sequence session, this will find or create
 // a Sequence wallet controlled by your server EOA
 const session = await Session.singleSigner({
   signer: walletEOA,
-  projectAccessKey: '<access_key>'
-})
+  projectAccessKey: "<access_key>",
+});
 
 // Get the Sequence wallet address
-console.log(session.account.address)
+console.log(session.account.address);
 
 // Get a signer for a specific network
 // - 1:     Ethereum Mainnet
 // - 137:   Polygon Mainnet
 // - 42161: Arbitrum One
 // See https://chainid.network/ for more
-const signer = session.account.getSigner(137)
+const signer = session.account.getSigner(137);
 
 // Craft your transaction
 const erc721Interface = new ethers.utils.Interface([
-  'function safeTransferFrom(address _from, address _to, uint256 _tokenId)'
-])
+  "function safeTransferFrom(address _from, address _to, uint256 _tokenId)",
+]);
 
-const data = erc721Interface.encodeFunctionData(
-  'safeTransferFrom', [senderAddress, recipientAddress, id]
-)
+const data = erc721Interface.encodeFunctionData("safeTransferFrom", [
+  senderAddress,
+  recipientAddress,
+  id,
+]);
 
 const txn = {
   to: erc721TokenAddress,
-  data
-}
+  data,
+};
 
 // Send the transaction
-const txnResponse = await signer.sendTransaction(txn)
+const txnResponse = await signer.sendTransaction(txn);
 
-// Check if transaction was successful 
+// Check if transaction was successful
 if (txnReceipt.status != 1) {
-  console.log(`Unexpected status: ${txnReceipt.status}`)
+  console.log(`Unexpected status: ${txnReceipt.status}`);
 }
 ```
 
@@ -115,7 +117,7 @@ const usdc = new ethers.Contract(
 // Send the transaction
 const txnResponse = await usdc.transfer(recipient, 1)
 
-// Check if transaction was successful 
+// Check if transaction was successful
 if (txnReceipt.status != 1) {
   console.log(`Unexpected status: ${txnReceipt.status}`)
 }
@@ -132,8 +134,7 @@ To catch any unwanted migration, you can use the `onMigration` callback.
 
 ## Nodejs Server with Gas Sponsoring using Sequence Builder
 
-
-If you want to have your transactions sponsored & paid for with a credit card, you can follow the below steps before beginning your code, at the following link: https://sequence.build/ 
+If you want to have your transactions sponsored & paid for with a credit card, you can follow the below steps before beginning your code, at the following link: https://sequence.build/
 
 By sponsoring your transaction, you can now just send the transaction without a fee object and not have to fund the smart contract wallet before relaying any transactions.
 
@@ -164,20 +165,20 @@ For this example, we assume you have a smart contract deployed with a contract a
 The following is example code that implements a relayed transaction, same as the above example (i.e. Nodejs Server) but without fees, taken care of by the Sequence Builder.
 
 ```ts
-import { Session } from '@0xsequence/auth'
+import { Session } from "@0xsequence/auth";
 
 // Create your server EOA
-const walletEOA = new ethers.Wallet(serverPrivateKey, provider)
+const walletEOA = new ethers.Wallet(serverPrivateKey, provider);
 
 // Open a Sequence session, this will find or create
 // a Sequence wallet controlled by your server EOA
 const session = await Session.singleSigner({
   signer: walletEOA,
-  projectAccessKey: '<access_key>'
-})
+  projectAccessKey: "<access_key>",
+});
 
 // Get the Sequence wallet address
-console.log(session.account.address)
+console.log(session.account.address);
 
 // Get a signer for a specific network
 // - 1:     Ethereum Mainnet
@@ -187,34 +188,33 @@ console.log(session.account.address)
 const signer = session.account.getSigner(137, {
   // OPTIONAL: This ensures that the transaction is paid for by the gas tank
   // but if not provided, the gas tank will be used anyway
-  selectFee: async (
-    _txs: any,
-    _options: FeeOption[]
-  ) => {
-    return undefined
-  }
-})
+  selectFee: async (_txs: any, _options: FeeOption[]) => {
+    return undefined;
+  },
+});
 
 // Craft your transaction
 const erc721Interface = new ethers.utils.Interface([
-  'function safeTransferFrom(address _from, address _to, uint256 _tokenId)'
-])
+  "function safeTransferFrom(address _from, address _to, uint256 _tokenId)",
+]);
 
-const data = erc721Interface.encodeFunctionData(
-  'safeTransferFrom', [senderAddress, recipientAddress, id]
-)
+const data = erc721Interface.encodeFunctionData("safeTransferFrom", [
+  senderAddress,
+  recipientAddress,
+  id,
+]);
 
 const txn = {
   to: erc721TokenAddress,
-  data
-}
+  data,
+};
 
 // Send the transaction
-const txnResponse = await signer.sendTransaction(txn)
+const txnResponse = await signer.sendTransaction(txn);
 
-// Check if transaction was successful 
+// Check if transaction was successful
 if (txnReceipt.status != 1) {
-  console.log(`Unexpected status: ${txnReceipt.status}`)
+  console.log(`Unexpected status: ${txnReceipt.status}`);
 }
 ```
 
@@ -229,39 +229,39 @@ Here is an example of how to do that:
 
 ```js
 // Generate random nonce spaces with ~0% probability of collision
-const randomNonceSpace1 = ethers.BigNumber.from(ethers.utils.hexlify(ethers.utils.randomBytes(20)))
-const randomNonceSpace2 = ethers.BigNumber.from(ethers.utils.hexlify(ethers.utils.randomBytes(20)))
+const randomNonceSpace1 = ethers.BigNumber.from(
+  ethers.utils.hexlify(ethers.utils.randomBytes(20))
+);
+const randomNonceSpace2 = ethers.BigNumber.from(
+  ethers.utils.hexlify(ethers.utils.randomBytes(20))
+);
 
 // Create signers for each nonce space
 const signer1 = session.account.getSigner(137, {
-  nonceSpace: randomNonceSpace1
-})
+  nonceSpace: randomNonceSpace1,
+});
 
 const signer2 = session.account.getSigner(137, {
-  nonceSpace: randomNonceSpace2
-})
+  nonceSpace: randomNonceSpace2,
+});
 
 // Generate transactions
 const txn1 = {
   to: tokenContract.address,
-  data: erc20Interface.encodeFunctionData(
-    'transfer', [recipient1, amount1]
-  )
-}
+  data: erc20Interface.encodeFunctionData("transfer", [recipient1, amount1]),
+};
 
 const txn2 = {
   to: tokenContract.address,
-  data: erc20Interface.encodeFunctionData(
-    'transfer', [recipient2, amount2]
-  )
-}
+  data: erc20Interface.encodeFunctionData("transfer", [recipient2, amount2]),
+};
 
 // Dispatch transactions, which can now be executed in parallel
 await Promise.all([
   signer1.sendTransaction(txn1),
-  signer2.sendTransaction(txn2)
-])
+  signer2.sendTransaction(txn2),
+]);
 ```
 
 If batching transactions is not a problem for your use-case, you can call `await wallet.sendTransaction(txns)`.
-You can read more about batch transactions in [Sending Batched Transactions](/solutions/wallets/universal-wallet/03-guides/09-send-batch-transactions).
+You can read more about batch transactions in [Sending Batched Transactions](/solutions/wallets/universal-wallet/examples/09-send-batch-transactions).

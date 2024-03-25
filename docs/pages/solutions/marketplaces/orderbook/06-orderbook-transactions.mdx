@@ -1,21 +1,39 @@
-## Create an Order (coming soon)
+# Orderbook transactions
+
+All transactions run through a contract at address `0xB537a160472183f2150d42EB1c3DD6684A55f74c` on all currently offered networks
+
+- polygon
+- mumbai
+- arbitrum-sepolia
+- avalanche
+- avalanche-testnet
+
+## Create an Order
 
 In order to create an order for the sequence marketplace protocol, a prior transaction must take place where the token you are submitting to the marketplace is approved to be transered by the marketplace contract.
 
-A batched transacation can be performed to fullfill this requirement, while also sending the
+A batched transaction can be performed to fullfill this requirement of approval (transaction 1), while also sending the transaction for the creation of the request (transaction 2).
 
 Using a universal wallet, this would look something like this:
 
 ## transaction 1: `setApprovalForAll`
 
-- `operator`: (string) -
-- `approved`: (bool) -
+- `operator`: (string) - address of the marketplace acting on the token
+- `approved`: (bool) - the approval status of the operator
 
 ## transaction 2: `createRequest`
 
 - `creator`: (string) - the wallet that is creating the order request
 - `isListing`: (bool) - whether the order is to list (true) or offer orders (false)
+- `isERC1155`: (bool) - whether the order is for an ERC1155 contract (false for ERC721s)
+- `tokenContract`: (string) - the token you're looking to create an order for
+- `tokenId`: (string) - the tokenId you're looking to create an order for
+- `quantity`: (number) - the number of tokens you're looking to sell
 - `expiry`: (number) - a number formated to ISO time
+- `currency`: (string) - the ERC20 currency token you're transacting in
+- `pricePerToken`: (big number) - the ERC20 price of the token in big number
+
+### example
 
 ```js
 const wallet = sequence.getWallet();
@@ -66,10 +84,62 @@ const txApprove = {
 await signer.sendTransaction([txApprove, tx]);
 ```
 
-```
-    const sequenceMarketInterface = new ethers.utils.Interface(
-      SequenceMarketABI.abi,
-    );
-```
+## Accept a Request
 
-## Fulfill an Order (coming soon)
+In order to accept a existing request, one would need to use one of the `get` requests endpoints (like [getTopOrders](/solutions/marketplaces/orderbook/03-get-top-orders)) to acquire a `requestId` and to submit a transaction, with a prior transaction of approving the currency the order is being transacted in.
+
+A batched transaction can be performed to fullfill this requirement of currency approval (transaction 1), while also sending the transaction for the fullfillment of the request (transaction 2).
+
+Using a universal wallet, this would look something like this:
+
+## transaction 1: `approve`
+
+- `spender`: (string) - address of the marketplace acting on the token
+- `amount`: (bool) - the approval amount for the spender
+
+## transaction 2: `acceptRequest`
+
+- `requestId`: (string) - The ID of the request
+- `quantity`: (bool) - The quantity of tokens to accept
+- `additionalFees`: (number[]) - The additional fees to pay
+- `additionalFeeRecipients`: (number[]) - the addresses to send the additional fees to
+
+### example
+
+```js
+const wallet = sequence.getWallet();
+const signer = wallet.getSigner(421614); // on arbitrum-sepolia
+
+const erc20Interface = new ethers.utils.Interface([
+  "function approve(address spender, uint256 amount) public returns (bool)",
+]);
+
+const sequenceMarketInterface = new ethers.utils.Interface([
+  "function acceptRequest(uint256 requestId, uint256 quantity, address recipient, uint256[] calldata additionalFees, address[] calldata additionalFeeRecipients)",
+]);
+
+const dataApprove = erc20Interface.encodeFunctionData("approve", [
+  "0xB537a160472183f2150d42EB1c3DD6684A55f74c",
+  Number(price),
+]);
+
+const data = sequenceMarketInterface.encodeFunctionData("acceptRequest", [
+  requestId,
+  quantity,
+  recipientAddress,
+  [],
+  [],
+]);
+
+const txApprove = {
+  to: "0xa9c88358862211870db6f18bc9b3f6e4f8b3eae7",
+  data: dataApprove,
+};
+
+const tx = {
+  to: "0xB537a160472183f2150d42EB1c3DD6684A55f74c",
+  data: data,
+};
+
+await signer.sendTransaction([txApprove, tx]);
+```
