@@ -1,0 +1,53 @@
+import { Card, CardGrid } from "../../../components/CardGrid";
+
+# Indexer
+
+The Sequence Indexer is a modular web3 service that makes it easy to query blockchain token and NFT data from Ethereum-compatible networks. The Indexer automatically indexes every ERC20, ERC721 and ERC1155 token from Ethereum-compatible chains.
+
+In fact, the Sequence Wallet uses the Indexer behind the scenes so it can seamlessly render all token information in any wallet. But of course, the Indexer is a modular piece of infrastructure, and you may use it directly from your dapp, game, or even from a server.
+
+Features:
+
+- Super-fast API to query all token balances, history, metadata and NFTs with multi-chain support
+- Real-time indexing of ERC20, ERC721 and ERC1155 transactions across EVM-compatible chains
+- Automatically detects all tokens on the chain, without the need for a contract registry
+- Resilient to node failures and chain re-organizations
+- Easily listen for specific events and transactions on-chain accurately with a simple API
+- Built-in token / nft metadata support to easily render tokens in your apps / games
+- High uptime and availability
+- Supported Networks & Endpoints
+
+You can see the full list of [supported networks here](/solutions/technical-references/chain-support).
+
+<CardGrid>
+  <Card
+    title="Tokens API"
+    description="Get the token balances for an address"
+    icon="🪙"
+    link="/solutions/indexer/03-tokens-api"
+  />
+  <Card
+    title="Wallet Transaction History"
+    description="Get 30 days of wallet transaction history"
+    icon="👛"
+    link="/solutions/indexer/04-wallet-transaction-history"
+  />
+  <Card
+    title="Unique Tokens in a Contract"
+    description="Get the token dtail of a contract address"
+    icon="♳"
+    link="/solutions/indexer/05-unique-tokens"
+  />
+  <Card
+    title="Token Contract History"
+    description="Get the token contract history for an address"
+    icon="📖"
+    link="/solutions/indexer/06-token-contract-history"
+  />
+  <Card
+    title="Native Network Balance"
+    description="Get the native token balance for an address"
+    icon="🌿"
+    link="/solutions/indexer/07-native-network-balance"
+  />
+</CardGrid>

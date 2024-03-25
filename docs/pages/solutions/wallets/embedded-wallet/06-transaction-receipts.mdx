@@ -1,31 +1,37 @@
 # Transaction receipts
 
-Any methods that involve sending transactions will return either *successful* or *failed* transaction receipts. Failed transaction receipts are generated without executing the transaction.
+Any methods that involve sending transactions will return either _successful_ or _failed_ transaction receipts. Failed transaction receipts are generated without executing the transaction.
 
 ## Successful transaction response
 
 Any transaction that is successfully included in a block will return a `SentTransactionResponse` object. This must be checked for before accessing the transaction hash, using the `isSentTransactionResponse` type guard.
 
 ```ts
-import { Sequence, isSentTransactionResponse } from '@0xsequence/waas'
+import { Sequence, isSentTransactionResponse } from "@0xsequence/waas";
 
-const waas = new SequenceWaaS({
-  projectAccessKey: `${process.env.PROJECT_ACCESS_KEY}`,
-  waasConfigKey: `${process.env.WAAS_CONFIG_KEY}`,
-  network: 'mumbai'
-}, defaults.TEST)
+const waas = new SequenceWaaS(
+  {
+    projectAccessKey: `${process.env.PROJECT_ACCESS_KEY}`,
+    waasConfigKey: `${process.env.WAAS_CONFIG_KEY}`,
+    network: "mumbai",
+  },
+  defaults.TEST
+);
 
-await waas.signIn({ idToken }, "Session name")
+await waas.signIn({ idToken }, "Session name");
 
 const tx = await waas.sendTransaction({
   chainId: 42161,
-  transactions: [{
-    to: '0xD72C236Be524Ec24F72329317e2785E687105B69', value: '0'
-  }]
-})
+  transactions: [
+    {
+      to: "0xD72C236Be524Ec24F72329317e2785E687105B69",
+      value: "0",
+    },
+  ],
+});
 
 if (isSentTransactionResponse(tx)) {
-  console.log(tx)
+  console.log(tx);
 }
 ```
 
@@ -82,31 +88,38 @@ An Embedded Wallet will try to catch any failing transactions before they are se
 To view the full response object, see the TODO: link to wallet API [Transaction Receipt Response] section.
 
 ```ts
-import { Sequence, isSentTransactionResponse } from '@0xsequence/waas'
+import { Sequence, isSentTransactionResponse } from "@0xsequence/waas";
 
-const waas = new SequenceWaaS({
-  projectAccessKey: `${process.env.PROJECT_ACCESS_KEY}`,
-  waasConfigKey: `${process.env.WAAS_CONFIG_KEY}`,
-  network: 'mumbai'
-}, defaults.TEST)
+const waas = new SequenceWaaS(
+  {
+    projectAccessKey: `${process.env.PROJECT_ACCESS_KEY}`,
+    waasConfigKey: `${process.env.WAAS_CONFIG_KEY}`,
+    network: "mumbai",
+  },
+  defaults.TEST
+);
 
-await waas.signIn({ idToken }, "Session name")
+await waas.signIn({ idToken }, "Session name");
 
 const tx = await waas.sendTransaction({
   chainId: 137,
-  transactions: [{
-    // This address always fails on Polygon, give it a try :D
-    to: '0x839eE023B21f4Ffe2294025DE0AC30Ba7278D6Fd', value: '0'
-  }]
-})
+  transactions: [
+    {
+      // This address always fails on Polygon, give it a try :D
+      to: "0x839eE023B21f4Ffe2294025DE0AC30Ba7278D6Fd",
+      value: "0",
+    },
+  ],
+});
 
 if (isSentTransactionResponse(tx)) {
   // ... This will never be executed
 } else {
   // tx can only be `SentTransactionResponse` or `FailedTransactionResponse`
-  console.log(tx)
+  console.log(tx);
 }
 ```
+
 ```json
 {
   "code": "transactionFailed",

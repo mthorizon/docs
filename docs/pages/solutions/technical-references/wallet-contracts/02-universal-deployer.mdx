@@ -1,34 +1,41 @@
+import { Callout } from "vocs/components";
+
 # Universal Deployer
 
 The Sequence contract wallets use [Nick's method](https://weka.medium.com/how-to-send-ether-to-11-440-people-187e332566b7) to deploy the contracts that compose the smart contract wallet.
 This method has been chosen because it allows each wallet to take the same address on multiple chains, making it easier to use and less prone to mistakes.
 
-:::danger Limitations
-Sequence wallets **may not** receive the same address on all EVM compatible chains.
+<Callout type="danger">
+  Limitations <br />
+  Sequence wallets **may not** receive the same address on all EVM compatible chains.
+</Callout>
 
-Networks that implement only a subset of the EVM opcodes, or alternative virtual machines, will result in a different address for each chain.
+Networks that implement only a subset of the EVM opcodes, or alternative virtual
+machines, will result in a different address for each chain.
 
 **Double-check your addresses** before sending any assets to them.
-:::
 
-:::info Notice
-A complete script for deployment can be found in the [Sequence Live Contracts repository](https://github.com/0xsequence/live-contracts).
-:::
+<Callout type="info">
+  Notice <br />A complete script for deployment can be found in the [Sequence
+  Live Contracts repository](https://github.com/0xsequence/live-contracts).
+</Callout>
 
 ## Deploy Process V2
 
 The following steps are required to deploy the [Sequence Wallet Context](/solutions/technical-references/wallet-contracts/02-universal-deployer#3---deploy-wallet-context) on a new network.
 
-:::info Notice
-For most popular networks this process **is not** required; due to the wallet contracts being already deployed.
+<Callout type="info">
+  Notice <br />
+  For most popular networks this process **is not** required; due to the wallet contracts
+  being already deployed.
+  To see if a configuration already exists for a given chain go to [Networks](/solutions/technical-references/chain-support).
 
-To see if a configuration already exists for a given chain go to [Networks](solutions/technical-references/chain-support).
-:::
+</Callout>
 
 ### 1 - Deploy Singleton Factory
 
-The Singleton Factory is a contract that allows the deployment of a single contract instance per address. Unlike the 
-[Universal Deployer](#universal-deployer), the Singleton Factory requires a salt to manage deployment instances. More information about the 
+The Singleton Factory is a contract that allows the deployment of a single contract instance per address. Unlike the
+[Universal Deployer](#universal-deployer), the Singleton Factory requires a salt to manage deployment instances. More information about the
 Singleton Factory can be found in the [EIP-2470 specification](https://eips.ethereum.org/EIPS/eip-2470).
 
 The Pre-fund the Singleton Factory's deployer with the required funds to deploy the contract.
@@ -68,13 +75,14 @@ yarn deploy <network>
 
 The following steps are required to deploy the [Sequence Wallet V1 Context](/solutions/technical-references/wallet-contracts/02-universal-deployer#3---deploy-wallet-context) on a new network.
 
-:::info Notice
-For most popular networks this process **is not** required; due to the wallet contracts being already deployed.
+<Callout type="info">
+  Notice <br />
+  For most popular networks this process **is not** required; due to the wallet contracts
+  being already deployed. To see if a configuration already exists for a given chain
+  go to [Networks](solutions/technical-references/chain-support).
+</Callout>
 
-To see if a configuration already exists for a given chain go to [Networks](solutions/technical-references/chain-support).
-:::
-
-A complete code example of this deployment flow can be found in the [0xSequence.js test suite](https://github.com/0xsequence/sequence.js/blob/91ed0df67fc5ddc47abf727ae8b94a8ca4f66912/packages/0xsequence/tests/browser/testutils/deploy-wallet-context.ts) 
+A complete code example of this deployment flow can be found in the [0xSequence.js test suite](https://github.com/0xsequence/sequence.js/blob/91ed0df67fc5ddc47abf727ae8b94a8ca4f66912/packages/0xsequence/tests/browser/testutils/deploy-wallet-context.ts)
 and [Wallet Contracts repository](https://github.com/0xsequence/wallet-contracts/blob/38e0719690eee3c4d7d8fa2ceff4ea22b0409f38/utils/deploy-contracts.ts).
 
 ### 1 - Deploy NanoUniversalDeployer
@@ -104,7 +112,7 @@ See more about the [NanoUniversalDeployer](https://gist.github.com/Agusx1211/de0
 
 ### 2 - Deploy UniversalDeployer2
 
-In order to deploy contracts with an instance identifier, we need to deploy the UniversalDeployer2 contract. To ensure address consistency 
+In order to deploy contracts with an instance identifier, we need to deploy the UniversalDeployer2 contract. To ensure address consistency
 we use the UniversalDeployer contract to deploy the UniversalDeployer contract.
 
 Send the following data to the UniversalDeployer deployed in the previous step.
@@ -123,6 +131,6 @@ UniversalDeployer2: 0x8a5bc19e22d6ad55a2c763b93a75d09f321fe764
 
 Compile and deploy the contracts in the [Sequence Wallet Context](/solutions/technical-references/wallet-contracts/02-universal-deployer#3---deploy-wallet-context) using the UniversalDeployer2.
 
-Refer to the [0xSequence.js test suite](https://github.com/0xsequence/sequence.js/blob/91ed0df67fc5ddc47abf727ae8b94a8ca4f66912/packages/0xsequence/tests/browser/testutils/deploy-wallet-context.ts) 
-or [Wallet Contracts repository](https://github.com/0xsequence/wallet-contracts/blob/38e0719690eee3c4d7d8fa2ceff4ea22b0409f38/utils/deploy-contracts.ts) 
+Refer to the [0xSequence.js test suite](https://github.com/0xsequence/sequence.js/blob/91ed0df67fc5ddc47abf727ae8b94a8ca4f66912/packages/0xsequence/tests/browser/testutils/deploy-wallet-context.ts)
+or [Wallet Contracts repository](https://github.com/0xsequence/wallet-contracts/blob/38e0719690eee3c4d7d8fa2ceff4ea22b0409f38/utils/deploy-contracts.ts)
 for the Wallet Contract context codebase.

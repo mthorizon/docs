@@ -17,9 +17,10 @@ Please contact Sequence support if you wish to discuss whether your authenticati
 To check the validation status of the current session, use the `isSessionValid` method. This returns `true` for email login and trusted social logins and `false` for custom logins until email validation is complete.
 
 ```ts
-const isValid = await waas.isSessionValid()
-console.log(isValid)
+const isValid = await waas.isSessionValid();
+console.log(isValid);
 ```
+
 ```
 true
 ```
@@ -29,8 +30,9 @@ true
 Manually trigger a session validation with the `validateSession` method. This will send a code to the user's email. If validated within 10 minutes, the method returns `true`; otherwise, it returns `false`.
 
 ```ts
-const result = await waas.validateSession()
+const result = await waas.validateSession();
 ```
+
 ```
 true
 ```
@@ -38,8 +40,9 @@ true
 Once user receives the code, he can validate the session with the `finishValidateSession` method that takes the code as an argument. If the code is valid, the method returns `true`; otherwise, it returns `false`.
 
 ```ts
-const result = await waas.finishValidateSession('123456')
+const result = await waas.finishValidateSession("123456");
 ```
+
 ```
 true
 ```
@@ -51,13 +54,13 @@ The `onValidationRequired` callback is triggered when a session validation is re
 ```ts
 const tx = await waas.sendERC20({
   validation: {
-    onValidationRequired: () => true
+    onValidationRequired: () => true,
   },
   chainId: 42161,
-  token: '0x6b175474e89094c44da98b954eedeac495271d0f', // DAI
-  to: '0x27CabC9700EE6Db2797b6AC1e1eCe81C72A2cD8D',    // Recipient
-  value: '200000000000000000000',                      // 200 DAI
-})
+  token: "0x6b175474e89094c44da98b954eedeac495271d0f", // DAI
+  to: "0x27CabC9700EE6Db2797b6AC1e1eCe81C72A2cD8D", // Recipient
+  value: "200000000000000000000", // 200 DAI
+});
 ```
 
 ### Listen for session validations
@@ -66,11 +69,12 @@ Events like transaction sends may silently prompt session validation. Use the `o
 
 ```ts
 waas.onValidationRequired(() => {
-  console.log('Session has been triggered for validation');
-})
+  console.log("Session has been triggered for validation");
+});
 
-await waas.sendTransaction({ chainId: 1 }, { to: '0x...', value: '1' });
+await waas.sendTransaction({ chainId: 1 }, { to: "0x...", value: "1" });
 ```
+
 ```
 Session has been triggered for validation
 ```
@@ -84,13 +88,13 @@ const tx = await waas.sendTransaction({
   chainId: 1,
   validation: {
     onValidationRequired: () => {
-      console.log('Session has been triggered for validation');
+      console.log("Session has been triggered for validation");
       return true;
-    }
+    },
   },
-  to: '0x061150e5574716DBb1a2cdf54b3DcE9F94395f65',
-  value: '1'
-})
+  to: "0x061150e5574716DBb1a2cdf54b3DcE9F94395f65",
+  value: "1",
+});
 ```
 
 By returning `true` or `false` from the `onValidationRequired` hook, you either continue or cancel the action, respectively.
