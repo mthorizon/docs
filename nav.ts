@@ -81,7 +81,7 @@ export const sidebar = {
         items: [
           {text: 'Overview', link: '/solutions/wallets/universal-wallet/01-overview'},
           {text: 'Quickstart', link: '/solutions/wallets/universal-wallet/02-quickstart'},
-          {text: 'Guides', collapsed: true, items: [
+          {text: 'Examples', collapsed: true, items: [
             {text: 'Connect Wallet', link: '/solutions/wallets/universal-wallet/03-guides/01-connect-wallet'},
             {text: 'Authenticate Users with Message Signature', link: '/solutions/wallets/universal-wallet/03-guides/02-auth-address'},
             {text: 'Signing & Verifying Messages', link: '/solutions/wallets/universal-wallet/03-guides/03-sign-message'},
@@ -110,6 +110,10 @@ export const sidebar = {
         { text: 'Build your Custom Marketplace', collapsed: true, items: [
           {text: 'Overview', link: '/solutions/marketplaces/orderbook/01-overview'},
           {text: 'Quickstart', link: '/solutions/marketplaces/orderbook/02-quickstart'},
+          {text: 'Get Top Orders', link: '/solutions/marketplaces/orderbook/03-get-top-orders'},
+          {text: 'Get Orderbook', link: '/solutions/marketplaces/orderbook/04-get-orderbook'},
+          {text: 'Get User Activities', link: '/solutions/marketplaces/orderbook/05-get-user-activities'},
+          {text: 'Orderbook Transactions', link: '/solutions/marketplaces/orderbook/06-orderbook-transactions'},
         ]
        }
       ] 

@@ -1,18 +1,16 @@
 # Quickstart
 
 ## Try a Demo
+
 :::info
 Try out seamless UX of our embedded wallet at our [demo](https://0xsequence.github.io/demo-waas-auth/)
 :::
 
-
 ## Template
+
 :::info
 Get started quickly with a [template](https://github.com/0xsequence/demo-waas-auth) leveraging our embedded wallet.
 :::
-
-
-
 
 ## Getting Started
 
@@ -38,13 +36,16 @@ Sequence Embedded Wallet is currently only available as a closed beta. To start 
 To start using Sequence Embedded Wallet SDK, you'll need to create a new instance of the `waas` class:
 
 ```typescript
-import { SequenceWaaS } from '@0xsequence/waas'
+import { SequenceWaaS } from "@0xsequence/waas";
 
-const waas = new SequenceWaaS({
-  projectAccessKey: `${process.env.PROJECT_ACCESS_KEY}`,
-  waasConfigKey: `${process.env.WAAS_CONFIG_KEY}`,
-  network: 'mumbai'
-}, defaults.TEST)
+const waas = new SequenceWaaS(
+  {
+    projectAccessKey: `${process.env.PROJECT_ACCESS_KEY}`,
+    waasConfigKey: `${process.env.WAAS_CONFIG_KEY}`,
+    network: "mumbai",
+  },
+  defaults.TEST
+);
 ```
 
 Note that the library is operational, but it can't be used to interact with any wallet until you have authenticated **as a user**.

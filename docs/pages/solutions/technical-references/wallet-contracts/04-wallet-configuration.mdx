@@ -1,3 +1,4 @@
+import { TabGroup, Tab, TabPanel } from "../../../../components/TabGroup.tsx";
 
 # Wallet Configuration
 
@@ -5,16 +6,16 @@ Every Sequence wallet has a configuration defined by a threshold and a list of s
 
 ## Configuration layout
 
-| Name      | Type       | Range                      | Description                                                                       |
-|-----------|------------|----------------------------|-----------------------------------------------------------------------------------|
+| Name      | Type       | Range                      | Description                                                                         |
+| --------- | ---------- | -------------------------- | ----------------------------------------------------------------------------------- |
 | Threshold | `uint16`   | 1 - 65535                  | Required combined total "weight" of signers for a signature to be considered valid. |
 | Signers   | `signer[]` | unlimited - bounded by gas | List of signers that with their corresponding "weight"s.                            |
 
 ### Signer layout
 
-| Name    | Type      | Range   | Description                                                                                     |
-|---------|-----------|---------|-------------------------------------------------------------------------------------------------|
-| "weight"  | `uint8`   | 0 - 255 | "weight" of every signature of the signer.                                                        |
+| Name      | Type        | Range   | Description                                                                                       |
+| --------- | ----------- | ------- | ------------------------------------------------------------------------------------------------- |
+| "weight"  | `uint8`     | 0 - 255 | "weight" of every signature of the signer.                                                        |
 | "address" | `"address"` | --      | "address" of the signer, it may be an EOA or another smart contract wallet with EIP-1271 support. |
 
 #### Example
@@ -42,6 +43,7 @@ Every Sequence wallet has a configuration defined by a threshold and a list of s
   ]
 }
 ```
+
 This example has a threshold of 5 and 4 signers.
 
 #### The valid combinations of signers are:
@@ -62,8 +64,35 @@ Wallets that never have been updated don't store the `imageHash` directly, inste
 
 #### Compute image hash
 
-## TODO Implement table from v1 docs
+<TabGroup>
+  <Tab>Solidity</Tab>
+  <TabPanel>
+    ``` 
+    keccak256(abi.encode( uint8 weight_1, address signer_1,
+    keccak256(abi.encode( uint8 weight_2, address signer_2,
+    keccak256(abi.encode( uint8 weight_3, address signer_3,
+    keccak256(abi.encode( uint256 threshold )) )) )) )) 
+    ```
+  </TabPanel>
+  <Tab>Javascript</Tab>
+  <TabPanel>
+    ```ts
+    let tmp = ethers.utils.solidityPack(['uint256'], [configuration.threshold])
 
+    for (const signer of configuration.signers) {
+      tmp = ethers.utils.keccak256(
+        ethers.utils.defaultAbiCoder.encode(
+          ['bytes32', 'uint8', 'address'],
+          [tmp, signer.weight, signer.address]
+        )
+      )
+    }
+
+    const imageHash = tmp
+
+````
+</TabPanel>
+</TabGroup>
 
 ## Initial wallet configuration
 
@@ -75,45 +104,31 @@ The wallet address can be computed using the `imageHash`, the `factory` and `mai
 
 ```js
 // The code of the wallet proxy contract
-const WalletProxyBytecode = "0x603a600e3d39601a805130553df3363d3d373d3d3d363d30545af43d82803e903d91601857fd5bf3"
+const WalletProxyBytecode =
+"0x603a600e3d39601a805130553df3363d3d373d3d3d363d30545af43d82803e903d91601857fd5bf3";
 
 // These values are defined by the wallet context
 // they must be known in order to validate the counter-factual wallet imageHash
-const factory = "0xf9D09D634Fb818b05149329C1dcCFAeA53639d96"
-const mainModule = "0xd01F11855bCcb95f88D7A48492F66410d4637313"
+const factory = "0xf9D09D634Fb818b05149329C1dcCFAeA53639d96";
+const mainModule = "0xd01F11855bCcb95f88D7A48492F66410d4637313";
 
 // Append the `mainModule` to the `WalletProxyBytecode`
 // this completed the creation code of the proxy contract
 // used for computing the wallet address as defined by the CREATE2 opcode
 const codeHash = ethers.utils.keccak256(
-  ethers.utils.solidityPack(
-    [
-      'bytes',
-      'bytes32'
-    ],
-    [
-      WalletContractBytecode,
-      ethers.utils.hexZeroPad(mainModule, 32)
-    ]
-  )
+ethers.utils.solidityPack(
+["bytes", "bytes32"],
+[WalletContractBytecode, ethers.utils.hexZeroPad(mainModule, 32)]
 )
+);
 
 // Compute the wallet address
 const hash = ethers.utils.keccak256(
-  ethers.utils.solidityPack(
-    [
-      'bytes1',
-      'address',
-      'bytes32',
-      'bytes32'
-    ], [
-      '0xff',
-      factory,
-      salt,
-      codeHash
-    ]
-  )
+ethers.utils.solidityPack(
+["bytes1", "address", "bytes32", "bytes32"],
+["0xff", factory, salt, codeHash]
 )
+);
 
-const address = ethers.utils.getAddress(ethers.utils.hexDataSlice(hash, 12))
-```
+const address = ethers.utils.getAddress(ethers.utils.hexDataSlice(hash, 12));
+````
