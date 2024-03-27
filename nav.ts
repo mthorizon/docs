@@ -6,7 +6,6 @@ export const topNav = [
     { text: 'Wallets', link: '/solutions/wallets/embedded-wallet/01-overview', match: '/solutions/wallets/embedded-wallet/01-overview' },
     { text: 'Marketplace', link: '/solutions/marketplaces/white-label-marketplace', match: '/solutions/marketplaces/white-label-marketplace' },
     { text: 'Collectibles', link: '/solutions/collectibles/contracts/900-mint-items-from-ERC1155', match: '/solutions/collectibles/contracts/900-mint-items-from-ERC1155' },
-    { text: 'Indexer', link: '/solutions/indexer/01-overview', match: '/solutions/indexer/01-overview' },
     { text: 'Payments', link: '/solutions/nft-checkout', match: '/solutions/nft-checkout' },
     { text: 'No-code Builder', link: '/solutions/builder/overview', match: '/solutions/builder/overview', items: [
       { text: 'Overview', link: '/solutions/builder/overview', match: '/solutions/builder/overview' }, 
@@ -53,9 +52,10 @@ export const topNav = [
   { 
     text: 'Support',
     items: [
+      { text: 'Support', link: '/support' },
       { text: 'Token Directory', link: '/support/token-directory' },
-      { text: 'Discord', link: 'https://discord.gg/sequence' },
       { text: 'FAQ', link: 'https://support.sequence.xyz' },
+      { text: 'Discord', link: 'https://discord.gg/sequence' },
       { text: 'We\'re hiring!', link: 'https://horizon.io/careers' },
       { text: 'Contact Us', link: 'https://support.sequence.xyz' },
     ]
@@ -122,10 +122,10 @@ export const sidebar = {
       text: 'Collectibles',
       items: [
         { text: 'Deployable Contracts' , collapsed: true, items: [
-          {text: 'Deploy an Item Collection Contract  ', link: '/solutions/collectibles/contracts/200-deploy-an-item-collection-contract'},
-          {text: 'Mint In-Game Items and Achievements (ERC1155)', link: '/solutions/collectibles/contracts/900-mint-items-from-ERC1155'},
-          {text: 'Mint Digital Collectibles (ERC721)', link: '/solutions/collectibles/contracts/902-mint-collectibles-from-ERC721'},
-          {text: 'Mint In-Game Currency (ERC20)', link: '/solutions/collectibles/contracts/903-mint-currency-from-ERC20'},
+          { text: 'Deploy a Collectible Contract', link: '/solutions/collectibles/contracts/01-deploy-an-item-collection-contract'},
+          // {text: 'Mint In-Game Items and Achievements (ERC1155)', link: '/solutions/collectibles/contracts/900-mint-items-from-ERC1155'},
+          // {text: 'Mint Digital Collectibles (ERC721)', link: '/solutions/collectibles/contracts/902-mint-collectibles-from-ERC721'},
+          { text: 'Deploy an In-Game Currency (ERC20)', link: '/solutions/collectibles/contracts/02-deploy-ERC20-currency'},
         ],
       },
         { 
@@ -135,20 +135,6 @@ export const sidebar = {
       }
         // { text: 'Minter', link: '/solutions/minter' }
       ]
-    },
-    {
-      text: 'Indexer',
-      collapsed: true,
-      items: [
-        { text: 'Overview', link: '/solutions/indexer/01-overview' },
-        { text: 'Installation', link: '/solutions/indexer/02-installation' },
-        { text: 'Tokens API', link: '/solutions/indexer/03-tokens-api' },
-        { text: 'Wallet Transaction History', link: '/solutions/indexer/04-wallet-transaction-history' },
-        { text: 'Unique Tokens', link: '/solutions/indexer/05-unique-tokens' },
-        { text: 'Token Contract History', link: '/solutions/indexer/06-token-contract-history' },
-        { text: 'Native Network Balance', link: '/solutions/indexer/07-native-network-balance' },
-        { text: 'Metadata Spam Help', link: '/solutions/indexer/08-metadata-spam-help' },
-      ] 
     },
     {
       text: 'Payments',
@@ -354,9 +340,9 @@ export const sidebar = {
   '/support': {
     items: [
       { text: 'Support', link: '/support' },
+      { text: 'FAQ', link: 'https://support.sequence.xyz' },
       { text: 'Token Directory', link: '/support/token-directory' },
       { text: 'Discord', link: 'https://discord.gg/sequence' },
-      { text: 'FAQ', link: 'https://support.sequence.xyz' },
       { text: 'We\'re hiring!', link: 'https://horizon.io/careers' },
       { text: 'Contact Us', link: 'https://support.sequence.xyz' },
     ]
