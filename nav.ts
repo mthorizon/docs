@@ -5,7 +5,7 @@ export const topNav = [
   items: [
     { text: 'Wallets', link: '/solutions/wallets/embedded-wallet/01-overview', match: '/solutions/wallets/embedded-wallet/01-overview' },
     { text: 'Marketplace', link: '/solutions/marketplaces/white-label-marketplace', match: '/solutions/marketplaces/white-label-marketplace' },
-    { text: 'Collectibles', link: '/solutions/collectibles/contracts/900-mint-items-from-ERC1155', match: '/solutions/collectibles/contracts/900-mint-items-from-ERC1155' },
+    { text: 'Collectibles', link: '/solutions/collectibles/contracts/01-deploy-an-item-collection-contract', match: '/solutions/collectibles/contracts/01-deploy-an-item-collection-contract' },
     { text: 'Payments', link: '/solutions/nft-checkout', match: '/solutions/nft-checkout' },
     { text: 'No-code Builder', link: '/solutions/builder/overview', match: '/solutions/builder/overview', items: [
       { text: 'Overview', link: '/solutions/builder/overview', match: '/solutions/builder/overview' }, 
