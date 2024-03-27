@@ -1,3 +1,4 @@
+import { Callout } from "vocs/components";
 import { TabGroup, Tab, TabPanel } from "../../../../components/TabGroup.tsx";
 
 ## GetOrderbookOrders
@@ -51,6 +52,11 @@ _Sequence Orderbook `GetOrderbookOrders` Method:_
       ]
 
 **Example: `GetOrderbookOrders` of token ids from a collection address on Polygon**
+
+<Callout type="info">
+  Note: If using the metadata.properties key to filter, the use of `min` and
+  `max` is required to have orders appear in the query
+</Callout>
 
 <TabGroup>
     <Tab>curl</Tab>

@@ -1,6 +1,8 @@
-# Orderbook transactions
+import { Callout } from "vocs/components";
 
-All transactions run through a contract at address `0xB537a160472183f2150d42EB1c3DD6684A55f74c` on all currently offered networks
+# Sequence Market Orderbook Transactions
+
+All transactions run through a contract at address `0xB537a160472183f2150d42EB1c3DD6684A55f74c` on all currently offered networks:
 
 - polygon
 - mumbai
@@ -8,9 +10,15 @@ All transactions run through a contract at address `0xB537a160472183f2150d42EB1c
 - avalanche
 - avalanche-testnet
 
-## Create an Order
+<Callout type="info">
+  The following transactions require a logged in sequence session, more on how
+  to accomplish this
+  [here](/solutions/wallets/universal-wallet/examples/01-connect-wallet)
+</Callout>
 
-In order to create an order for the sequence marketplace protocol, a prior transaction must take place where the token you are submitting to the marketplace is approved to be transered by the marketplace contract.
+## Create a Request
+
+In order to create a request with the sequence marketplace protocol, a prior transaction must take place where the token (ERC1155 or ERC721) you are submitting to the marketplace is approved to be transferred by the marketplace contract.
 
 A batched transaction can be performed to fullfill this requirement of approval (transaction 1), while also sending the transaction for the creation of the request (transaction 2).
 
@@ -47,13 +55,13 @@ const erc1155Interface = new ethers.utils.Interface([
   "function setApprovalForAll(address operator, bool approved) external",
 ]);
 
-const amountBigNumber = ethers.utils.parseUnits(String(price), 18); // Convert 1 token to its smallest unit based on 18 decimals
+const amountBigNumber = ethers.utils.parseUnits(String(price), 18); // currency price based on correct decimals for token contract
 
 const request = {
   creator: await wallet.getAddress(),
   isListing: true,
   isERC1155: true,
-  tokenContract: "0x1693ffc74edbb50d6138517fe5cd64fd1c917709",
+  tokenContract: "0x1693ffc74edbb50d6138517fe5cd64fd1c917709", // collectible you're looking to list or create an offer for
   tokenId: selectedId,
   quantity: quantity,
   expiry: expiry,
@@ -67,17 +75,17 @@ const dataCreateRequest = sequenceMarketInterface.encodeFunctionData(
 );
 
 const dataApprove = erc1155Interface.encodeFunctionData("setApprovalForAll", [
-  "0xB537a160472183f2150d42EB1c3DD6684A55f74c",
+  "0xB537a160472183f2150d42EB1c3DD6684A55f74c", // sequence market contract (same address on all offered networks)
   true,
 ]);
 
 const tx = {
-  to: "0xB537a160472183f2150d42EB1c3DD6684A55f74c", // sequence market contract (same address on all networks)
+  to: "0xB537a160472183f2150d42EB1c3DD6684A55f74c", // sequence market contract (same address on all offered networks)
   data: dataCreateRequest,
 };
 
 const txApprove = {
-  to: "0x1693ffc74edbb50d6138517fe5cd64fd1c917709",
+  to: "0x1693ffc74edbb50d6138517fe5cd64fd1c917709", // an ERC1155 token contract
   data: dataApprove,
 };
 
@@ -86,7 +94,7 @@ await signer.sendTransaction([txApprove, tx]);
 
 ## Accept a Request
 
-In order to accept a existing request, one would need to use one of the `get` requests endpoints (like [getTopOrders](/solutions/marketplaces/orderbook/03-get-top-orders)) to acquire a `requestId` and to submit a transaction, with a prior transaction of approving the currency the order is being transacted in.
+In order to accept an existing request, one would need to use one of the `get` requests endpoints (like [getTopOrders](/solutions/marketplaces/orderbook/03-get-top-orders)) to acquire a `orderId` inputted into the `requestId` parameter to submit a transaction, with a prior transaction of approving the currency for the request.
 
 A batched transaction can be performed to fullfill this requirement of currency approval (transaction 1), while also sending the transaction for the fullfillment of the request (transaction 2).
 
@@ -102,7 +110,7 @@ Using a universal wallet, this would look something like this:
 - `requestId`: (string) - The ID of the request
 - `quantity`: (bool) - The quantity of tokens to accept
 - `additionalFees`: (number[]) - The additional fees to pay
-- `additionalFeeRecipients`: (number[]) - the addresses to send the additional fees to
+- `additionalFeeRecipients`: (address[]) - the addresses to send the additional fees to
 
 ### example
 
@@ -118,27 +126,26 @@ const sequenceMarketInterface = new ethers.utils.Interface([
   "function acceptRequest(uint256 requestId, uint256 quantity, address recipient, uint256[] calldata additionalFees, address[] calldata additionalFeeRecipients)",
 ]);
 
+const amountBigNumber = ethers.utils.parseUnits(String(price), 18); // currency price based on correct decimals for token contract
+
 const dataApprove = erc20Interface.encodeFunctionData("approve", [
-  "0xB537a160472183f2150d42EB1c3DD6684A55f74c",
-  Number(price),
+  "0xB537a160472183f2150d42EB1c3DD6684A55f74c", // sequence market contract (same address on all offered networks)
+  amountBigNumber,
 ]);
 
-const data = sequenceMarketInterface.encodeFunctionData("acceptRequest", [
-  requestId,
-  quantity,
-  recipientAddress,
-  [],
-  [],
-]);
+const dataAcceptRequest = sequenceMarketInterface.encodeFunctionData(
+  "acceptRequest",
+  [requestId, quantity, recipientAddress, [], []]
+);
 
 const txApprove = {
-  to: "0xa9c88358862211870db6f18bc9b3f6e4f8b3eae7",
+  to: "0xa9c88358862211870db6f18bc9b3f6e4f8b3eae7", // an ERC20 token contract
   data: dataApprove,
 };
 
 const tx = {
-  to: "0xB537a160472183f2150d42EB1c3DD6684A55f74c",
-  data: data,
+  to: "0xB537a160472183f2150d42EB1c3DD6684A55f74c", // sequence market contract (same address on all offered networks)
+  data: dataAcceptRequest,
 };
 
 await signer.sendTransaction([txApprove, tx]);
