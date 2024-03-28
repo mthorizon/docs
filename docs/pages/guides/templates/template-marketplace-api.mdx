@@ -1,3 +1,93 @@
-## Deploy an in-game collectibles contract
-## Query contract details
-## Fetch token balances of a wallet
+# Custom Marketplace
+
+In this guide we will go through the process of creating a custom marketplace from a few simple tools from the Sequence stack.
+
+The tools will enable you to perform:
+
+- [Minting](/guides/templates/template-marketplace-api#minting): Minting of tokens to your wallet from the Sequence Builder
+- [Blockchain Queries](/guides/templates/template-marketplace-api#blockchain-queries): Querying of token balances using the Indexer
+- [Request Creation](/guides/templates/template-marketplace-api#request-creation): Creation of sell listing requests on the Sequence Market Protocol
+- [Order Accepting](/guides/templates/template-marketplace-api#order-accepting): Accepting of top orders from the Marketplace
+
+All of this in custom javascript code
+
+## Minting
+
+The first step is to create a collectible from the sequence Builder with a few mints, which can be accomplished with this [guide](/solutions/collectibles/contracts/01-deploy-an-item-collection).
+
+## Blockchain Queries
+
+Once you have one or a few collectibles minted, you can query the data from the contract address from your deployment, which can be found here:
+
+![copy contract address](/img/marketplace/copy_contract.png)
+
+You can query data using the indexer, using this code where an account address and contract address are inputted into the indexer api
+
+```js
+// Works in both a Webapp (browser) or Node.js:
+import { SequenceIndexer } from "@0xsequence/indexer";
+
+const indexer = new SequenceIndexer(
+  "https://arbitrum-sepolia-indexer.sequence.app",
+  "<access-key>"
+);
+
+// try any contract and account address you'd like :), as an example
+const contractAddress = "0x1693ffc74edbb50d6138517fe5cd64fd1c917709";
+const accountAddress = "0xc2be9cf6d9ee4fd211f88620760e829792659b16";
+
+// query Sequence Indexer for all nft balances of the account on Polygon
+const nftBalances = await indexer.getTokenBalances({
+  contractAddress: contractAddress,
+  accountAddress: accountAddress,
+  includeMetadata: true,
+});
+
+console.log("collection of items:", nftBalances);
+```
+
+Where the response of the indexer call, yields the follow data:
+
+Response
+
+- `contractType` (string) - the type of contract type (i.e. ERC20, ERC721, or ERC1155)
+- `contractAddress` (string) - the contract address of the token
+- `accountAddress` (string) - the deploying account address
+- `tokenID` (string) - the tokenID of the token (always 0 if ERC20)
+- `balance` (string) - the balance of the token
+- `blockHash` (string) - the transaction merkle hash of the block when the token was deployed
+- `blockNumber` (number) - the blocknumber the token was deployed
+- `chainId` (number) - the chain id of the token
+- `contractType`
+  - `chainId` (number) - the chain id of the token
+  - `address` (string) - the address of the token
+  - `name` (string) - contract level name of the token
+  - `type` (string) - the type of contract type (i.e. ERC20, ERC721, or ERC1155)
+  - `symbol` (string) - the symbol of the token
+  - `decimals` (number) - the number of decimals the token has
+  - `logoURI` (string) - the logo of the token displayed in sequence.app
+  - `deployed` (boolean) - whether the token is deployed
+  - `bytecodeHash` (string) - hash of the bytecode of a smart contract deployed on the blockchain
+  - `extensions`
+    - `link` (string) - the adjoining website to link to the project
+    - `description` (string) - the metadata description of the token
+    - `ogImage` (string) - the banner image for the token, rendered in sequence.app
+    - `originChainId` (number) - the originating chain id the token represents
+    - `originAddress` (string) - the originating contract address the token represents
+    - `verified` (boolean) - whether the token is verified and trusted
+    - `verifiedBy` (string) - the verifing source as to why this is not spam
+- `updatedAt` (date) - the last time the indexer was updated
+- `tokenMetadata`
+  - `tokenId` (string) - the tokenID of the token (always 0 if ERC20)
+  - `contractAddress` (string) - the contract address of the token
+  - `name` (string) - token level name
+  - `description` (string) - the description of the token
+  - `image` (string) - the image as a url of the token
+  - `decimals` (string) - the number of decimals for the token
+  - `properties` (object) - an object containing the properties of the token metadata
+  - `external_url` (string) - an external url for where to find the token or more details
+  - `updatedAt` (date) - the last time the token metadata was updated
+
+## Request Creation
+
+## Order Accepting
