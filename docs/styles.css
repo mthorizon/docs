@@ -31,6 +31,10 @@
   /* --vocs-color_link: yellow; */
 }
 
+.vocs_MobileTopNav_navigation{
+  display: block !important;
+}
+
 /* 
 .vocs_H1 {
   color: red;
@@ -41,9 +45,6 @@
 /* TODO: add "Build >" button */
 
 /* TODO: perhaps re-sink it.. just make it an icon */
-.vocs_DesktopSearch_search {
-  width: 175px;
-}
 
 
 .tabs {
