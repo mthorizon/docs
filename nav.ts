@@ -28,12 +28,12 @@ export const topNav = [
     items: [
       { text: 'Unity', link: '/sdk/unity/01-overview', match: '/sdk/unity/01-overview' },
       { text: 'Unreal', link: '/sdk/unreal', match: '/sdk/unreal' },
-      { text: 'Node.js', link: '/sdk/nodejs', match: '/sdk/nodejs' },
+      { text: 'Typescript', link: '/sdk/nodejs', match: '/sdk/nodejs' },
       { text: 'Sequence Kit', link: '/sdk/sequence-kit/01-overview', match: '/sdk/sequence-kit/01-overview' },
       { text: 'Go', link: '/sdk/go/go', match: '/sdk/go/overview' },
-      { text: 'Android', link: '/sdk/android', match: '/sdk/android' },
-      { text: 'React Native', link: '/sdk/reactnative', match: '/sdk/reactnative' },
-      { text: 'iOS', link: '/sdk/iOS', match: '/sdk/iOS' }
+      // { text: 'Android', link: '/sdk/android', match: '/sdk/android' },
+      // { text: 'React Native', link: '/sdk/reactnative', match: '/sdk/reactnative' },
+      // { text: 'iOS', link: '/sdk/iOS', match: '/sdk/iOS' }
     ]
   },
 
@@ -44,7 +44,6 @@ export const topNav = [
       { text: 'Marketplace API', link: '/api/marketplace' },
       { text: 'Relayer API', link: '/api/relayer' },
       { text: 'Indexer API', link: '/api/indexer' },
-      { text: 'Embedded Wallets API', link: '/api/embedded-wallet' },
       { text: 'Metadata API', link: '/api/metadata' },
     ]
   },
@@ -116,7 +115,7 @@ export const sidebar = {
           {text: 'Orderbook Transactions', link: '/solutions/marketplaces/orderbook/06-orderbook-transactions'},
         ]
        }
-      ] 
+      ]
     },
     {
       text: 'Collectibles',
@@ -259,14 +258,14 @@ export const sidebar = {
         }
       ]
     },
-    {
-      text: 'Mobile',
-      items: [
-        { text: 'Android', link: '/sdk/android' },
-        { text: 'iOS', link: '/sdk/iOS' },
-        { text: 'React Native', link: '/sdk/react-native' }
-      ]
-    },
+    // {
+    //   text: 'Mobile',
+    //   items: [
+    //     { text: 'Android', link: '/sdk/android' },
+    //     { text: 'iOS', link: '/sdk/iOS' },
+    //     { text: 'React Native', link: '/sdk/react-native' }
+    //   ]
+    // },
 
     {
       text: 'Web3',
@@ -326,7 +325,6 @@ export const sidebar = {
         text: 'APIs',
         // collapsed: true,
         items: [
-          { text: 'Embedded Wallet', link: '/api/embedded-wallet' },
           { text: 'Indexer', link: '/api/indexer' },
           { text: 'Relayer', link: '/api/relayer' },
           { text: 'Marketplace', link: '/api/marketplace' },
@@ -335,7 +333,6 @@ export const sidebar = {
       },
     ],
   
-
   // Support
   '/support': {
     items: [
