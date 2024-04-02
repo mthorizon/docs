@@ -28,12 +28,12 @@ export const topNav = [
     items: [
       { text: 'Unity', link: '/sdk/unity/01-overview', match: '/sdk/unity/01-overview' },
       { text: 'Unreal', link: '/sdk/unreal', match: '/sdk/unreal' },
-      { text: 'Node.js', link: '/sdk/nodejs', match: '/sdk/nodejs' },
+      { text: 'Typescript', link: '/sdk/nodejs', match: '/sdk/nodejs' },
       { text: 'Sequence Kit', link: '/sdk/sequence-kit/01-overview', match: '/sdk/sequence-kit/01-overview' },
       { text: 'Go', link: '/sdk/go/go', match: '/sdk/go/overview' },
-      { text: 'Android', link: '/sdk/android', match: '/sdk/android' },
-      { text: 'React Native', link: '/sdk/reactnative', match: '/sdk/reactnative' },
-      { text: 'iOS', link: '/sdk/iOS', match: '/sdk/iOS' }
+      // { text: 'Android', link: '/sdk/android', match: '/sdk/android' },
+      // { text: 'React Native', link: '/sdk/reactnative', match: '/sdk/reactnative' },
+      // { text: 'iOS', link: '/sdk/iOS', match: '/sdk/iOS' }
     ]
   },
 
@@ -43,8 +43,7 @@ export const topNav = [
     items: [
       { text: 'Marketplace API', link: '/api/marketplace' },
       { text: 'Relayer API', link: '/api/relayer' },
-      { text: 'Indexer API', link: '/api/indexer' },
-      { text: 'Embedded Wallets API', link: '/api/embedded-wallet' },
+      { text: 'Indexer API', link: '/api/indexer/01-overview' },
       { text: 'Metadata API', link: '/api/metadata' },
     ]
   },
@@ -68,7 +67,7 @@ export const sidebar = {
     {
       text: 'Wallets',
       items: [
-        { text: 'Embedded Wallet', collapsed: true, items: [
+        { text: 'In-Game Wallet', collapsed: true, items: [
           {text: 'Overview', link: '/solutions/wallets/embedded-wallet/01-overview'},
           {text: 'Quickstart', link: '/solutions/wallets/embedded-wallet/02-quickstart'},
           {text: 'Manage Sessions', link: '/solutions/wallets/embedded-wallet/03-manage-sessions'},
@@ -116,7 +115,7 @@ export const sidebar = {
           {text: 'Orderbook Transactions', link: '/solutions/marketplaces/orderbook/06-orderbook-transactions'},
         ]
        }
-      ] 
+      ]
     },
     {
       text: 'Collectibles',
@@ -221,7 +220,7 @@ export const sidebar = {
     {
       text: 'Templates',
       items: [
-        { text: 'Embedded Wallet Demo', link: '/guides/templates/template-embedded-wallet' },
+        { text: 'In-Game Wallet Demo', link: '/guides/templates/template-embedded-wallet' },
         { text: 'Building Backend Relaying Server', link: '/guides/templates/02-building-relaying-server' },
         { text: 'Serverless Minting of Collectibles', link: '/guides/templates/03-mint-collectibles-serverless' },
         { text: 'Marketplace API Demo', link: '/guides/templates/template-marketplace-api' }
@@ -259,14 +258,14 @@ export const sidebar = {
         }
       ]
     },
-    {
-      text: 'Mobile',
-      items: [
-        { text: 'Android', link: '/sdk/android' },
-        { text: 'iOS', link: '/sdk/iOS' },
-        { text: 'React Native', link: '/sdk/react-native' }
-      ]
-    },
+    // {
+    //   text: 'Mobile',
+    //   items: [
+    //     { text: 'Android', link: '/sdk/android' },
+    //     { text: 'iOS', link: '/sdk/iOS' },
+    //     { text: 'React Native', link: '/sdk/react-native' }
+    //   ]
+    // },
 
     {
       text: 'Web3',
@@ -319,15 +318,24 @@ export const sidebar = {
       ]
     },
   ],
-
     // apis
     '/api': [
       {
         text: 'APIs',
         // collapsed: true,
         items: [
-          { text: 'Embedded Wallet', link: '/api/embedded-wallet' },
-          { text: 'Indexer', link: '/api/indexer' },
+          { text: 'Indexer', collapsed: true,
+          items: [
+            {text: 'Overview', link: '/api/indexer/01-overview'},
+            {text: 'Installation', link: '/api/indexer/02-installation'},
+            {text: 'Fetch Tokens', link: '/api/indexer/03-fetch-tokens'},
+            {text: 'Transaction History', link: '/api/indexer/04-transaction-history'},
+            {text: 'Unique Tokens', link: '/api/indexer/05-unique-tokens'},
+            {text: 'Transaction History Token Contract', link: '/api/indexer/06-transation-history-token-contract'},
+            {text: 'Native Network Balance', link: '/api/indexer/07-native-network-balance'},
+            {text: 'Indexing Tips', link: '/api/indexer/08-metadata-tips'},
+             ]
+            },
           { text: 'Relayer', link: '/api/relayer' },
           { text: 'Marketplace', link: '/api/marketplace' },
           { text: 'Metadata', link: '/api/metadata' },
@@ -335,7 +343,6 @@ export const sidebar = {
       },
     ],
   
-
   // Support
   '/support': {
     items: [
