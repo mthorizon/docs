@@ -5,7 +5,7 @@ export const topNav = [
   items: [
     { text: 'Wallets', link: '/solutions/wallets/embedded-wallet/01-overview', match: '/solutions/wallets/embedded-wallet/01-overview' },
     { text: 'Marketplace', link: '/solutions/marketplaces/white-label-marketplace', match: '/solutions/marketplaces/white-label-marketplace' },
-    { text: 'Collectibles', link: '/solutions/collectibles/contracts/01-deploy-an-item-collection-contract', match: '/solutions/collectibles/contracts/01-deploy-an-item-collection-contract' },
+    { text: 'Collectibles', link: '/solutions/collectibles/contracts/01-deploy-an-item-collection', match: '/solutions/collectibles/contracts/01-deploy-an-item-collection' },
     { text: 'Payments', link: '/solutions/nft-checkout', match: '/solutions/nft-checkout' },
     { text: 'No-code Builder', link: '/solutions/builder/overview', match: '/solutions/builder/overview', items: [
       { text: 'Overview', link: '/solutions/builder/overview', match: '/solutions/builder/overview' }, 
@@ -121,7 +121,7 @@ export const sidebar = {
       text: 'Collectibles',
       items: [
         { text: 'Deployable Contracts' , collapsed: true, items: [
-          { text: 'Deploy a Collectible Contract', link: '/solutions/collectibles/contracts/01-deploy-an-item-collection-contract'},
+          { text: 'Deploy a Collectible Contract', link: '/solutions/collectibles/contracts/01-deploy-an-item-collection'},
           // {text: 'Mint In-Game Items and Achievements (ERC1155)', link: '/solutions/collectibles/contracts/900-mint-items-from-ERC1155'},
           // {text: 'Mint Digital Collectibles (ERC721)', link: '/solutions/collectibles/contracts/902-mint-collectibles-from-ERC721'},
           { text: 'Deploy an In-Game Currency (ERC20)', link: '/solutions/collectibles/contracts/02-deploy-ERC20-currency'},
