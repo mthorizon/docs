@@ -11,7 +11,7 @@ export default defineConfig({
   //   '/op-stack':
   //     'https://vocs.dev/api/og?logo=%logo&title=%title&description=%description',
   // },
-  // iconUrl: { light: '/favicons/light.png', dark: '/favicons/dark.png' },
+  iconUrl: { light: '/img/favicon.ico', dark: '/img/favicon.ico' },
   logoUrl: { light: '/img/sequence-composite-light.svg', dark: '/img/sequence-composite-dark.svg' },
 
   // rootDir: '.',
