@@ -27,10 +27,10 @@ export const topNav = [
     text: 'SDKs',
     items: [
       { text: 'Unity', link: '/sdk/unity/01-overview', match: '/sdk/unity/01-overview' },
-      { text: 'Unreal', link: '/sdk/unreal', match: '/sdk/unreal' },
-      { text: 'Typescript', link: '/sdk/nodejs', match: '/sdk/nodejs' },
+      { text: 'Unreal', link: '/sdk/unreal/01-overview', match: '/sdk/unreal/01-overview' },
+      { text: 'Typescript', link: '/sdk/typescript/01-overview', match: '/sdk/typescript/01-overview' },
       { text: 'Sequence Kit', link: '/sdk/sequence-kit/01-overview', match: '/sdk/sequence-kit/01-overview' },
-      { text: 'Go', link: '/sdk/go/go', match: '/sdk/go/overview' },
+      { text: 'Go', link: '/sdk/go/overview', match: '/sdk/go/overview' },
       // { text: 'Android', link: '/sdk/android', match: '/sdk/android' },
       // { text: 'React Native', link: '/sdk/reactnative', match: '/sdk/reactnative' },
       // { text: 'iOS', link: '/sdk/iOS', match: '/sdk/iOS' }
@@ -234,7 +234,16 @@ export const sidebar = {
       text: 'Game Engine',
       // collapsed: true,
       items: [
-        { text: 'Unreal', link: '/sdk/unreal' },
+        { text: 'Unreal', collapsed: true, items: [
+          { text: 'Overview', link: '/sdk/unreal/01-overview' },
+          { text: 'Installation', link: '/sdk/unreal/02-installation' },
+          { text: 'Setup', link: '/sdk/unreal/03-setup' },
+          { text: 'Authentication', link: '/sdk/unreal/04-authentication' },
+          { text: 'API Integration', link: '/sdk/unreal/05-api-integration' },
+          { text: 'Packaging', link: '/sdk/unreal/06-packaging' }
+          ] 
+        },
+
         { text: 'Unity', collapsed: true, items: [
           { text: 'Overview', link: '/sdk/unity/01-overview' },
           { text: 'Installation', link: '/sdk/unity/02-installation' },
@@ -290,15 +299,15 @@ export const sidebar = {
           {text: 'Sending ERC-1155 (Collectible) Tokens', link: '/sdk/typescript/03-guides/08-send-erc1155'},
           {text: 'Sending a Batch of Transactions', link: '/sdk/typescript/03-guides/09-send-batch-transactions'},
           {text: 'Building Backends with Sequence', link: '/sdk/typescript/03-guides/10-building-backends'},
-          {text: 'Wallet Connectors', items: [
-            {text: 'Overview', link: '/sdk/typescript/03-guides/connectors/01-overview'},
+          {text: 'Wallet Connectors', collapsed: true, items: [
+            {text: 'Overview', link: '/sdk/typescript/connectors/01-overview'},
             {text: 'SequenceKit', link: '/sdk/sequence-kit/01-overview'},
-            {text: 'Wagmi', link: '/sdk/typescript/03-guides/connectors/03-wagmi'},
-            {text: 'RainbowKit', link: '/sdk/typescript/03-guides/connectors/04-rainbow-kit'},
-            {text: 'Web3 Onboard', link: '/sdk/typescript/03-guides/connectors/05-web3-onboard'},
-            {text: 'Web3 React V6', link: '/sdk/typescript/03-guides/connectors/06-web3-react-v6'},
-            {text: 'Web3Modal', link: '/sdk/typescript/03-guides/connectors/07-web3modal'},
-            {text: 'FAQ', link: '/sdk/typescript/03-guides/connectors/08-FAQ'},
+            {text: 'Wagmi', link: '/sdk/typescript/connectors/03-wagmi'},
+            {text: 'RainbowKit', link: '/sdk/typescript/connectors/04-rainbow-kit'},
+            {text: 'Web3 Onboard', link: '/sdk/typescript/connectors/05-web3-onboard'},
+            {text: 'Web3 React V6', link: '/sdk/typescript/connectors/06-web3-react-v6'},
+            {text: 'Web3Modal', link: '/sdk/typescript/connectors/07-web3modal'},
+            {text: 'FAQ', link: '/sdk/typescript/connectors/08-FAQ'},
              ]
           }
         ] 
