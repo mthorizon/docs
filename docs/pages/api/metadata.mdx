@@ -1,11 +1,12 @@
 # Metadata API
 
-The Sequence Metadata API service offers a simple and fast API to query, manage, and update collections, token & NFT metadata for Ethereum-compatible chains.
-
-
 :::note
 [Metadata API documentation and endpoints](https://0xsequence.redoc.ly/tag/metadata)
 :::
+
+The Sequence Metadata API service offers a simple and fast API to query, manage, and update collections, token & NFT metadata for Ethereum-compatible chains.
+
+
 
 :::info
 Our Metadata service is managed through [Sequence Builder](HTTPS://SEQUENCE.BUILD). Sign up to grab your
@@ -13,7 +14,8 @@ API access key before following the steps below.
 :::
 
 
-## Create Collection, Token, and Manage Metadata
+## Creating Collections, Tokens, and Managing Metadata
+The below steps walk through an end to end example utilizing our Metadata API in order to deploy an NFT collection, create tokens within that collection, and deploy asset metadata to such as an image to that token.
 
 1. [Call `CreateCollection` endpoint](https://0xsequence.redoc.ly/tag/metadata#operation/metadata-CreateCollection)
 
@@ -28,11 +30,10 @@ API access key before following the steps below.
 
 4. Upload file with PUT method to this endpoint `PUT {metadata-server}/projects/{projectId}/collections/{collectionId}/tokens/{tokenId}/upload/{assetIdOrAssetType}`- use assetId that is returned in step 3 OR, you can pass assetType, such as "image"
   * For example you can upload to https://metadata.sequence.app/projects/486/collections/1/tokens/1/upload/image which will find the asset of the type "image" for the token, and will upload there.
-  * You can also pass in the assetId if you prefer, but the asset type might be simpler.
-  * As well, its possible to upload by passing the assetId, ie, PUT https://metadata.sequence.app/projects/486/collections/1/assets/1/upload
+        * You can also pass in the assetId if you prefer, i.e., PUT https://metadata.sequence.app/projects/486/collections/1/assets/1/upload
   * Asset types include: image, audio, video, animation_url
 
-5. Asset is now privately accesbile with JWT token at `GET {metadata-server}/projects/{projectID}/collections/{collectionID}/tokens/{tokenID}/asset/{assetType}`
+5. Asset is now privately accessible with JWT token at `GET {metadata-server}/projects/{projectID}/collections/{collectionID}/tokens/{tokenID}/asset/{assetType}`
    - for example: https://metadata.sequence.app/projects/486/collections/1/tokens/1/asset/image
 
 6. `PublishCollection` -- this sets the collection to be accessible by the public
