@@ -85,13 +85,15 @@ const isValid = await wallet.utils.isValidMessageSignature(
 console.log(isValid);
 ```
 
-:::info Sequence is a Smart Contract based account
+<Callout type='info'>
+Sequence is a Smart Contract based account
 These signatures are by default encoded using EIP-6492, see https://eips.ethereum.org/EIPS/eip-6492.
 
 This means that the signatures can be verified using the standard process defined in the `UniversalVerified` contract on EIP-6492.
 
 The `wallet.utils.isValidMessageSignature` implements EIP-6492 verification, it can be used to verify signatures from any kind of wallet.
-:::
+
+</Callout>
 
 <br />
 
