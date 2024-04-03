@@ -48,7 +48,7 @@ const wallet = sequence.getWallet();
 const signer = wallet.getSigner(421614); // on arbitrum-sepolia
 
 const sequenceMarketInterface = new ethers.utils.Interface(
-  "function createRequest(RequestParams calldata request) external nonReentrant returns (uint256 requestId)"
+  "function createRequest(tuple(bool isListing, bool isERC1155, address tokenContract, uint256 tokenId, uint256 quantity, uint96 expiry, address currency, uint256 pricePerToken)) external nonReentrant returns (uint256 requestId)"
 );
 
 const erc1155Interface = new ethers.utils.Interface([
