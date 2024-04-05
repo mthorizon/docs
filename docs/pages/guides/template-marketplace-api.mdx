@@ -6,29 +6,29 @@ In this guide we will go through the process of creating a custom marketplace fr
 
 The tools will enable you to perform:
 
-- [1. Minting](/guides/templates/template-marketplace-api#minting): Minting of tokens to your wallet from the Sequence Builder
-- [2. Wallet authentication](/guides/templates/template-marketplace-api#blockchain-queries): Use of Sequence Kit to authenticate a user
-- [3. Blockchain queries](/guides/templates/template-marketplace-api#blockchain-queries): Querying of token balances using the Indexer
-- [4. Multi-Wallet Types](/guides/templates/template-marketplace-api#4-multi-wallet-types): Allow users to either use a Sequence Wallet or an EOA
-- [5. Request creation](/guides/templates/template-marketplace-api#5-request-creation): Creation of sell listing requests on the Sequence Market Protocol
-- [6. Order accepting](/guides/templates/template-marketplace-api#6-order-accepting): Accepting of top orders from the Marketplace
-- [7. (Optional) Enable Embedded Wallet](/guides/templates/template-marketplace-api#7-optional-enable-embedded-wallet): Add a more seamless UX experience with no-confirmation transactions
+- [1. Minting](/guides/template-marketplace-api#minting): Minting of tokens to your wallet from the Sequence Builder
+- [2. Wallet authentication](/guides/template-marketplace-api#blockchain-queries): Use of Sequence Kit to authenticate a user
+- [3. Blockchain queries](/guides/template-marketplace-api#blockchain-queries): Querying of token balances using the Indexer
+- [4. Multi-Wallet Types](/guides/template-marketplace-api#4-multi-wallet-types): Allow users to either use a Sequence Wallet or an EOA
+- [5. Request creation](/guides/template-marketplace-api#5-request-creation): Creation of sell listing requests on the Sequence Market Protocol
+- [6. Order accepting](/guides/template-marketplace-api#6-order-accepting): Accepting of top orders from the Marketplace
+- [7. (Optional) Enable Embedded Wallet](/guides/template-marketplace-api#7-optional-enable-embedded-wallet): Add a more seamless UX experience with no-confirmation transactions
 
 ## 1. Minting
 
-The first step is to create a collectible from the sequence Builder with a few mints, which can be accomplished with this [guide](/solutions/collectibles/contracts/01-deploy-an-item-collection) and to use the `tokenId` you minted in the following steps to query and fulfill orders.
+The first step is to create a collectible from the sequence Builder and mint a few tokens, which can be accomplished with this [guide](/solutions/collectibles/contracts/01-deploy-an-item-collection) and to use the `tokenId` you minted in the following steps to query and fulfill orders.
 
 ## 2. Wallet Authentication
 
 For your project, you'll need a way to authenticate your user with a wallet.
 
-Your choice from the Sequence stack is to use either an [Embedded Wallet](/solutions/wallets/embedded-wallet/01-overview) for seamless UX, or, a [Universal Wallet](/solutions/wallets/universal-wallet/01-overview) with something like [Sequence Kit](/sdk/sequence-kit/01-overview) to reach more types of wallets.
+Your choice from the Sequence stack is to use either an [Embedded Wallet](/solutions/wallets/embedded-wallet/01-overview) for headless and web2-like UX, or a [Universal Wallet](/solutions/wallets/universal-wallet/01-overview) with [Sequence Kit](/sdk/sequence-kit/01-overview) to reach more types of wallets.
 
-For this guide we'll use an `Universal Sequence Wallet` with `Sequence Kit` connector (with an option for an `Embedded-Wallet`) which can authenticate users using Google or Apple auth, in addition to user brought wallets like Coinbase or Metamask
+For this guide we'll use an `Universal Sequence Wallet` with `Sequence Kit` connector (with an option for an `Embedded-Wallet`) which can authenticate users using Google or Apple auth, in addition to user brought wallets like Coinbase or Metamask.
 
 ### Install packages
 
-Either you can create a vanilla js/html/css project from a [template like this](https://github.com/moskalyk/vanilla-js-sequence-kit-starter), or we will walk you through how to use react here.
+Either you can create a vanilla js/html/css project from a [template like this](https://github.com/moskalyk/vanilla-js-sequence-kit-starter) for a templated setup, or we will walk you through how to use react from scratch here.
 
 Start by creating a project in a folder of your name choosing:
 
@@ -189,8 +189,8 @@ console.log("collection of items:", nftBalances);
 
 Where the response of the indexer call, yields the follow data:
 
-Response
 
+:::details[Example Response]
 - `contractType` (string) - the type of contract type (i.e. ERC20, ERC721, or ERC1155)
 - `contractAddress` (string) - the contract address of the token
 - `accountAddress` (string) - the deploying account address
@@ -229,9 +229,11 @@ Response
   - `external_url` (string) - an external url for where to find the token or more details
   - `updatedAt` (date) - the last time the token metadata was updated
 
+  :::
+
 ## 4. Multi-wallet types
 
-Due to the fact that we're using `Sequence Kit` for this example that allows you to use a Sequence wallet, in addition to your own brought `EOA wallet`, sending transactions to the blockchain will differ due to the fact that with a `Sequence wallet`, you can send batch transactions, whereas with `wagmi` using an EOA you can only send 1 transaction at a time.
+Due to the fact that we're using `Sequence Kit` for this example that allows you to use a Sequence wallet, in addition to your own brought `EOA wallet`, sending transactions to the blockchain will differ due to the fact that with a `Sequence wallet`, you can send batch transactions to optimize gas costs, whereas with `wagmi` using an EOA you can only send 1 transaction at a time.
 
 To accomplish this, we take a few steps to create a local state variable that checks for the authorized wallet
 
@@ -257,9 +259,9 @@ function App() {
 # Orderbook Transactions
 
 <Callout type="info">
-  Glossary: In the Sequence Market protocol, when you create a listing, it's
+  In the Sequence Market protocol, when you create a listing, it's
   referred to as a `request`, and when you accept a request it's called an
-  `order`
+  `order`.
 </Callout>
 
 ## 5. Request creation

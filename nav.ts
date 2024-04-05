@@ -19,7 +19,7 @@ export const topNav = [
       { text: 'Web3 Game with WebGL', link: '/guides/webgl-guide', match: '/guides/webgl-guide' },
       { text: 'Web3 Game with Unity', link: '/guides/unity-guide', match: '/guides/unity-guide' },
       { text: 'Lootboxes', link: '/guides/lootbox', match: '/guides/lootbox' },
-      { text: 'Custom Marketplace', link: '/guides/templates/template-marketplace-api', match: '/guides/templates/template-marketplace-api' }
+      { text: 'Custom Marketplace', link: '/guides/template-marketplace-api', match: '/guides/template-marketplace-api' }
     ]
   },
   { 
@@ -213,16 +213,20 @@ export const sidebar = {
       link: '/guides/lootbox'
     },
     {
-      text: 'Integrate token rewards into your Discord server',
-      link: '/guides/discord'
+      text: 'Building a Custom Marketplace',
+      link: '/guides/template-marketplace-api'
     },
+    // {
+    //   text: 'Integrate token rewards into your Discord server',
+    //   link: '/guides/discord'
+    // },
     {
       text: 'Templates',
       items: [
         { text: 'In-Game Wallet Demo', link: '/guides/templates/template-embedded-wallet' },
         { text: 'Building Backend Relaying Server', link: '/guides/templates/02-building-relaying-server' },
-        { text: 'Serverless Minting of Collectibles', link: '/guides/templates/03-mint-collectibles-serverless' },
-        { text: 'Marketplace API Demo', link: '/guides/templates/template-marketplace-api' }
+        { text: 'Serverless Minting of Collectibles', link: '/guides/templates/03-mint-collectibles-serverless' }
+        // { text: 'Marketplace API Demo', link: '/guides/templates/template-marketplace-api' }
       ]
     }
   ],
