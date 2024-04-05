@@ -13,14 +13,13 @@ export const topNav = [
   }
 ]
 },
-
   { 
     text: 'Guides',
     items: [
       { text: 'Web3 Game with WebGL', link: '/guides/webgl-guide', match: '/guides/webgl-guide' },
       { text: 'Web3 Game with Unity', link: '/guides/unity-guide', match: '/guides/unity-guide' },
       { text: 'Lootboxes', link: '/guides/lootbox', match: '/guides/lootbox' },
-      { text: 'Custom Marketplace', link: '/guides/templates/template-marketplace-api', match: '/guides/templates/template-marketplace-api' }
+      { text: 'Custom Marketplace', link: '/guides/template-marketplace-api', match: '/guides/template-marketplace-api' }
     ]
   },
   { 
@@ -162,7 +161,7 @@ export const sidebar = {
       text: 'Technical References',
       items: [
         { text: 'Chain Support', link: '/solutions/technical-references/chain-support' },
-        { text: 'Node Gateway', link: '/solutions/technical-references/node-gateway' },
+        { text: 'EIP5189 vs. 4337', link: '/solutions/technical-references/5189-4337' },
         { text: 'Smart Contract Wallets', collapsed: true, items: [
           { text: 'Why smart contract wallets?', link: '/solutions/technical-references/wallet-contracts/01-why' },
           { text: 'Universal Deployer', link: '/solutions/technical-references/wallet-contracts/02-universal-deployer' },
@@ -214,16 +213,20 @@ export const sidebar = {
       link: '/guides/lootbox'
     },
     {
-      text: 'Integrate token rewards into your Discord server',
-      link: '/guides/discord'
+      text: 'Building a Custom Marketplace',
+      link: '/guides/template-marketplace-api'
     },
+    // {
+    //   text: 'Integrate token rewards into your Discord server',
+    //   link: '/guides/discord'
+    // },
     {
       text: 'Templates',
       items: [
         { text: 'In-Game Wallet Demo', link: '/guides/templates/template-embedded-wallet' },
         { text: 'Building Backend Relaying Server', link: '/guides/templates/02-building-relaying-server' },
-        { text: 'Serverless Minting of Collectibles', link: '/guides/templates/03-mint-collectibles-serverless' },
-        { text: 'Marketplace API Demo', link: '/guides/templates/template-marketplace-api' }
+        { text: 'Serverless Minting of Collectibles', link: '/guides/templates/03-mint-collectibles-serverless' }
+        // { text: 'Marketplace API Demo', link: '/guides/templates/template-marketplace-api' }
       ]
     }
   ],
@@ -287,7 +290,6 @@ export const sidebar = {
           { text: 'Custom Connectors', link: '/sdk/sequence-kit/05-custom-connectors' }
         ]
        },
-
         { text: 'TypeScript', collapsed: true, items: [
           {text: 'Connect Wallet', link: '/sdk/typescript/03-guides/01-connect-wallet'},
           {text: 'Authenticate Users with Message Signature', link: '/sdk/typescript/03-guides/02-auth-address'},
@@ -347,6 +349,7 @@ export const sidebar = {
             },
           { text: 'Relayer', link: '/api/relayer' },
           { text: 'Marketplace', link: '/api/marketplace' },
+          { text: 'Node Gateway RPCs', link: '/api/node-gateway' },
           { text: 'Metadata', link: '/api/metadata' },
         ]
       },
