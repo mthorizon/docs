@@ -13,7 +13,6 @@ export const topNav = [
   }
 ]
 },
-
   { 
     text: 'Guides',
     items: [
@@ -162,7 +161,7 @@ export const sidebar = {
       text: 'Technical References',
       items: [
         { text: 'Chain Support', link: '/solutions/technical-references/chain-support' },
-        { text: 'Node Gateway', link: '/solutions/technical-references/node-gateway' },
+        { text: 'EIP5189 vs. 4337', link: '/solutions/technical-references/5189-4337' },
         { text: 'Smart Contract Wallets', collapsed: true, items: [
           { text: 'Why smart contract wallets?', link: '/solutions/technical-references/wallet-contracts/01-why' },
           { text: 'Universal Deployer', link: '/solutions/technical-references/wallet-contracts/02-universal-deployer' },
@@ -287,7 +286,6 @@ export const sidebar = {
           { text: 'Custom Connectors', link: '/sdk/sequence-kit/05-custom-connectors' }
         ]
        },
-
         { text: 'TypeScript', collapsed: true, items: [
           {text: 'Connect Wallet', link: '/sdk/typescript/03-guides/01-connect-wallet'},
           {text: 'Authenticate Users with Message Signature', link: '/sdk/typescript/03-guides/02-auth-address'},
@@ -347,6 +345,7 @@ export const sidebar = {
             },
           { text: 'Relayer', link: '/api/relayer' },
           { text: 'Marketplace', link: '/api/marketplace' },
+          { text: 'Node Gateway RPCs', link: '/api/node-gateway' },
           { text: 'Metadata', link: '/api/metadata' },
         ]
       },
