@@ -3,8 +3,8 @@ import type { Sidebar, TopNav } from 'vocs'
 export const topNav = [
   { text: 'Solutions',
   items: [
-    { text: 'Wallets', link: '/solutions/wallets/embedded-wallet/01-overview', match: '/solutions/wallets/embedded-wallet/01-overview' },
-    { text: 'Marketplace', link: '/solutions/marketplaces/white-label-marketplace', match: '/solutions/marketplaces/white-label-marketplace' },
+    { text: 'Wallets', link: '/solutions/wallets/overview', match: '/solutions/wallets/overview' },
+    { text: 'Marketplace', link: '/solutions/marketplaces/overview', match: '/solutions/marketplaces/overview' },
     { text: 'Collectibles', link: '/solutions/collectibles/contracts/01-deploy-an-item-collection', match: '/solutions/collectibles/contracts/01-deploy-an-item-collection' },
     { text: 'Payments', link: '/solutions/nft-checkout', match: '/solutions/nft-checkout' },
     { text: 'No-code Builder', link: '/solutions/builder/overview', match: '/solutions/builder/overview', items: [
@@ -27,7 +27,7 @@ export const topNav = [
     items: [
       { text: 'Unity', link: '/sdk/unity/01-overview', match: '/sdk/unity/01-overview' },
       { text: 'Unreal', link: '/sdk/unreal/01-overview', match: '/sdk/unreal/01-overview' },
-      { text: 'Typescript', link: '/sdk/typescript/01-overview', match: '/sdk/typescript/01-overview' },
+      { text: 'Typescript', link: '/sdk/typescript/03-guides/overview', match: '/sdk/typescript/03-guides/overview' },
       { text: 'Sequence Kit', link: '/sdk/sequence-kit/01-overview', match: '/sdk/sequence-kit/01-overview' },
       { text: 'Go', link: '/sdk/go/overview', match: '/sdk/go/overview' },
       // { text: 'Android', link: '/sdk/android', match: '/sdk/android' },
@@ -43,6 +43,7 @@ export const topNav = [
       { text: 'Marketplace API', link: '/api/marketplace' },
       { text: 'Relayer API', link: '/api/relayer' },
       { text: 'Indexer API', link: '/api/indexer/01-overview' },
+      { text: 'Node Gateway', link: '/api/node-gateway' },
       { text: 'Metadata API', link: '/api/metadata' },
     ]
   },
@@ -51,6 +52,7 @@ export const topNav = [
     text: 'Support',
     items: [
       { text: 'Support', link: '/support' },
+      { text: 'Changelog', link: 'https://0xsequence.canny.io/changelog' },
       { text: 'Token Directory', link: '/support/token-directory' },
       { text: 'FAQ', link: 'https://support.sequence.xyz' },
       { text: 'Discord', link: 'https://discord.gg/sequence' },
@@ -66,8 +68,9 @@ export const sidebar = {
     {
       text: 'Wallets',
       items: [
+        {text: 'Overview', link: '/solutions/wallets/overview'},
         { text: 'In-Game Wallet', collapsed: true, items: [
-          {text: 'Overview', link: '/solutions/wallets/embedded-wallet/01-overview'},
+          {text: 'Architecture', link: '/solutions/wallets/embedded-wallet/01-overview'},
           {text: 'Quickstart', link: '/solutions/wallets/embedded-wallet/02-quickstart'},
           {text: 'Manage Sessions', link: '/solutions/wallets/embedded-wallet/03-manage-sessions'},
           {text: 'Use Wallets', link: '/solutions/wallets/embedded-wallet/04-use-wallets'},
@@ -104,6 +107,7 @@ export const sidebar = {
       text: 'Marketplace',
       // collapsed: true,
       items: [
+        { text: 'Overview', link: '/solutions/marketplaces/overview' },
         { text: 'White-label Marketplace', link: '/solutions/marketplaces/white-label-marketplace' },
         { text: 'Build your Custom Marketplace', collapsed: true, items: [
           {text: 'Overview', link: '/solutions/marketplaces/orderbook/01-overview'},
@@ -149,8 +153,8 @@ export const sidebar = {
         { text: 'Get Started', link: '/solutions/builder/getting-started' },
         {text: 'Project Management', link: '/solutions/builder/project-management'},
         {text: 'Contracts', link: '/solutions/builder/contracts'},
-        {text: 'Wallet SDKs', link: '/solutions/builder/wallet-sdks'},
         {text: 'Gas Tank', link: '/solutions/builder/gas-tank'},
+        {text: 'Wallet SDKs', link: '/solutions/builder/wallet-sdks'},
         {text: 'Node Gateway', link: '/solutions/builder/node-gateway'},
         {text: 'Marketplaces', link: '/solutions/builder/marketplaces'},
         {text: 'Indexer', link: '/solutions/builder/indexer'},
@@ -224,7 +228,7 @@ export const sidebar = {
       text: 'Templates',
       items: [
         { text: 'In-Game Wallet Demo', link: '/guides/templates/template-embedded-wallet' },
-        { text: 'Building Backend Relaying Server', link: '/guides/templates/02-building-relaying-server' },
+        { text: 'Build a Backend Transaction Manager', link: '/guides/templates/02-building-relaying-server' },
         { text: 'Serverless Minting of Collectibles', link: '/guides/templates/03-mint-collectibles-serverless' }
         // { text: 'Marketplace API Demo', link: '/guides/templates/template-marketplace-api' }
       ]
@@ -291,6 +295,7 @@ export const sidebar = {
         ]
        },
         { text: 'TypeScript', collapsed: true, items: [
+          {text: 'Overview', link: '/sdk/typescript/03-guides/overview'},
           {text: 'Connect Wallet', link: '/sdk/typescript/03-guides/01-connect-wallet'},
           {text: 'Authenticate Users with Message Signature', link: '/sdk/typescript/03-guides/02-auth-address'},
           {text: 'Signing & Verifying Messages', link: '/sdk/typescript/03-guides/03-sign-message'},
@@ -359,6 +364,7 @@ export const sidebar = {
   '/support': {
     items: [
       { text: 'Support', link: '/support' },
+      { text: 'Changelog', link: 'https://0xsequence.canny.io/changelog' },
       { text: 'FAQ', link: 'https://support.sequence.xyz' },
       { text: 'Token Directory', link: '/support/token-directory' },
       { text: 'Discord', link: 'https://discord.gg/sequence' },
