@@ -1,6 +1,8 @@
 import { defineConfig } from 'vocs'
 import { sidebar, topNav } from './nav'
 
+import remarkMermaid from 'remark-mermaidjs'
+
 export default defineConfig({
   title: 'Sequence',
 
@@ -64,6 +66,12 @@ export default defineConfig({
         // }
 
       }
+    },
+
+    markdown: {
+      remarkPlugins: [ 
+        remarkMermaid 
+      ] 
     }
 
 })
