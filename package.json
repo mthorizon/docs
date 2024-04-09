@@ -24,5 +24,10 @@
     "swagger-ui-react": "^5.12.0",
     "typescript": "latest",
     "vocs": "latest"
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "mermaid@10.9.0": "patches/mermaid@10.9.0.patch"
+    }
   }
 }

@@ -4,6 +4,11 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+patchedDependencies:
+  mermaid@10.9.0:
+    hash: i3zseggzam624umt6wuswbkidy
+    path: patches/mermaid@10.9.0.patch
+
 dependencies:
   0xsequence:
     specifier: ^1.9.11
@@ -5299,13 +5304,13 @@ packages:
     resolution: {integrity: sha512-56bgo4pexO4dxtGT0szLKkbHtPdgB2ZDhIZBV6tKT8J/NlyjLa2bTeT9t5Y2zeMgL0y68gCYCQvn9+tIFg6Cpw==}
     dependencies:
       '@fortawesome/fontawesome-free': 6.5.2
-      mermaid: 10.9.0
+      mermaid: 10.9.0(patch_hash=i3zseggzam624umt6wuswbkidy)
       playwright-core: 1.43.0
     transitivePeerDependencies:
       - supports-color
     dev: false
 
-  /mermaid@10.9.0:
+  /mermaid@10.9.0(patch_hash=i3zseggzam624umt6wuswbkidy):
     resolution: {integrity: sha512-swZju0hFox/B/qoLKK0rOxxgh8Cf7rJSfAUc1u8fezVihYMvrJAS45GzAxTVf4Q+xn9uMgitBcmWk7nWGXOs/g==}
     dependencies:
       '@braintree/sanitize-url': 6.0.4
@@ -5331,6 +5336,7 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: false
+    patched: true
 
   /micromark-core-commonmark@1.1.0:
     resolution: {integrity: sha512-BgHO1aRbolh2hcrzL2d1La37V0Aoz73ymF8rAcKnohLy93titmv62E0gP8Hrx9PKcKrqCZ1BbLGbP3bEhoXYlw==}
