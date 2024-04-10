@@ -3,24 +3,23 @@ import type { Sidebar, TopNav } from 'vocs'
 export const topNav = [
   { text: 'Solutions',
   items: [
-    { text: 'Wallets', link: '/solutions/wallets/embedded-wallet/01-overview', match: '/solutions/wallets/embedded-wallet/01-overview' },
-    { text: 'Marketplace', link: '/solutions/marketplaces/white-label-marketplace', match: '/solutions/marketplaces/white-label-marketplace' },
+    { text: 'Wallets', link: '/solutions/wallets/overview', match: '/solutions/wallets/overview' },
+    { text: 'Marketplace', link: '/solutions/marketplaces/overview', match: '/solutions/marketplaces/overview' },
     { text: 'Collectibles', link: '/solutions/collectibles/contracts/01-deploy-an-item-collection', match: '/solutions/collectibles/contracts/01-deploy-an-item-collection' },
     { text: 'Payments', link: '/solutions/nft-checkout', match: '/solutions/nft-checkout' },
-    { text: 'No-code Builder', link: '/solutions/builder/overview', match: '/solutions/builder/overview', items: [
+    { text: 'Builder Console', link: '/solutions/builder/overview', match: '/solutions/builder/overview', items: [
       { text: 'Overview', link: '/solutions/builder/overview', match: '/solutions/builder/overview' }, 
     ]
   }
 ]
 },
-
   { 
     text: 'Guides',
     items: [
       { text: 'Web3 Game with WebGL', link: '/guides/webgl-guide', match: '/guides/webgl-guide' },
       { text: 'Web3 Game with Unity', link: '/guides/unity-guide', match: '/guides/unity-guide' },
       { text: 'Lootboxes', link: '/guides/lootbox', match: '/guides/lootbox' },
-      { text: 'Custom Marketplace', link: '/guides/templates/template-marketplace-api', match: '/guides/templates/template-marketplace-api' }
+      { text: 'Custom Marketplace', link: '/guides/template-marketplace-api', match: '/guides/template-marketplace-api' }
     ]
   },
   { 
@@ -28,7 +27,7 @@ export const topNav = [
     items: [
       { text: 'Unity', link: '/sdk/unity/01-overview', match: '/sdk/unity/01-overview' },
       { text: 'Unreal', link: '/sdk/unreal/01-overview', match: '/sdk/unreal/01-overview' },
-      { text: 'Typescript', link: '/sdk/typescript/01-overview', match: '/sdk/typescript/01-overview' },
+      { text: 'Typescript', link: '/sdk/typescript/03-guides/overview', match: '/sdk/typescript/03-guides/overview' },
       { text: 'Sequence Kit', link: '/sdk/sequence-kit/01-overview', match: '/sdk/sequence-kit/01-overview' },
       { text: 'Go', link: '/sdk/go/overview', match: '/sdk/go/overview' },
       // { text: 'Android', link: '/sdk/android', match: '/sdk/android' },
@@ -41,10 +40,11 @@ export const topNav = [
   { 
     text: 'APIs',
     items: [
-      { text: 'Marketplace API', link: '/api/marketplace' },
       { text: 'Relayer API', link: '/api/relayer' },
-      { text: 'Indexer API', link: '/api/indexer/01-overview' },
-      { text: 'Metadata API', link: '/api/metadata' },
+      { text: 'Indexer API', link: '/api/indexer/overview' },
+      { text: 'Metadata API', link: '/api/metadata/overview' },
+      { text: 'Marketplace API', link: '/api/marketplace' },
+      { text: 'Node Gateway', link: '/api/node-gateway' },
     ]
   },
 
@@ -52,6 +52,7 @@ export const topNav = [
     text: 'Support',
     items: [
       { text: 'Support', link: '/support' },
+      { text: 'Changelog', link: 'https://0xsequence.canny.io/changelog' },
       { text: 'Token Directory', link: '/support/token-directory' },
       { text: 'FAQ', link: 'https://support.sequence.xyz' },
       { text: 'Discord', link: 'https://discord.gg/sequence' },
@@ -67,13 +68,17 @@ export const sidebar = {
     {
       text: 'Wallets',
       items: [
+        { text: 'Overview', link: '/solutions/wallets/overview' },
         { text: 'In-Game Wallet', collapsed: true, items: [
           {text: 'Overview', link: '/solutions/wallets/embedded-wallet/01-overview'},
           {text: 'Quickstart', link: '/solutions/wallets/embedded-wallet/02-quickstart'},
-          {text: 'Manage Sessions', link: '/solutions/wallets/embedded-wallet/03-manage-sessions'},
-          {text: 'Use Wallets', link: '/solutions/wallets/embedded-wallet/04-use-wallets'},
-          {text: 'Validation', link: '/solutions/wallets/embedded-wallet/05-validation'},
-          {text: 'Transaction Receipts', link: '/solutions/wallets/embedded-wallet/06-transaction-receipts'},
+          {text: 'Examples', collapsed: true, items: [
+          {text: 'Manage Sessions', link: '/solutions/wallets/embedded-wallet/examples/03-manage-sessions'},
+          {text: 'Use Wallets', link: '/solutions/wallets/embedded-wallet/examples/04-use-wallets'},
+          {text: 'Validation', link: '/solutions/wallets/embedded-wallet/examples/05-validation'},
+          {text: 'Transaction Receipts', link: '/solutions/wallets/embedded-wallet/examples/06-transaction-receipts'},
+            ]
+          }
         ]
       },
         { text: 'Universal Wallet', collapsed: true, 
@@ -105,14 +110,18 @@ export const sidebar = {
       text: 'Marketplace',
       // collapsed: true,
       items: [
+        { text: 'Overview', link: '/solutions/marketplaces/overview' },
         { text: 'White-label Marketplace', link: '/solutions/marketplaces/white-label-marketplace' },
         { text: 'Build your Custom Marketplace', collapsed: true, items: [
           {text: 'Overview', link: '/solutions/marketplaces/orderbook/01-overview'},
           {text: 'Quickstart', link: '/solutions/marketplaces/orderbook/02-quickstart'},
-          {text: 'Get Top Orders', link: '/solutions/marketplaces/orderbook/03-get-top-orders'},
-          {text: 'Get Orderbook', link: '/solutions/marketplaces/orderbook/04-get-orderbook'},
-          {text: 'Get User Activities', link: '/solutions/marketplaces/orderbook/05-get-user-activities'},
-          {text: 'Orderbook Transactions', link: '/solutions/marketplaces/orderbook/06-orderbook-transactions'},
+          {text: 'Examples', collapsed: true, items: [
+          {text: 'Get Top Orders', link: '/solutions/marketplaces/orderbook/examples/03-get-top-orders'},
+          {text: 'Get Orderbook', link: '/solutions/marketplaces/orderbook/examples/04-get-orderbook'},
+          {text: 'Get User Activities', link: '/solutions/marketplaces/orderbook/examples/05-get-user-activities'},
+          {text: 'Orderbook Transactions', link: '/solutions/marketplaces/orderbook/examples/06-orderbook-transactions'},
+            ]
+          }
         ]
        }
       ]
@@ -143,15 +152,15 @@ export const sidebar = {
       ]
     },
     {
-      text: 'No-code Builder',
+      text: 'Builder Console',
       collapsed: true,
       items: [
         { text: 'Overview', link: '/solutions/builder/overview' },
         { text: 'Get Started', link: '/solutions/builder/getting-started' },
         {text: 'Project Management', link: '/solutions/builder/project-management'},
         {text: 'Contracts', link: '/solutions/builder/contracts'},
-        {text: 'Wallet SDKs', link: '/solutions/builder/wallet-sdks'},
         {text: 'Gas Tank', link: '/solutions/builder/gas-tank'},
+        {text: 'Wallet SDKs', link: '/solutions/builder/wallet-sdks'},
         {text: 'Node Gateway', link: '/solutions/builder/node-gateway'},
         {text: 'Marketplaces', link: '/solutions/builder/marketplaces'},
         {text: 'Indexer', link: '/solutions/builder/indexer'},
@@ -162,7 +171,7 @@ export const sidebar = {
       text: 'Technical References',
       items: [
         { text: 'Chain Support', link: '/solutions/technical-references/chain-support' },
-        { text: 'Node Gateway', link: '/solutions/technical-references/node-gateway' },
+        // { text: 'EIP5189 vs. 4337', link: '/solutions/technical-references/5189-4337' },
         { text: 'Smart Contract Wallets', collapsed: true, items: [
           { text: 'Why smart contract wallets?', link: '/solutions/technical-references/wallet-contracts/01-why' },
           { text: 'Universal Deployer', link: '/solutions/technical-references/wallet-contracts/02-universal-deployer' },
@@ -214,16 +223,20 @@ export const sidebar = {
       link: '/guides/lootbox'
     },
     {
-      text: 'Integrate token rewards into your Discord server',
-      link: '/guides/discord'
+      text: 'Building a Custom Marketplace',
+      link: '/guides/template-marketplace-api'
     },
+    // {
+    //   text: 'Integrate token rewards into your Discord server',
+    //   link: '/guides/discord'
+    // },
     {
       text: 'Templates',
       items: [
         { text: 'In-Game Wallet Demo', link: '/guides/templates/template-embedded-wallet' },
-        { text: 'Building Backend Relaying Server', link: '/guides/templates/02-building-relaying-server' },
-        { text: 'Serverless Minting of Collectibles', link: '/guides/templates/03-mint-collectibles-serverless' },
-        { text: 'Marketplace API Demo', link: '/guides/templates/template-marketplace-api' }
+        { text: 'Build a Backend Transaction Manager', link: '/guides/templates/02-building-relaying-server' },
+        { text: 'Serverless Minting of Collectibles', link: '/guides/templates/03-mint-collectibles-serverless' }
+        // { text: 'Marketplace API Demo', link: '/guides/templates/template-marketplace-api' }
       ]
     }
   ],
@@ -287,8 +300,8 @@ export const sidebar = {
           { text: 'Custom Connectors', link: '/sdk/sequence-kit/05-custom-connectors' }
         ]
        },
-
         { text: 'TypeScript', collapsed: true, items: [
+          {text: 'Overview', link: '/sdk/typescript/03-guides/overview'},
           {text: 'Connect Wallet', link: '/sdk/typescript/03-guides/01-connect-wallet'},
           {text: 'Authenticate Users with Message Signature', link: '/sdk/typescript/03-guides/02-auth-address'},
           {text: 'Signing & Verifying Messages', link: '/sdk/typescript/03-guides/03-sign-message'},
@@ -327,35 +340,66 @@ export const sidebar = {
       ]
     },
   ],
-    // apis
-    '/api': [
-      {
-        text: 'APIs',
-        // collapsed: true,
-        items: [
-          { text: 'Indexer', collapsed: true,
-          items: [
-            {text: 'Overview', link: '/api/indexer/01-overview'},
-            {text: 'Installation', link: '/api/indexer/02-installation'},
-            {text: 'Fetch Tokens', link: '/api/indexer/03-fetch-tokens'},
-            {text: 'Transaction History', link: '/api/indexer/04-transaction-history'},
-            {text: 'Unique Tokens', link: '/api/indexer/05-unique-tokens'},
-            {text: 'Transaction History Token Contract', link: '/api/indexer/06-transation-history-token-contract'},
-            {text: 'Native Network Balance', link: '/api/indexer/07-native-network-balance'},
-            {text: 'Indexing Tips', link: '/api/indexer/08-metadata-tips'},
-             ]
-            },
-          { text: 'Relayer', link: '/api/relayer' },
-          { text: 'Marketplace', link: '/api/marketplace' },
-          { text: 'Metadata', link: '/api/metadata' },
-        ]
-      },
-    ],
+
+  // apis
+  '/api': [
+    {
+      text: 'Relayer',
+      collapsed: true,
+      items: [
+        { text: 'Overview', link: '/api/relayer' },
+        { text: 'Relayer Examples', link: '/api/relayer/examples' },
+      ]
+    },
+    {
+      text: 'Indexer',
+      collapsed: true,
+      items: [
+        {text: 'Overview', link: '/api/indexer/overview'},
+        {text: 'Installation', link: '/api/indexer/installation'},
+        {text: 'Fetch Tokens', link: '/api/indexer/fetch-tokens'},
+        {text: 'Transaction History', link: '/api/indexer/transaction-history'},
+        {text: 'Unique Tokens', link: '/api/indexer/unique-tokens'},
+        {text: 'Transaction History Token Contract', link: '/api/indexer/transation-history-token-contract'},
+        {text: 'Native Network Balance', link: '/api/indexer/native-network-balance'},
+        {text: 'Metadata Tips', link: '/api/indexer/metadata-tips'},
+      ]
+    },
+    {
+      text: 'Metadata',
+      collapsed: true,
+      items: [
+        { text: 'Overview', link: '/api/metadata/overview' },
+        { text: 'Token Metadata', link: '/api/metadata/token-metadata' },
+        { text: 'Contract Metadata', link: '/api/metadata/contract-metadata' },
+        { text: 'REST API', link: '/api/metadata/rest-api' }
+      ]
+    },
+    {
+      text: 'Marketplace',
+      collapsed: true,
+      items: [
+        { text: 'Overview', link: '/api/marketplace' },
+        { text: 'Schema', link: '/api/marketplace/schema' },
+        { text: 'Marketplace API', link: '/api/marketplace/api' },
+        { text: 'Marketplace Examples', link: '/api/marketplace/examples' },
+      ]
+    },
+    {
+      text: 'Node Gateway',
+      collapsed: true,
+      items: [
+        { text: 'Overview', link: '/api/node-gateway' },
+        { text: 'Etc', link: '/api/node-gateway/etc' },
+      ]
+    },
+  ],
   
   // Support
   '/support': {
     items: [
       { text: 'Support', link: '/support' },
+      { text: 'Changelog', link: 'https://0xsequence.canny.io/changelog' },
       { text: 'FAQ', link: 'https://support.sequence.xyz' },
       { text: 'Token Directory', link: '/support/token-directory' },
       { text: 'Discord', link: 'https://discord.gg/sequence' },

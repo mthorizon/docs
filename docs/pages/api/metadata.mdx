@@ -6,18 +6,24 @@
 
 The Sequence Metadata API service offers a simple and fast API to query, manage, and update collections, token & NFT metadata for Ethereum-compatible chains.
 
-
-
 :::info
-Our Metadata service is managed through [Sequence Builder](HTTPS://SEQUENCE.BUILD). Sign up to grab your
-API access key before following the steps below.
+Our Metadata service is managed through [Sequence Builder](HTTPS://SEQUENCE.BUILD) and requires a Service Account & Token in order to call the corresponding endpoints. Please follow the [section](/api/metadata#Obtaining a Service Account & Token) below prior to calling the endpoints
 :::
+
+## Obtaining a Service Account & Token
+Since the Metadata API requires write access in order to update on-chain state, you will need to first obtain a Service Account & Token to call this from your backend. Importantly, this is a secret key and should not be exposed publicly.
+
+1. Create a New Project using our [Builder](https://sequence.build). Navigate to Settings > API Keys > Add Service Account.
+2. In the modal that pops up, click the dropdown for Permission and change to Write. After completed click Add.
+3. On the next screen, you will be given your Secret API Token. Copy the key and store it securely as it is not possible to see it again. Once this is done, click Confirm and you are all set to utilize the API.
+
+Keep in mind, in contrast to our Public API Access key - this Secret API Token should be stored securely and not be used publicly. You will pass this token as a normal JWT in the Request Headers as X-Access-Key
 
 
 ## Creating Collections, Tokens, and Managing Metadata
 The below steps walk through an end to end example utilizing our Metadata API in order to deploy an NFT collection, create tokens within that collection, and deploy asset metadata to such as an image to that token.
 
-1. [Call `CreateCollection` endpoint](https://0xsequence.redoc.ly/tag/metadata#operation/metadata-CreateCollection)
+1. [Call `CreateCollection` endpoint](https://0xsequence.redoc.ly/tag/metadata#operation/metadata-CreateCollection) - ensure you pass in the Secret Service Token created in the prior section.
 
 2. `CreateToken` - use returned collectionId from previous request
 
