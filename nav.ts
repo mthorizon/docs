@@ -7,7 +7,7 @@ export const topNav = [
     { text: 'Marketplace', link: '/solutions/marketplaces/overview', match: '/solutions/marketplaces/overview' },
     { text: 'Collectibles', link: '/solutions/collectibles/contracts/01-deploy-an-item-collection', match: '/solutions/collectibles/contracts/01-deploy-an-item-collection' },
     { text: 'Payments', link: '/solutions/nft-checkout', match: '/solutions/nft-checkout' },
-    { text: 'No-code Builder', link: '/solutions/builder/overview', match: '/solutions/builder/overview', items: [
+    { text: 'Builder Console', link: '/solutions/builder/overview', match: '/solutions/builder/overview', items: [
       { text: 'Overview', link: '/solutions/builder/overview', match: '/solutions/builder/overview' }, 
     ]
   }
@@ -152,7 +152,7 @@ export const sidebar = {
       ]
     },
     {
-      text: 'No-code Builder',
+      text: 'Builder Console',
       collapsed: true,
       items: [
         { text: 'Overview', link: '/solutions/builder/overview' },
