@@ -70,12 +70,15 @@ export const sidebar = {
       items: [
         {text: 'Overview', link: '/solutions/wallets/overview'},
         { text: 'In-Game Wallet', collapsed: true, items: [
-          {text: 'Architecture', link: '/solutions/wallets/embedded-wallet/01-overview'},
+          {text: 'Overview', link: '/solutions/wallets/embedded-wallet/01-overview'},
           {text: 'Quickstart', link: '/solutions/wallets/embedded-wallet/02-quickstart'},
-          {text: 'Manage Sessions', link: '/solutions/wallets/embedded-wallet/03-manage-sessions'},
-          {text: 'Use Wallets', link: '/solutions/wallets/embedded-wallet/04-use-wallets'},
-          {text: 'Validation', link: '/solutions/wallets/embedded-wallet/05-validation'},
-          {text: 'Transaction Receipts', link: '/solutions/wallets/embedded-wallet/06-transaction-receipts'},
+          {text: 'Examples', collapsed: true, items: [
+          {text: 'Manage Sessions', link: '/solutions/wallets/embedded-wallet/examples/03-manage-sessions'},
+          {text: 'Use Wallets', link: '/solutions/wallets/embedded-wallet/examples/04-use-wallets'},
+          {text: 'Validation', link: '/solutions/wallets/embedded-wallet/examples/05-validation'},
+          {text: 'Transaction Receipts', link: '/solutions/wallets/embedded-wallet/examples/06-transaction-receipts'},
+            ]
+          }
         ]
       },
         { text: 'Universal Wallet', collapsed: true, 
@@ -112,10 +115,13 @@ export const sidebar = {
         { text: 'Build your Custom Marketplace', collapsed: true, items: [
           {text: 'Overview', link: '/solutions/marketplaces/orderbook/01-overview'},
           {text: 'Quickstart', link: '/solutions/marketplaces/orderbook/02-quickstart'},
-          {text: 'Get Top Orders', link: '/solutions/marketplaces/orderbook/03-get-top-orders'},
-          {text: 'Get Orderbook', link: '/solutions/marketplaces/orderbook/04-get-orderbook'},
-          {text: 'Get User Activities', link: '/solutions/marketplaces/orderbook/05-get-user-activities'},
-          {text: 'Orderbook Transactions', link: '/solutions/marketplaces/orderbook/06-orderbook-transactions'},
+          {text: 'Examples', collapsed: true, items: [
+          {text: 'Get Top Orders', link: '/solutions/marketplaces/orderbook/examples/03-get-top-orders'},
+          {text: 'Get Orderbook', link: '/solutions/marketplaces/orderbook/examples/04-get-orderbook'},
+          {text: 'Get User Activities', link: '/solutions/marketplaces/orderbook/examples/05-get-user-activities'},
+          {text: 'Orderbook Transactions', link: '/solutions/marketplaces/orderbook/examples/06-orderbook-transactions'},
+            ]
+          }
         ]
        }
       ]
