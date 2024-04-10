@@ -1,0 +1,12 @@
+import{d as r,j as e}from"./index-CUkm9F-n.js";const o={title:"Introduction",description:"undefined"};function t(i){const n={a:"a",code:"code",div:"div",h1:"h1",h2:"h2",header:"header",li:"li",p:"p",ul:"ul",...r(),...i.components};return e.jsxs(e.Fragment,{children:[e.jsx(n.header,{children:e.jsxs(n.h1,{id:"introduction",children:["Introduction",e.jsx(n.a,{"aria-hidden":"true",tabIndex:"-1",href:"#introduction",children:e.jsx(n.div,{"data-autolink-icon":!0})})]})}),`
+`,e.jsxs(n.p,{children:["The Sequence Unity Embedded Wallet SDK provides full Sequence ",e.jsx(n.a,{href:"/solutions/wallets/embedded-wallet/01-overview",children:"Embedded Wallet"})," and ",e.jsx(n.a,{href:"/api/indexer/01-overview",children:"Indexer"})," integration for your Unity Games, integrated with our own purpose-built for Unity SequenceEthereum library. That's right, no Nethereum required!"]}),`
+`,e.jsxs(n.p,{children:["This SDK follows ",e.jsx(n.a,{href:"https://semver.org/",children:"Semantic Versioning"})," (",e.jsx(n.code,{children:"major.minor.patch"}),"). While we're still in ",e.jsx(n.code,{children:"0.x.y"})," builds, API breaking changes can be made at any time. After ",e.jsx(n.code,{children:"1.0.0"}),", breaking changes will always cause a ",e.jsx(n.code,{children:"major"})," version increment, non-breaking new features will cause a ",e.jsx(n.code,{children:"minor"})," version increment, and bugfixes will cause a ",e.jsx(n.code,{children:"patch"})," version increment."]}),`
+`,e.jsxs(n.h2,{id:"requirements",children:["Requirements",e.jsx(n.a,{"aria-hidden":"true",tabIndex:"-1",href:"#requirements",children:e.jsx(n.div,{"data-autolink-icon":!0})})]}),`
+`,e.jsx(n.p,{children:"Unity 2021.3.6f1 or later"}),`
+`,e.jsxs(n.ul,{children:[`
+`,e.jsx(n.li,{children:"Android"}),`
+`,e.jsx(n.li,{children:"iOS"}),`
+`,e.jsx(n.li,{children:"PC standalone"}),`
+`,e.jsxs(n.li,{children:["Mac standalone -> (Mono builds only when using Social Sign in -> in our testing MacOS doesn't pick up custom URL schemes automatically unless you run some system commands first; these system commands only work on Mono -> see ",e.jsx(n.a,{href:"https://github.com/0xsequence/sequence-unity/blob/master/Assets/SequenceSDK/Authentication/OpenIdAuthenticator.cs#L89",children:"OpenIdAuthentication.PlatformSpecificSetup"}),")"]}),`
+`,e.jsx(n.li,{children:"WebGL (excluding Social Sign in)"}),`
+`]})]})}function d(i={}){const{wrapper:n}={...r(),...i.components};return n?e.jsx(n,{...i,children:e.jsx(t,{...i})}):t(i)}export{d as default,o as frontmatter};
