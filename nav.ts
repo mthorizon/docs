@@ -69,7 +69,7 @@ export const sidebar = {
       text: 'Wallets',
       items: [
         { text: 'Overview', link: '/solutions/wallets/overview' },
-        { text: 'In-Game Wallet', collapsed: true, items: [
+        { text: 'Embedded Wallet', collapsed: true, items: [
           {text: 'Overview', link: '/solutions/wallets/embedded-wallet/01-overview'},
           {text: 'Quickstart', link: '/solutions/wallets/embedded-wallet/02-quickstart'},
           {text: 'Examples', collapsed: true, items: [
@@ -155,12 +155,13 @@ export const sidebar = {
       text: 'Builder Console',
       collapsed: true,
       items: [
-        { text: 'Overview', link: '/solutions/builder/overview' },
-        { text: 'Get Started', link: '/solutions/builder/getting-started' },
+        {text: 'Overview', link: '/solutions/builder/overview'},
+        {text: 'Get Started', link: '/solutions/builder/getting-started'},
         {text: 'Project Management', link: '/solutions/builder/project-management'},
         {text: 'Contracts', link: '/solutions/builder/contracts'},
         {text: 'Gas Tank', link: '/solutions/builder/gas-tank'},
         {text: 'Wallet SDKs', link: '/solutions/builder/wallet-sdks'},
+        {text: 'Embedded Wallet', link: '/solutions/builder/embedded-wallet'},
         {text: 'Node Gateway', link: '/solutions/builder/node-gateway'},
         {text: 'Marketplaces', link: '/solutions/builder/marketplaces'},
         {text: 'Indexer', link: '/solutions/builder/indexer'},
@@ -253,7 +254,7 @@ export const sidebar = {
     {
       text: 'Templates',
       items: [
-        { text: 'In-Game Wallet Demo', link: '/guides/templates/template-embedded-wallet' },
+        { text: 'Embedded Wallet Demo', link: '/guides/templates/template-embedded-wallet' },
         { text: 'Build a Backend Transaction Manager', link: '/guides/templates/02-building-relaying-server' },
         { text: 'Serverless Minting of Collectibles', link: '/guides/templates/03-mint-collectibles-serverless' }
         // { text: 'Marketplace API Demo', link: '/guides/templates/template-marketplace-api' }
