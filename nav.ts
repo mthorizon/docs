@@ -19,7 +19,7 @@ export const topNav = [
       { text: 'Web3 Game with WebGL', link: '/guides/webgl-guide', match: '/guides/webgl-guide' },
       { text: 'Web3 Game with Unity', link: '/guides/unity-guide', match: '/guides/unity-guide' },
       { text: 'Lootboxes', link: '/guides/lootbox', match: '/guides/lootbox' },
-      { text: 'Custom Marketplace', link: '/guides/template-marketplace-api', match: '/guides/template-marketplace-api' }
+      { text: 'Custom Marketplace', link: '/guides/custom-marketplace-guide', match: '/guides/custom-marketplace-guide' }
     ]
   },
   { 
@@ -202,13 +202,13 @@ export const sidebar = {
       text: 'Build a game with WebGL',
       collapsed: true,
       items: [
-        { text: 'Integrate SequenceKit with WaaS', link: '/guides/webgl-guide#integrate-sequencekit-with-waas' },
-        { text: 'Deploy a collectibles contract', link: '/guides/webgl-guide#deploy-a-collectibles-contract' },
-        { text: 'Deploy a remote minter', link: '/guides/webgl-guide#deploy-a-remote-minter' },
-        { text: 'Mint in-game achievement tokens', link: '/guides/webgl-guide#mint-in-game-achievement-tokens' },
-        { text: 'Burn in-game achievement tokens', link: '/guides/webgl-guide#burn-in-game-achievement-tokens' },
-        { text: 'Integrate an embedded marketplace', link: '/guides/webgl-guide#integrate-an-embedded-marketplace' },
-        { text: 'Leverage purchased items in-game', link: '/guides/webgl-guide#leverage-purchased-items-in-game' },
+        { text: 'Project setup with webpack', link: '/guides/webgl-guide#1-project-setup-with-webpack' },
+        { text: 'Integrate Sequence Kit', link: '/guides/webgl-guide#2-integrate-sequence-kit' },
+        { text: 'Deploy collectibles contract', link: '/guides/webgl-guide#3-deploy-a-collectibles-contract' },
+        { text: 'Deploy a remote minter & mint in-game achievement tokens', link: '/guides/webgl-guide#4-deploy-a-remote-minter--mint-in-game-achievement-tokens' },
+        { text: 'Leverage items in-game', link: '/guides/webgl-guide#5-leverage-items-in-game' },
+        { text: 'Burn in-game achievement tokens', link: '/guides/webgl-guide#6-burn-in-game-achievement-tokens' },
+        { text: 'Integrate In-Game Wallet into Sequence Kit', link: '/guides/webgl-guide#7-optional-integrate-in-game-wallet-into-sequence-kit' },
       ]
     },
     {
@@ -229,8 +229,17 @@ export const sidebar = {
       link: '/guides/lootbox'
     },
     {
-      text: 'Building a Custom Marketplace',
-      link: '/guides/template-marketplace-api'
+      text: 'Build a custom marketplace',
+      collapsed: true,
+      items: [
+        { text: 'Minting', link: '/guides/custom-marketplace-guide#1-minting' },
+        { text: 'Wallet authentication', link: '/guides/custom-marketplace-guide#2-wallet-authentication' },
+        { text: 'Blockchain queries', link: '/guides/custom-marketplace-guide#3-blockchain-queries' },
+        { text: 'Multi-Wallet types', link: '/guides/custom-marketplace-guide#4-multi-wallet-types' },
+        { text: 'Request creation', link: '/guides/custom-marketplace-guide#5-request-creation' },
+        { text: 'Order accepting', link: '/guides/custom-marketplace-guide#6-order-accepting' },
+        { text: 'Integrate In-Game Wallet into Sequence Kit', link: '/guides/custom-marketplace-guide#7-optional-integrate-in-game-wallet-into-sequence-kit' },
+      ]
     },
     // {
     //   text: 'Integrate token rewards into your Discord server',
