@@ -238,7 +238,7 @@ var sidebar = {
         { text: "Deploy a remote minter & mint in-game achievement tokens", link: "/guides/webgl-guide#4-deploy-a-remote-minter--mint-in-game-achievement-tokens" },
         { text: "Leverage items in-game", link: "/guides/webgl-guide#5-leverage-items-in-game" },
         { text: "Burn in-game achievement tokens", link: "/guides/webgl-guide#6-burn-in-game-achievement-tokens" },
-        { text: "Integrate In-Game Wallet into Sequence Kit", link: "/guides/webgl-guide#7-optional-integrate-in-game-wallet-into-sequence-kit" }
+        { text: "Integrate Embedded Wallet into Sequence Kit", link: "/guides/webgl-guide#7-optional-integrate-in-game-wallet-into-sequence-kit" }
       ]
     },
     {
@@ -268,7 +268,7 @@ var sidebar = {
         { text: "Multi-Wallet types", link: "/guides/custom-marketplace-guide#4-multi-wallet-types" },
         { text: "Request creation", link: "/guides/custom-marketplace-guide#5-request-creation" },
         { text: "Order accepting", link: "/guides/custom-marketplace-guide#6-order-accepting" },
-        { text: "Integrate In-Game Wallet into Sequence Kit", link: "/guides/custom-marketplace-guide#7-optional-integrate-in-game-wallet-into-sequence-kit" }
+        { text: "Integrate Embedded Wallet into Sequence Kit", link: "/guides/custom-marketplace-guide#7-optional-integrate-in-game-wallet-into-sequence-kit" }
       ]
     },
     // {

@@ -6,7 +6,6 @@ With Sequence, you can create a smart contract wallet your server can use to dis
 without you having to be worried about transaction speed, throughput and re-orgs.
 
 <Callout type='info'>
-Sequentual Transactions <br/>
 By default, Sequence transactions will be executed sequentially.
 </Callout>
 
@@ -123,9 +122,6 @@ if (txnReceipt.status != 1) {
 ```
 
 <Callout type='warning'>
-Triggers migration
-<br/>
-
 Openning a session may trigger a migration of your Sequence wallet to a new version, this could be `v1` to `v2` or `v2` to future versions.
 
 Migration is a one-way process, once your wallet is migrated it cannot be reverted to a previous version.

@@ -69,14 +69,14 @@ export const sidebar = {
       text: 'Wallets',
       items: [
         { text: 'Overview', link: '/solutions/wallets/overview' },
-        { text: 'In-Game Wallet', collapsed: true, items: [
-          {text: 'Overview', link: '/solutions/wallets/in-game-wallet/overview'},
-          {text: 'Quickstart', link: '/solutions/wallets/in-game-wallet/quickstart'},
+        { text: 'Embedded Wallet', collapsed: true, items: [
+          {text: 'Overview', link: '/solutions/wallets/embedded-wallet/overview'},
+          {text: 'Quickstart', link: '/solutions/wallets/embedded-wallet/quickstart'},
           {text: 'Examples', collapsed: true, items: [
-          {text: 'Manage Sessions', link: '/solutions/wallets/in-game-wallet/examples/manage-sessions'},
-          {text: 'Use Wallets', link: '/solutions/wallets/in-game-wallet/examples/use-wallets'},
-          {text: 'Validation', link: '/solutions/wallets/in-game-wallet/examples/validation'},
-          {text: 'Transaction Receipts', link: '/solutions/wallets/in-game-wallet/examples/transaction-receipts'},
+          {text: 'Manage Sessions', link: '/solutions/wallets/embedded-wallet/examples/manage-sessions'},
+          {text: 'Use Wallets', link: '/solutions/wallets/embedded-wallet/examples/use-wallets'},
+          {text: 'Validation', link: '/solutions/wallets/embedded-wallet/examples/validation'},
+          {text: 'Transaction Receipts', link: '/solutions/wallets/embedded-wallet/examples/transaction-receipts'},
             ]
           }
         ]
@@ -147,7 +147,7 @@ export const sidebar = {
     {
       text: 'Payments',
       items: [
-        { text: 'NFT Checkout', link: '/solutions/nft-checkout' },
+        // { text: 'NFT Checkout', link: '/solutions/nft-checkout' },
         { text: 'Onramps', link: '/solutions/payments/onramps/fiat-on-ramps' },
       ]
     },
@@ -161,7 +161,7 @@ export const sidebar = {
         {text: 'Contracts', link: '/solutions/builder/contracts'},
         {text: 'Gas Tank', link: '/solutions/builder/gas-tank'},
         {text: 'Wallet SDKs', link: '/solutions/builder/wallet-sdks'},
-        {text: 'In-Game Wallet', link: '/solutions/builder/in-game-wallet'},
+        {text: 'Embedded Wallet', link: '/solutions/builder/in-game-wallet'},
         {text: 'Node Gateway', link: '/solutions/builder/node-gateway'},
         {text: 'Marketplaces', link: '/solutions/builder/marketplaces'},
         {text: 'Indexer', link: '/solutions/builder/indexer'},
@@ -214,7 +214,7 @@ export const sidebar = {
         { text: 'Deploy a remote minter & mint in-game achievement tokens', link: '/guides/webgl-guide#4-deploy-a-remote-minter--mint-in-game-achievement-tokens' },
         { text: 'Leverage items in-game', link: '/guides/webgl-guide#5-leverage-items-in-game' },
         { text: 'Burn in-game achievement tokens', link: '/guides/webgl-guide#6-burn-in-game-achievement-tokens' },
-        { text: 'Integrate In-Game Wallet into Sequence Kit', link: '/guides/webgl-guide#7-optional-integrate-in-game-wallet-into-sequence-kit' },
+        { text: 'Integrate Embedded Wallet into Sequence Kit', link: '/guides/webgl-guide#7-optional-integrate-in-game-wallet-into-sequence-kit' },
       ]
     },
     {
@@ -234,8 +234,16 @@ export const sidebar = {
       text: 'Build a lootbox with AI minting',
       link: '/guides/lootbox'
     },
+    { text: 'Serverless Minting of Collectibles', collapsed: true, 
+    items: [
+      { text: 'Setup Cloudflare Environment', link: '/guides/mint-collectibles-serverless#1-setup-cloudflare-environment-with-wrangler-cli-and-deploy-a-test' },
+      { text: 'Deploy a collectibles contract', link: '/guides/mint-collectibles-serverless#2-deploy-sponsor-and-update-metadata-for-an-erc1155-contract-with-builder' },
+      { text: 'Deploy a remote minter', link: '/guides/mint-collectibles-serverless#3-use-ethauthproof-to-prevent-eoa-ddos' },
+      { text: 'Mint in-game achievement tokens', link: '/guides/mint-collectibles-serverless#4-mint-a-collectible-to-wallet' },
+    ] 
+  },
     {
-      text: 'Build a custom marketplace',
+      text: 'Build a Custom Marketplace',
       collapsed: true,
       items: [
         { text: 'Minting', link: '/guides/custom-marketplace-guide#1-minting' },
@@ -244,7 +252,7 @@ export const sidebar = {
         { text: 'Multi-Wallet types', link: '/guides/custom-marketplace-guide#4-multi-wallet-types' },
         { text: 'Request creation', link: '/guides/custom-marketplace-guide#5-request-creation' },
         { text: 'Order accepting', link: '/guides/custom-marketplace-guide#6-order-accepting' },
-        { text: 'Integrate In-Game Wallet into Sequence Kit', link: '/guides/custom-marketplace-guide#7-optional-integrate-in-game-wallet-into-sequence-kit' },
+        { text: 'Integrate Embedded Wallet into Sequence Kit', link: '/guides/custom-marketplace-guide#7-optional-integrate-in-game-wallet-into-sequence-kit' },
       ]
     },
     // {
@@ -255,8 +263,7 @@ export const sidebar = {
       text: 'Templates',
       items: [
         { text: 'In-game Wallet Demo', link: '/guides/templates/template-in-game-wallet' },
-        { text: 'Build a Backend Transaction Manager', link: '/guides/templates/building-relaying-server' },
-        { text: 'Serverless Minting of Collectibles', link: '/guides/templates/mint-collectibles-serverless' }
+        { text: 'Build a Backend Transaction Manager', link: '/guides/templates/building-relaying-server' }
         // { text: 'Marketplace API Demo', link: '/guides/templates/template-marketplace-api' }
       ]
     }
