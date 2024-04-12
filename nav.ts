@@ -18,7 +18,7 @@ export const topNav = [
     items: [
       { text: 'Web3 Game with WebGL', link: '/guides/webgl-guide', match: '/guides/webgl-guide' },
       { text: 'Web3 Game with Unity', link: '/guides/unity-guide', match: '/guides/unity-guide' },
-      { text: 'Lootboxes', link: '/guides/lootbox', match: '/guides/lootbox' },
+      { text: 'Dungeon Crawler with AI Lootboxes', link: '/guides/lootbox', match: '/guides/lootbox' },
       { text: 'Custom Marketplace', link: '/guides/custom-marketplace-guide', match: '/guides/custom-marketplace-guide' }
     ]
   },
