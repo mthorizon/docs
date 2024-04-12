@@ -386,7 +386,7 @@ export const sidebar = {
       collapsed: true,
       items: [
         { text: 'Overview', link: '/api/marketplace' },
-        { text: 'Sequence Marketplace API', link: '/api/marketplace/orderbook' },
+        { text: 'Sequence Orderbook API', link: '/api/marketplace/orderbook' },
         { text: 'Aggregated Marketplace API', link: '/api/marketplace/aggregated' },
       ]
     },
