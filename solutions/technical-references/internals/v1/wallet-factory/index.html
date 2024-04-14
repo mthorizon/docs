@@ -12,7 +12,7 @@
     
     
   
-    <script type="module" crossorigin src="/assets/index-Dy4o-EaE.js"></script>
+    <script type="module" crossorigin src="/assets/index-inRvyTz0.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/style-B9PRKD4-.css">
   </head>
   <body>
@@ -34,7 +34,7 @@ No initialize code is executed.</p>
 The Factory contract <strong class="vocs_Strong">does not</strong> check if the provided <code class="vocs_Code">_mainModule</code> is a valid Sequence wallet implementation, or if <code class="vocs_Code">_salt</code> is a valid Sequence configuration.</p><p class="vocs_Paragraph">Using invalid parameters will result on a proxy contract that <strong class="vocs_Strong">may not</strong> be usable, and could result in loss of funds.</p></aside>
 <h2 class="vocs_H2 vocs_Heading"><div id="counter-factual-addresses" class="vocs_Heading_slugTarget"></div>Counter factual addresses<a class="vocs_Anchor vocs_Autolink" aria-hidden="true" tabindex="-1" href="/solutions/technical-references/internals/v1/wallet-factory#counter-factual-addresses"><div data-autolink-icon="true" class="vocs_Div vocs_AutolinkIcon" style="--vocs_AutolinkIcon_iconUrl:url(/.vocs/icons/link.svg)"></div></a></h2>
 <p class="vocs_Paragraph">Sequence wallets are counter-factual by design, this means that the wallet&#x27;s address can be known before the wallet is deployed; any two combinations of the <code class="vocs_Code">mainModule</code> and <code class="vocs_Code">salt</code> values will result in the same wallet address.</p>
-<p class="vocs_Paragraph">This property alongside the use of <a class="vocs_Anchor" href="/solutions/technical-references/internals/v1/wallet-factory#TODO">SingletonDeployer</a> or <a class="vocs_Anchor" href="/solutions/technical-references/internals/v1/wallet-factory#TODO">UniversalDeployer</a> is the reason why Sequence wallets can obtain the same address on multiple chains.</p>
+<p class="vocs_Paragraph">This property alongside the use of <a class="vocs_Anchor vocs_Link vocs_Link_accent_underlined" href="/solutions/technical-references/internals/v1/deploy#1---deploy-nanouniversaldeployer">NanoUniversalDeployer</a> or <a class="vocs_Anchor vocs_Link vocs_Link_accent_underlined" href="/solutions/technical-references/internals/v1/deploy#2---deploy-universaldeployer2">UniversalDeployer</a> is the reason why Sequence wallets can obtain the same address on multiple chains.</p>
 <aside class="vocs_Callout vocs_Callout_tip"><p class="vocs_Paragraph">Gas-free wallet creation <br/> Sequence wallets are <strong class="vocs_Strong">100% counterfactual</strong>,
 meaning that funds can be safely transferred to the wallet&#x27;s address without
 the need for calling the <code class="vocs_Code">deploy</code> function. Deploying the wallet is only
