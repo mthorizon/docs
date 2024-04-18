@@ -99,11 +99,7 @@ const res = await fetch(`${METADATA_URL}/rpc/Collections/CreateToken`, requestOp
 
 ## 4. Create Asset using TokenID
 
-In the request, depending on the asset, set the `metadadaField` (assetType) to one of the following:
-- `image`
-- `animation_url`
-- `audio`
-- `video`
+In the request, set the `metadadaField` (assetType) to `image`, with the other neccessary fields completed
 
 ```typescript
 // TODO: create asset
