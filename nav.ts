@@ -261,7 +261,7 @@ export const sidebar = {
         { text: 'Store an Image', link: '/guides/metadata-guide#5-store-image-asset' },
         { text: 'Update to Non-private', link: '/guides/metadata-guide#6-update-non-private-token' },
         { text: 'Publish Collection', link: '/guides/metadata-guide#7-publish-collection-from-a-curl-request' },
-        { text: '(Optional) Render Asset from API', link: '/guides/metadata-guide#8-optional-render-asset-from-api-publicly' },
+        { text: 'Render Asset from API', link: '/guides/metadata-guide#8-render-asset-from-api-publicly' },
       ]
     },
     {
