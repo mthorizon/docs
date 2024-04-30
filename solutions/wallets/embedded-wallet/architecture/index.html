@@ -12,7 +12,7 @@
     
     
   
-    <script type="module" crossorigin src="/assets/index-B4d1Js50.js"></script>
+    <script type="module" crossorigin src="/assets/index-DJCfpVMQ.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/style-DpuyCUSI.css">
   </head>
   <body>
@@ -28,11 +28,15 @@
 </ul>
 <h2 class="vocs_H2 vocs_Heading"><div id="sequence-auth" class="vocs_Heading_slugTarget"></div>Sequence Auth<a class="vocs_Anchor vocs_Autolink" aria-hidden="true" tabindex="-1" href="/solutions/wallets/embedded-wallet/architecture#sequence-auth"><div data-autolink-icon="true" class="vocs_Div vocs_AutolinkIcon" style="--vocs_AutolinkIcon_iconUrl:url(/.vocs/icons/link.svg)"></div></a></h2>
 <p class="vocs_Paragraph">Sequence Auth is an API service that runs on the <a class="vocs_Anchor vocs_Link vocs_Link_accent_underlined vocs_ExternalLink" href="https://aws.amazon.com/ec2/nitro/nitro-enclaves/" target="_blank" rel="noopener noreferrer" style="--vocs_ExternalLink_iconUrl:url(/.vocs/icons/arrow-diagonal.svg)">AWS Nitro Enclaves</a> platform and allows for secure wallet management. Sequence Auth provides a simple way to add account creation, login, session management, and wallet support to your app, enabling applications to provide traditional web experiences (i.e. social login, email login, etc.) while providing access to crypto wallets to interact with smart contracts.</p>
+<h3 class="vocs_H3 vocs_Heading"><div id="waas-configuration-key" class="vocs_Heading_slugTarget"></div>WaaS Configuration Key<a class="vocs_Anchor vocs_Autolink" aria-hidden="true" tabindex="-1" href="/solutions/wallets/embedded-wallet/architecture#waas-configuration-key"><div data-autolink-icon="true" class="vocs_Div vocs_AutolinkIcon" style="--vocs_AutolinkIcon_iconUrl:url(/.vocs/icons/link.svg)"></div></a></h3>
+<p class="vocs_Paragraph">For every new instance, a WaaS Configuration Key is used to authenticate a Game Client. This provides access to the blockchain through the WaaS SDK via the generated intents sent to Sequence Auth. Within a configuration key multiple Login Provider client ID&#x27;s can be registered, which each individually determine the wallet addresses generated per Provider. This means, if a client ID for a Login Provider (e.g. Google or Apple) is shared across instances, users using the same Login Provider with authentication credentials will yield the same address.</p>
+<h3 class="vocs_H3 vocs_Heading"><div id="wallet-private-keys" class="vocs_Heading_slugTarget"></div>Wallet Private Keys<a class="vocs_Anchor vocs_Autolink" aria-hidden="true" tabindex="-1" href="/solutions/wallets/embedded-wallet/architecture#wallet-private-keys"><div data-autolink-icon="true" class="vocs_Div vocs_AutolinkIcon" style="--vocs_AutolinkIcon_iconUrl:url(/.vocs/icons/link.svg)"></div></a></h3>
 <p class="vocs_Paragraph">Wallet private keys are stored encrypted using a split responsibility strategy between Sequence and Quantstamp:</p>
 <ol class="vocs_List vocs_List_ordered">
 <li class="vocs_ListItem">Sequence is able to access only the encrypted blobs stored in the database with no means of decryption.</li>
 <li class="vocs_ListItem">Quantstamp owns and operates the <a class="vocs_Anchor vocs_Link vocs_Link_accent_underlined vocs_ExternalLink" href="https://aws.amazon.com/kms/" target="_blank" rel="noopener noreferrer" style="--vocs_ExternalLink_iconUrl:url(/.vocs/icons/arrow-diagonal.svg)">KMS</a> (AWS hardware security module) used to encrypt the wallet key data. They have no way to export the key material and no access to the encrypted data itself.</li>
 </ol>
+<h3 class="vocs_H3 vocs_Heading"><div id="waas-enclave" class="vocs_Heading_slugTarget"></div>Waas Enclave<a class="vocs_Anchor vocs_Autolink" aria-hidden="true" tabindex="-1" href="/solutions/wallets/embedded-wallet/architecture#waas-enclave"><div data-autolink-icon="true" class="vocs_Div vocs_AutolinkIcon" style="--vocs_AutolinkIcon_iconUrl:url(/.vocs/icons/link.svg)"></div></a></h3>
 <p class="vocs_Paragraph">The WaaS Enclave is the only entity able to use the encrypted wallet data. Its security is guaranteed by:</p>
 <ol class="vocs_List vocs_List_ordered">
 <li class="vocs_ListItem">The AWS Nitro hypervisor generates and signs a cryptographic attestation based on the actually running enclave code. The document includes a PCR0 (a hash of the enclave code) signed by the Amazon Public Key Infrastructure.</li>
