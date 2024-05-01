@@ -1,0 +1,32 @@
+import{d as t,j as e}from"./index-GHVvF8Un.js";const r={title:"Embedded Wallet in Sequence Builder",description:"undefined"};function o(n){const i={a:"a",code:"code",div:"div",h1:"h1",h2:"h2",h3:"h3",header:"header",li:"li",p:"p",ul:"ul",...t(),...n.components};return e.jsxs(e.Fragment,{children:[e.jsx(i.header,{children:e.jsxs(i.h1,{id:"embedded-wallet-in-sequence-builder",children:["Embedded Wallet in Sequence Builder",e.jsx(i.a,{"aria-hidden":"true",tabIndex:"-1",href:"#embedded-wallet-in-sequence-builder",children:e.jsx(i.div,{"data-autolink-icon":!0})})]})}),`
+`,e.jsxs(i.p,{children:["You can configure a ",e.jsx(i.a,{href:"/solutions/wallets/embedded-wallet/overview",children:"Sequence Embedded Wallet"})," in Builder and integrate your own OAuth accounts to enable easy onboarding to your games. Configuration page in Builder ",e.jsx(i.a,{href:"https://sequence.build/project/default/wallet/embedded-wallet",children:"is available here"}),"."]}),`
+`,e.jsxs(i.h2,{id:"login-providers",children:["Login Providers",e.jsx(i.a,{"aria-hidden":"true",tabIndex:"-1",href:"#login-providers",children:e.jsx(i.div,{"data-autolink-icon":!0})})]}),`
+`,e.jsx(i.p,{children:"Sequence Embedded Wallet supports the following login providers:"}),`
+`,e.jsxs(i.h3,{id:"google-auth",children:["Google Auth",e.jsx(i.a,{"aria-hidden":"true",tabIndex:"-1",href:"#google-auth",children:e.jsx(i.div,{"data-autolink-icon":!0})})]}),`
+`,e.jsxs(i.p,{children:["If you would like to support Google Auth, you need to make sure that a project is configured at your ",e.jsx(i.a,{href:"https://console.cloud.google.com/",children:"Google Cloud Console"})," along with the proper OAuth 2.0 client ID. You can find the relevant section under APIs & Services > ",e.jsx(i.a,{href:"https://console.cloud.google.com/apis/credentials",children:"Credentials"}),". After setting up the proper origins and redirect URIs for your project, copy the Client ID and paste it into the Google Client ID field after adding a Google login provider."]}),`
+`,e.jsxs(i.p,{children:["You can find a detailed tutorial on ",e.jsx(i.a,{href:"https://developers.google.com/identity/gsi/web/guides/get-google-api-clientid",children:"how to configure Google Auth here"}),"."]}),`
+`,e.jsxs(i.h3,{id:"apple-auth",children:["Apple Auth",e.jsx(i.a,{"aria-hidden":"true",tabIndex:"-1",href:"#apple-auth",children:e.jsx(i.div,{"data-autolink-icon":!0})})]}),`
+`,e.jsxs(i.p,{children:["If you would like to offer Apple Auth, you need to make sure that an application is configured at your ",e.jsx(i.a,{href:"https://developer.apple.com/account",children:"Apple Developer Console"})," account. More information on how to configure Sign in with Apple ",e.jsx(i.a,{href:"https://developer.apple.com/help/account/configure-app-capabilities/configure-sign-in-with-apple-for-the-web/",children:"can be found here"}),". Once you have all requirements completed, share the unique identifier for the Services ID you created as part of your onboarding package after adding an Apple login provider."]}),`
+`,e.jsxs(i.h2,{id:"allowed-origins",children:["Allowed Origins",e.jsx(i.a,{"aria-hidden":"true",tabIndex:"-1",href:"#allowed-origins",children:e.jsx(i.div,{"data-autolink-icon":!0})})]}),`
+`,e.jsx(i.p,{children:"This additional security measure will prevent unauthorized usage of your WaaS configuration outside of domains you whitelisted. Add any development and production URLs under Allowed Origins. By default all subpaths under theses hosts will be allowed."}),`
+`,e.jsxs(i.p,{children:["You must define allowed origins with a valid scheme (i.e. ",e.jsx(i.code,{children:"https"}),")."]}),`
+`,e.jsxs(i.h2,{id:"recovery-wallet",children:["Recovery Wallet",e.jsx(i.a,{"aria-hidden":"true",tabIndex:"-1",href:"#recovery-wallet",children:e.jsx(i.div,{"data-autolink-icon":!0})})]}),`
+`,e.jsx(i.p,{children:"WaaS requires the public address for a recovery wallet that you control. This recovery wallet will be used for recovering user wallets in a disaster scenario, so it must be controlled by you and must be kept safe at all times."}),`
+`,e.jsx(i.p,{children:"We recommend that:"}),`
+`,e.jsxs(i.ul,{children:[`
+`,e.jsxs(i.li,{children:["You use ",e.jsx(i.a,{href:"https://safe.global/",children:"Gnosis Safe"})," for setting up the wallet"]}),`
+`,e.jsx(i.li,{children:"You ensure you have at least 2, ideally 3+ signers configured and required for every transaction"}),`
+`,e.jsx(i.li,{children:"Every signer is protected by a hardware wallet"}),`
+`]}),`
+`,e.jsx(i.p,{children:"Once the recovery wallet is setup properly, provide the public address for it. Recovery wallet cannot be modified once your configuration is saved."}),`
+`,e.jsxs(i.h2,{id:"initial-configuration-and-update-code",children:["Initial Configuration and Update Code",e.jsx(i.a,{"aria-hidden":"true",tabIndex:"-1",href:"#initial-configuration-and-update-code",children:e.jsx(i.div,{"data-autolink-icon":!0})})]}),`
+`,e.jsx(i.p,{children:"Once you have all information prepared, go ahead and create your Embedded Wallet configuration. During initial setup, Builder will provide you with an update code. This code will be required for all subsequent modifications to your Embedded Wallet configuration, so it must be stored safely."}),`
+`,e.jsxs(i.h2,{id:"configuration-changes",children:["Configuration Changes",e.jsx(i.a,{"aria-hidden":"true",tabIndex:"-1",href:"#configuration-changes",children:e.jsx(i.div,{"data-autolink-icon":!0})})]}),`
+`,e.jsx(i.p,{children:'To make modifications to your Embedded Wallet configuration, navigate to the Embedded Wallet section again and make the necessary changes. Then click "Save Configuration" and enter your update code to deploy the changes.'}),`
+`,e.jsxs(i.h2,{id:"sdk-integrations",children:["SDK Integrations",e.jsx(i.a,{"aria-hidden":"true",tabIndex:"-1",href:"#sdk-integrations",children:e.jsx(i.div,{"data-autolink-icon":!0})})]}),`
+`,e.jsx(i.p,{children:"Now that you have your Embedded Wallet configuration up, go ahead and follow our guides on how to integrate with the SDKs:"}),`
+`,e.jsxs(i.ul,{children:[`
+`,e.jsx(i.li,{children:e.jsx(i.a,{href:"/solutions/wallets/embedded-wallet/overview",children:"TypeScript SDK"})}),`
+`,e.jsx(i.li,{children:e.jsx(i.a,{href:"/sdk/unity/overview",children:"Unity SDK"})}),`
+`,e.jsx(i.li,{children:e.jsx(i.a,{href:"/sdk/unreal/overview",children:"Unreal SDK"})}),`
+`]})]})}function d(n={}){const{wrapper:i}={...t(),...n.components};return i?e.jsx(i,{...n,children:e.jsx(o,{...n})}):o(n)}export{d as default,r as frontmatter};
