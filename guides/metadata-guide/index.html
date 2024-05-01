@@ -12,7 +12,7 @@
     
     
   
-    <script type="module" crossorigin src="/assets/index-D3IhdjVS.js"></script>
+    <script type="module" crossorigin src="/assets/index-CfOJiAlg.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/style-DihpUYed.css">
   </head>
   <body>
@@ -20,16 +20,16 @@
 <p class="vocs_Paragraph">Time to complete: 20 minutes</p>
 <p class="vocs_Paragraph">In this guide we&#x27;ll walk you through how to store media using the Sequence Collections API with <a class="vocs_Anchor vocs_Link vocs_Link_accent_underlined vocs_ExternalLink" href="https://www.cloudflare.com/" target="_blank" rel="noopener noreferrer" style="--vocs_ExternalLink_iconUrl:url(/.vocs/icons/arrow-diagonal.svg)">Cloudflare Workers</a>, as well as read from the Metadata API to render images</p>
 <p class="vocs_Paragraph">This can be accomplished with 8 steps</p>
-<ul class="vocs_List vocs_List_unordered">
-<li class="vocs_ListItem"><a class="vocs_Anchor vocs_Link vocs_Link_accent_underlined" href="/guides/metadata-guide#1-obtain-a-secret-api-key">1. Obtain a Secret API Key</a> from the <a class="vocs_Anchor vocs_Link vocs_Link_accent_underlined vocs_ExternalLink" href="https://sequence.build" target="_blank" rel="noopener noreferrer" style="--vocs_ExternalLink_iconUrl:url(/.vocs/icons/arrow-diagonal.svg)">Sequence Builder Console</a></li>
-<li class="vocs_ListItem"><a class="vocs_Anchor vocs_Link vocs_Link_accent_underlined" href="/guides/metadata-guide#2-create-collection-from-a-curl-request">2. Create Collection</a> from a cURL request one time</li>
-<li class="vocs_ListItem"><a class="vocs_Anchor vocs_Link vocs_Link_accent_underlined" href="/guides/metadata-guide#3-create-token-using-tokenid">3. Create Token</a> create a token using a tokenID</li>
-<li class="vocs_ListItem"><a class="vocs_Anchor vocs_Link vocs_Link_accent_underlined" href="/guides/metadata-guide#4-create-asset-using-tokenid">4. Create Asset</a> create an assetID</li>
-<li class="vocs_ListItem"><a class="vocs_Anchor vocs_Link vocs_Link_accent_underlined" href="/guides/metadata-guide#5-store-image-asset">5. Store an Image</a> process and store an image</li>
-<li class="vocs_ListItem"><a class="vocs_Anchor vocs_Link vocs_Link_accent_underlined" href="/guides/metadata-guide#6-update-non-private-token">6. Update to Non-private</a> update an asset to be non-private</li>
-<li class="vocs_ListItem"><a class="vocs_Anchor vocs_Link vocs_Link_accent_underlined" href="/guides/metadata-guide#7-publish-collection-from-a-curl-request">7. Publish Collection</a> from a cURL request one time</li>
-<li class="vocs_ListItem"><a class="vocs_Anchor vocs_Link vocs_Link_accent_underlined" href="/guides/metadata-guide#8-render-asset-from-api-publicly">8. Render Asset from API</a> from a cURL request one time</li>
-</ul>
+<ol class="vocs_List vocs_List_ordered">
+<li class="vocs_ListItem"><a class="vocs_Anchor vocs_Link vocs_Link_accent_underlined" href="/guides/metadata-guide#1-obtain-a-secret-api-key">Obtain a Secret API Key</a> from the <a class="vocs_Anchor vocs_Link vocs_Link_accent_underlined vocs_ExternalLink" href="https://sequence.build" target="_blank" rel="noopener noreferrer" style="--vocs_ExternalLink_iconUrl:url(/.vocs/icons/arrow-diagonal.svg)">Sequence Builder Console</a></li>
+<li class="vocs_ListItem"><a class="vocs_Anchor vocs_Link vocs_Link_accent_underlined" href="/guides/metadata-guide#2-create-collection-from-a-curl-request">Create Collection</a> from a cURL request one time</li>
+<li class="vocs_ListItem"><a class="vocs_Anchor vocs_Link vocs_Link_accent_underlined" href="/guides/metadata-guide#3-create-token-using-tokenid">Create Token</a> create a token using a tokenID</li>
+<li class="vocs_ListItem"><a class="vocs_Anchor vocs_Link vocs_Link_accent_underlined" href="/guides/metadata-guide#4-create-asset-using-tokenid">Create Asset</a> create an assetID</li>
+<li class="vocs_ListItem"><a class="vocs_Anchor vocs_Link vocs_Link_accent_underlined" href="/guides/metadata-guide#5-store-image-asset">Store an Image</a> process and store an image</li>
+<li class="vocs_ListItem"><a class="vocs_Anchor vocs_Link vocs_Link_accent_underlined" href="/guides/metadata-guide#6-update-non-private-token">Update to Non-private</a> update an asset to be non-private</li>
+<li class="vocs_ListItem"><a class="vocs_Anchor vocs_Link vocs_Link_accent_underlined" href="/guides/metadata-guide#7-publish-collection-from-a-curl-request">Publish Collection</a> from a cURL request one time</li>
+<li class="vocs_ListItem"><a class="vocs_Anchor vocs_Link vocs_Link_accent_underlined" href="/guides/metadata-guide#8-render-asset-from-api-publicly">Render Asset from API</a> from a cURL request one time</li>
+</ol>
 <p class="vocs_Paragraph">First follow <a class="vocs_Anchor vocs_Link vocs_Link_accent_underlined" href="/guides/mint-collectibles-serverless#1-setup-cloudflare-environment-with-wrangler-cli-and-deploy-a-test">this section of the Collectible Minting Service Guide</a> guide to create a cloudflare worker</p>
 <aside class="vocs_Callout vocs_Callout_info"><p class="vocs_Paragraph">Full template code for this guide can be found <a class="vocs_Anchor vocs_Link vocs_Link_accent_underlined vocs_ExternalLink" href="https://github.com/0xsequence-demos/template-cloudflare-worker-collections-api/tree/master" target="_blank" rel="noopener noreferrer" style="--vocs_ExternalLink_iconUrl:url(/.vocs/icons/arrow-diagonal.svg)">here</a></p></aside>
 <h2 class="vocs_H2 vocs_Heading"><div id="1-obtain-a-secret-api-key" class="vocs_Heading_slugTarget"></div>1. Obtain a Secret API Key<a class="vocs_Anchor vocs_Autolink" aria-hidden="true" tabindex="-1" href="/guides/metadata-guide#1-obtain-a-secret-api-key"><div data-autolink-icon="true" class="vocs_Div vocs_AutolinkIcon" style="--vocs_AutolinkIcon_iconUrl:url(/.vocs/icons/link.svg)"></div></a></h2>

@@ -12,7 +12,7 @@
     
     
   
-    <script type="module" crossorigin src="/assets/index-D3IhdjVS.js"></script>
+    <script type="module" crossorigin src="/assets/index-CfOJiAlg.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/style-DihpUYed.css">
   </head>
   <body>
@@ -21,15 +21,15 @@
 <p class="vocs_Paragraph">In this guide we will go through the process of integrating WebGL in a game, leveraging tools from the Sequence Stack to earn achievements and use custom ERC1155&#x27;s to play in-game.</p>
 <aside class="vocs_Callout vocs_Callout_info"><p class="vocs_Paragraph">You can play a live version of the game <a class="vocs_Anchor vocs_Link vocs_Link_accent_underlined vocs_ExternalLink" href="https://0xsequence.github.io/waas-airplane-demo/" target="_blank" rel="noopener noreferrer" style="--vocs_ExternalLink_iconUrl:url(/.vocs/icons/arrow-diagonal.svg)">here</a></p><p class="vocs_Paragraph">Where the full code to this game can be found <a class="vocs_Anchor vocs_Link vocs_Link_accent_underlined vocs_ExternalLink" href="https://github.com/0xsequence/waas-airplane-demo/tree/cloudflare-integration" target="_blank" rel="noopener noreferrer" style="--vocs_ExternalLink_iconUrl:url(/.vocs/icons/arrow-diagonal.svg)">here</a></p><p class="vocs_Paragraph">And the full template code we&#x27;ll be using for the guide can be found <a class="vocs_Anchor vocs_Link vocs_Link_accent_underlined vocs_ExternalLink" href="https://github.com/0xsequence-demos/template-webgl-js-sequence-kit-starter" target="_blank" rel="noopener noreferrer" style="--vocs_ExternalLink_iconUrl:url(/.vocs/icons/arrow-diagonal.svg)">here</a></p></aside>
 <p class="vocs_Paragraph">The tools will enable you to perform:</p>
-<ul class="vocs_List vocs_List_unordered">
-<li class="vocs_ListItem"><a class="vocs_Anchor vocs_Link vocs_Link_accent_underlined" href="/guides/webgl-guide#1-project-setup-with-webpack">1. Project Setup With Webpack</a>: Enable a project structure with WebGL to be compiled by Webpack</li>
-<li class="vocs_ListItem"><a class="vocs_Anchor vocs_Link vocs_Link_accent_underlined" href="/guides/webgl-guide#2-integrate-sequence-kit">2. Integrate Sequence Kit</a>: Allow all EOAs and Sequence Wallet to authenticate the user</li>
-<li class="vocs_ListItem"><a class="vocs_Anchor vocs_Link vocs_Link_accent_underlined" href="/guides/webgl-guide#3-deploy-a-collectibles-contract">3. Deploy a Collectibles Contract</a>: Create your own collectible contract</li>
-<li class="vocs_ListItem"><a class="vocs_Anchor vocs_Link vocs_Link_accent_underlined" href="/guides/webgl-guide#4-deploy-a-remote-minter--mint-in-game-achievement-tokens">4. Deploy a Remote Minter and Mint In-game Tokens</a>: Perform gasless relayed transactions with Cloudflare workers</li>
-<li class="vocs_ListItem"><a class="vocs_Anchor vocs_Link vocs_Link_accent_underlined" href="/guides/webgl-guide#5-leverage-items-in-game">5. Leverage Items In-game</a>: Integrate collectibles in the game using the Sequence Indexer</li>
-<li class="vocs_ListItem"><a class="vocs_Anchor vocs_Link vocs_Link_accent_underlined" href="/guides/webgl-guide#6-burn-in-game-achievement-tokens">6. Burn In-game Achievement tokens</a>: Burn game achievements with wagmi</li>
-<li class="vocs_ListItem"><a class="vocs_Anchor vocs_Link vocs_Link_accent_underlined" href="/guides/webgl-guide#7-optional-integrate-in-game-wallet-into-sequence-kit">7. (Optional) Integrate Embedded Wallet Into Sequence Kit</a>: Enable smooth UX without the use of signer signed messages</li>
-</ul>
+<ol class="vocs_List vocs_List_ordered">
+<li class="vocs_ListItem"><a class="vocs_Anchor vocs_Link vocs_Link_accent_underlined" href="/guides/webgl-guide#1-project-setup-with-webpack">Project Setup With Webpack</a>: Enable a project structure with WebGL to be compiled by Webpack</li>
+<li class="vocs_ListItem"><a class="vocs_Anchor vocs_Link vocs_Link_accent_underlined" href="/guides/webgl-guide#2-integrate-sequence-kit">Integrate Sequence Kit</a>: Allow all EOAs and Sequence Wallet to authenticate the user</li>
+<li class="vocs_ListItem"><a class="vocs_Anchor vocs_Link vocs_Link_accent_underlined" href="/guides/webgl-guide#3-deploy-a-collectibles-contract">Deploy a Collectibles Contract</a>: Create your own collectible contract</li>
+<li class="vocs_ListItem"><a class="vocs_Anchor vocs_Link vocs_Link_accent_underlined" href="/guides/webgl-guide#4-deploy-a-remote-minter--mint-in-game-achievement-tokens">Deploy a Remote Minter and Mint In-game Tokens</a>: Perform gasless relayed transactions with Cloudflare workers</li>
+<li class="vocs_ListItem"><a class="vocs_Anchor vocs_Link vocs_Link_accent_underlined" href="/guides/webgl-guide#5-leverage-items-in-game">Leverage Items In-game</a>: Integrate collectibles in the game using the Sequence Indexer</li>
+<li class="vocs_ListItem"><a class="vocs_Anchor vocs_Link vocs_Link_accent_underlined" href="/guides/webgl-guide#6-burn-in-game-achievement-tokens">Burn In-game Achievement tokens</a>: Burn game achievements with wagmi</li>
+<li class="vocs_ListItem"><a class="vocs_Anchor vocs_Link vocs_Link_accent_underlined" href="/guides/webgl-guide#7-optional-integrate-in-game-wallet-into-sequence-kit">(Optional) Integrate Embedded Wallet Into Sequence Kit</a>: Enable smooth UX without the use of signer signed messages</li>
+</ol>
 <h2 class="vocs_H2 vocs_Heading"><div id="1-project-setup-with-webpack" class="vocs_Heading_slugTarget"></div>1. Project setup with webpack<a class="vocs_Anchor vocs_Autolink" aria-hidden="true" tabindex="-1" href="/guides/webgl-guide#1-project-setup-with-webpack"><div data-autolink-icon="true" class="vocs_Div vocs_AutolinkIcon" style="--vocs_AutolinkIcon_iconUrl:url(/.vocs/icons/link.svg)"></div></a></h2>
 <h4 class="vocs_H4 vocs_Heading"><div id="clone-repo" class="vocs_Heading_slugTarget"></div>Clone Repo<a class="vocs_Anchor vocs_Autolink" aria-hidden="true" tabindex="-1" href="/guides/webgl-guide#clone-repo"><div data-autolink-icon="true" class="vocs_Div vocs_AutolinkIcon" style="--vocs_AutolinkIcon_iconUrl:url(/.vocs/icons/link.svg)"></div></a></h4>
 <p class="vocs_Paragraph">We&#x27;ll first start by cloning down a template project, which has a few WebGL based components created using <code class="vocs_Code">three</code>, all compiled using <a class="vocs_Anchor vocs_Link vocs_Link_accent_underlined vocs_ExternalLink" href="https://webpack.js.org/" target="_blank" rel="noopener noreferrer" style="--vocs_ExternalLink_iconUrl:url(/.vocs/icons/arrow-diagonal.svg)">webpack</a></p>
