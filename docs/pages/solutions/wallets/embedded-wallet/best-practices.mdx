@@ -17,7 +17,7 @@ The following are a few best practices that can reviewed to enable developers to
 With developers implementing an Embedded Wallet experience for their users that have the goal to create a minting function using a contract, developers have the options to either: (1) offer sponsored cloudflare workers minting as a feature, or, (2) have an allowed list of wallet addresses. 
 
 #### (1) Sponsored Minting
-When performing these mints using the Transactions API, developers have the option to pay for relayed transactions. Only the authentication from the Embedded Wallet is used, and the cloudflare worker performs the transaction with a Relayer Wallet set with a `MINTER_ROLE` on the standard ERC721 or ERC1155. You can implement a [Serverless Mint with this guide](/guides/mint-collectibles-serverless), or, see it in action with [this WebGL game](https://0xsequence.github.io/waas-airplane-demo/)
+When performing these mints using the Transactions API, developers have the option to pay for relayed transactions. Only the authentication from the Embedded Wallet is used, and the off-chain cloud compute performs the transaction with a Relayer Wallet set with a `MINTER_ROLE` on the standard ERC721 or ERC1155. You can implement a [Serverless Mint with this guide](/guides/mint-collectibles-serverless), or, see it in action with [this WebGL game](https://0xsequence.github.io/waas-airplane-demo/)
 
 #### (2) Allowed List Minting
 When performing these mints, users mint directly with their Embedded Wallet, only if the address is a part of an allowed list of wallets. A guide for an Allowed List Collectible Sale coming shortly.
@@ -59,7 +59,7 @@ When accessing possibilities of experience for various games, ensuring to constr
 #### Analytics
 Using the Sequence Builder, and both off-chain and on-chain data to gather interaction and feedback on how your game is being played is a key tool in the Sequence developer stack.
 
-#### Internal Testing: Walk the Talk
+#### Internal Testing: Practice your values
 Through practices of integrations, following function, and embodying your virtues with developing a game, teams should strive for experiential values that are played out (if possible) and settled through time. This allows the time for sandboxed environments to impact players and user stories via an iterated sequence of adjustments.
 
 #### External Testing: Surveys
