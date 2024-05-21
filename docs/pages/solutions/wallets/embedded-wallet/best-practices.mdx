@@ -2,7 +2,7 @@
 
 An Embedded Wallet is a new product in the ecosystem that bring new design and architecture to applications. 
 
-The following are a few best practices that can enable developers to architect solutions to meet the needs of their users.
+The following are a few best practices that can reviewed to enable developers to architect solutions to meet the needs of their users.
 
 1. [Designs for Implementing a Collectible Mint](/solutions/wallets/embedded-wallet/best-practices#1-designs-for-implementing-a-collectible-mint)
 2. [Building an Ecosystem](/solutions/wallets/embedded-wallet/best-practices#2-building-an-ecosystem)
@@ -20,14 +20,14 @@ With developers implementing an Embedded Wallet experience for their users that 
 When performing these mints using the Transactions API, developers have the option to pay for relayed transactions. Only the authentication from the Embedded Wallet is used, and the cloudflare worker performs the transaction with a Relayer Wallet set with a `MINTER_ROLE` on the standard ERC721 or ERC1155. You can implement a [Serverless Mint with this guide](/guides/mint-collectibles-serverless), or, see it in action with [this WebGL game](https://0xsequence.github.io/waas-airplane-demo/)
 
 #### (2) Allowed List Minting
-When performing these mints, users mint directly with their Embedded Wallet. If it is a first transaction, the Sequence Wallet Contract is deployed on the first transaction. In the future, developers will be able to implement on-ramp solutions from fiat if contracts are not gas sponsored within the Builder. A guide for an Allowed List Collectible Sale coming soon.
+When performing these mints, users mint directly with their Embedded Wallet, only if the address is a part of an allowed list of wallets. A guide for an Allowed List Collectible Sale coming shortly.
 
 ### Using a Custom Deployed Contract
 If you want to bring your own contract to deploy with the Builder, you wouldn't need to implement a cloudflare worker. You can bypass the need for a role on the contract and in-turn an Embedded Wallet would have no confirmation popups with transaction signing. However, this also means anyone can call the contract which is one of the reasons why the Standard Builder Contracts have a role feature.
 
 ## 2. Building an Ecosystem
 
-Developers implementing an Embedded Wallet experience for their users have the opportunity to build ecosystems based on their wallet-as-a-service instance. This means, if a user logs into one game, that same user with same login flow can log into another game and be provided the same wallet address to sign or make transactions from.
+Developers implementing an Embedded Wallet experience for their users have the opportunity to build ecosystems based on their Embedded Wallet instance. This means, if a user logs into one game, that same user with same login flow can log into another game and be provided the same wallet address to sign or make transactions from.
 
 This is achieved by utilizing the same Client IDs (provided by Google or Apple) in these different gaming experiences registered in the [Sequence Builder](https://sequence.build) in order to yield the same authentication access flow for signing in users.
 
@@ -41,7 +41,7 @@ Making multiple transactions by accident can also be prevented by implementing t
 
 If in a web environment, always ensure your allowed origins match your intended production deployment. 
 
-When complete with testing, make sure to remove any localhost origins so others do not also do gain local access to your Embbedded Wallet environment.
+When complete with testing, make sure to remove any localhost origins so others do not also do gain local access to your Embedded Wallet environment.
 
 ## 5. Keeping Your WaasConfigKey Hidden for Unity or Unreal Engine
 
@@ -49,15 +49,18 @@ Ensure not to publish your WaaS Config Key anywhere online (e.g. github), so tha
 
 ## 6. Memetic Balance & Data Ownership
 
-In the transition from Universal Wallets to Embedded Wallets, an Embbedded based system puts engagement first to the benefit of every user. With integrations, there are doors that lead to thresholds informationally, therefore setting boundaries is a key tool to use in communication and function. 
+In the transition from Universal Wallets to Embedded Wallets, an Embedded based system puts engagement first to the benefit of every user. With integrations, there are doors that lead to thresholds informationally, therefore setting boundaries and being open to change is a key tool to use in communication and function. 
 
 ### Why? 
-When accessing alchemical thermodynamic energies for various games, ensuring to construct complimentary and adjusting practices of information or affordance can help maintain healthy ownership. As an example, conserving features that include: safety, accessibility, and intended value via a conserved structure in memes can better accomodate social settings.
+When accessing possibilities of experience for various games, ensuring to construct complimentary and adjusting practices of information or affordance can help maintain healthy ownership of the values you put out into the world. As an example, conserving features that include: safety, accessibility, and intended value via a complimentary structure in memes can better accomodate the downstream effect on social and community.
 
 ### Possible Solution(s)
 
+#### Analytics
+Using the Sequence Builder, and both off-chain and on-chain data to gather interaction and feedback on how your game is being played is a key tool in the Sequence developer stack.
+
 #### Internal Testing: Walk the Talk
-Through practices of integrations, following function, and embodying your virtues with developing a game, teams should strive for experiential values that are played out and tested. This allows the time for sandboxed environments to impact players and user stories via an iterated sequence of adjustments.
+Through practices of integrations, following function, and embodying your virtues with developing a game, teams should strive for experiential values that are played out (if possible) and settled through time. This allows the time for sandboxed environments to impact players and user stories via an iterated sequence of adjustments.
 
 #### External Testing: Surveys
 Providing users a non-leading testimonial community survey for feedback loops driving research and engineering.
