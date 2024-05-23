@@ -4,7 +4,7 @@ import React, {useEffect, useState} from 'react';
 import {sequence} from '0xsequence'
 import { SequenceIndexer } from '@0xsequence/indexer'
 
-function MintWidget(props: any) {
+function EmbeddedWalletMintWidget(props: any) {
 
   sequence.initWallet('AQAAAAAAADi4zbq6FAIlrlW4qD-o_xw0-5A', {defaultNetwork: props.network})
 
@@ -98,4 +98,4 @@ function MintWidget(props: any) {
   );
 }
 
-export default MintWidget;
+export default EmbeddedWalletMintWidget;
