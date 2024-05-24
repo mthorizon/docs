@@ -3,8 +3,15 @@ import React, {useEffect, useState} from 'react';
 
 import {sequence} from '0xsequence'
 import { SequenceIndexer } from '@0xsequence/indexer'
+import { CredentialResponse, GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
+import {SequenceWaaS} from '@0xsequence/waas'
+import {useSessionHash} from './hooks/useSessionHash.ts'
+
+import embeddedWallet from './EmbeddedWallet/EmbeddedWallet'
 
 function EmbeddedWalletMintWidget(props: any) {
+
+  const { sessionHash } = useSessionHash()
 
   sequence.initWallet('AQAAAAAAADi4zbq6FAIlrlW4qD-o_xw0-5A', {defaultNetwork: props.network})
 
@@ -12,6 +19,15 @@ function EmbeddedWalletMintWidget(props: any) {
   const [isMintedInPresent, setIsMintedInPresent] = useState(false)
   const [alreadyMinted, setAlreadyMinted] = useState(false)
   const [txHash, setTxHash] = useState<any>(null)
+
+  const handleGoogleLogin = async (tokenResponse: CredentialResponse) => {
+    console.log(tokenResponse)
+
+    const res = await embeddedWallet.signIn({
+      idToken: tokenResponse.credential!
+    }, "Sequence Docs")
+    console.log(res)
+  }
 
   const handleButtonClick = async () => {
     try {
@@ -73,8 +89,13 @@ function EmbeddedWalletMintWidget(props: any) {
     const path = "wallet/collectibles/421614/0x58eB15E3B19545B5c01Cbd38Dac7497ef924B168/0";
     wallet.openWallet(path);
   }
+  const signOut = async () => {
+    const sessions = await embeddedWallet.listSessions()
+    await embeddedWallet.dropSession({ sessionId: sessions[0].id })
+  }
   return (
     <div className="widget">
+      <GoogleOAuthProvider clientId="908369456253-9ki3cl7bauhhu61hgtb66c1ioo0u2n24.apps.googleusercontent.com" nonce={sessionHash} key={sessionHash}>
       <div className="widget-header">
       </div>
       <div className="widget-body">
@@ -85,6 +106,11 @@ function EmbeddedWalletMintWidget(props: any) {
             <button className='mint-button' id="mint-button" disabled={isMinting || txHash != null} onClick={handleButtonClick}>{isMinting ? isMintedInPresent ? alreadyMinted ? "already minted ✓" : "minted ✓" : 'minting...' : 'collect'}</button>
             { isMintedInPresent || alreadyMinted ? <button className='mint-button' id="mint-button" onClick={() => openWallet()}>{'open wallet'}</button> : null }
         </div>
+        <button className='mint-button' id="mint-button" disabled={isMinting || txHash != null} onClick={signOut}>sign out</button>
+        <GoogleLogin 
+           nonce={sessionHash}
+           key={sessionHash}
+           onSuccess={handleGoogleLogin} shape="circle" width={230} />
       
       </div> 
       <div className="widget-footer">
@@ -94,7 +120,9 @@ function EmbeddedWalletMintWidget(props: any) {
         </div> : <p>Create a wallet and mint a free collectible on {props.network.replace('-', ' ')} in seconds</p>}
       
       </div>
+		</GoogleOAuthProvider>
     </div>
+
   );
 }
 
