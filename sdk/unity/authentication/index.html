@@ -12,7 +12,7 @@
     
     
   
-    <script type="module" crossorigin src="/assets/index-DChiVy1R.js"></script>
+    <script type="module" crossorigin src="/assets/index-CgJLp0dT.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/style-DihpUYed.css">
   </head>
   <body>
@@ -30,7 +30,34 @@ Once the user successfully completes the 2FA challenge, the SDK will receive an 
 Once the user successfully signs in, an idToken is returned via deep link to the application.
 In order to enable deep linking, we must register a custom URL scheme for our application. There are some platform specific requirements to set this up.</p>
 <h3 class="vocs_H3 vocs_Heading"><div id="editor" class="vocs_Heading_slugTarget"></div>Editor<a class="vocs_Anchor vocs_Autolink" aria-hidden="true" tabindex="-1" href="/sdk/unity/authentication#editor"><div data-autolink-icon="true" class="vocs_Div vocs_AutolinkIcon" style="--vocs_AutolinkIcon_iconUrl:url(/.vocs/icons/link.svg)"></div></a></h3>
-<p class="vocs_Paragraph">No additional steps required.</p>
+<p class="vocs_Paragraph">For social sign in to work in the editor, you will need to deploy a simple server on your local machine. We provide a sample implementation <a class="vocs_Anchor vocs_Link vocs_Link_accent_underlined vocs_ExternalLink" href="https://gist.github.com/BellringerQuinn/d012cd29eb9e756fe3555d4d03b001b2" target="_blank" rel="noopener noreferrer" style="--vocs_ExternalLink_iconUrl:url(/.vocs/icons/arrow-diagonal.svg)">here</a>.</p>
+<p class="vocs_Paragraph">To deploy this sample server, please perform the following.</p>
+<ol class="vocs_List vocs_List_ordered">
+<li class="vocs_ListItem">Download and install Go: <a class="vocs_Anchor vocs_Link vocs_Link_accent_underlined vocs_ExternalLink" href="https://go.dev/dl/" target="_blank" rel="noopener noreferrer" style="--vocs_ExternalLink_iconUrl:url(/.vocs/icons/arrow-diagonal.svg)">https://go.dev/dl/</a></li>
+<li class="vocs_ListItem">Open a terminal/command prompt and verify your installation by typing</li>
+</ol>
+<div class="vocs_CodeBlock"><div class="vocs_Pre_wrapper"><pre style="background-color:#fff;--shiki-dark-bg:#22272e;color:#24292e;--shiki-dark:#adbac7" tabindex="0" class="shiki shiki-themes github-light github-dark-dimmed vocs_Pre"><code class="vocs_Code"><span class="line vocs_Span"><span class="vocs_Span">go version</span></span></code></pre></div></div>
+<ol start="3" class="vocs_List vocs_List_ordered">
+<li class="vocs_ListItem">Create a directory for your go project and a main.go file</li>
+</ol>
+<div class="vocs_CodeBlock"><div class="vocs_Pre_wrapper"><pre style="background-color:#fff;--shiki-dark-bg:#22272e;color:#24292e;--shiki-dark:#adbac7" tabindex="0" class="shiki shiki-themes github-light github-dark-dimmed vocs_Pre"><code class="vocs_Code"><span class="line vocs_Span"><span class="vocs_Span">mkdir myUnityServer</span></span>
+<span class="line vocs_Span"><span class="vocs_Span">cd myUnityServer</span></span>
+<span class="line vocs_Span"><span class="vocs_Span">touch main.go</span></span></code></pre></div></div>
+<ol start="4" class="vocs_List vocs_List_ordered">
+<li class="vocs_ListItem">Copy + paste the <a class="vocs_Anchor vocs_Link vocs_Link_accent_underlined vocs_ExternalLink" href="https://gist.github.com/BellringerQuinn/d012cd29eb9e756fe3555d4d03b001b2" target="_blank" rel="noopener noreferrer" style="--vocs_ExternalLink_iconUrl:url(/.vocs/icons/arrow-diagonal.svg)">gist</a> into the main.go</li>
+<li class="vocs_ListItem">Initialize the project by creating a go module</li>
+</ol>
+<div class="vocs_CodeBlock"><div class="vocs_Pre_wrapper"><pre style="background-color:#fff;--shiki-dark-bg:#22272e;color:#24292e;--shiki-dark:#adbac7" tabindex="0" class="shiki shiki-themes github-light github-dark-dimmed vocs_Pre"><code class="vocs_Code"><span class="line vocs_Span"><span class="vocs_Span">go mod init myUnityServer</span></span></code></pre></div></div>
+<ol start="6" class="vocs_List vocs_List_ordered">
+<li class="vocs_ListItem">Run the server</li>
+</ol>
+<div class="vocs_CodeBlock"><div class="vocs_Pre_wrapper"><pre style="background-color:#fff;--shiki-dark-bg:#22272e;color:#24292e;--shiki-dark:#adbac7" tabindex="0" class="shiki shiki-themes github-light github-dark-dimmed vocs_Pre"><code class="vocs_Code"><span class="line vocs_Span"><span class="vocs_Span">go run main.go</span></span></code></pre></div></div>
+<ol start="7" class="vocs_List vocs_List_ordered">
+<li class="vocs_ListItem">You should see <code class="vocs_Code">Server listening on port 8080</code> printed to your terminal/command prompt</li>
+</ol>
+<p class="vocs_Paragraph">If you choose to deploy the server to somewhere else (a different port, a public server, etc.), you&#x27;ll want to change the <code class="vocs_Code">OpenIdAuthenticator.RedirectUrl</code> in your code before initiating the sign in process</p>
+<div class="vocs_CodeBlock"><div class="vocs_Pre_wrapper"><pre style="background-color:#fff;--shiki-dark-bg:#22272e;color:#24292e;--shiki-dark:#adbac7" tabindex="0" class="shiki shiki-themes github-light github-dark-dimmed vocs_Pre"><code class="vocs_Code"><span class="line vocs_Span"><span class="vocs_Span">OpenIdAuthenticator.InjectRedirectUrl(&quot;the url for your deployed server&quot;);</span></span></code></pre></div></div>
+<p class="vocs_Paragraph">Note: you&#x27;ll want to use a web client for your social sign in provider with <code class="vocs_Code">http://localhost:8080/</code> (or your server url) whitelisted as a redirect url under <code class="vocs_Code">Standalone Platforms</code> in <code class="vocs_Code">SequenceConfig</code></p>
 <h3 class="vocs_H3 vocs_Heading"><div id="ios" class="vocs_Heading_slugTarget"></div>iOS<a class="vocs_Anchor vocs_Autolink" aria-hidden="true" tabindex="-1" href="/sdk/unity/authentication#ios"><div data-autolink-icon="true" class="vocs_Div vocs_AutolinkIcon" style="--vocs_AutolinkIcon_iconUrl:url(/.vocs/icons/link.svg)"></div></a></h3>
 <h4 class="vocs_H4 vocs_Heading"><div id="sign-in-with-apple" class="vocs_Heading_slugTarget"></div>Sign in with Apple<a class="vocs_Anchor vocs_Autolink" aria-hidden="true" tabindex="-1" href="/sdk/unity/authentication#sign-in-with-apple"><div data-autolink-icon="true" class="vocs_Div vocs_AutolinkIcon" style="--vocs_AutolinkIcon_iconUrl:url(/.vocs/icons/link.svg)"></div></a></h4>
 <p class="vocs_Paragraph">This SDK supports native Sign in with Apple via the popular <a class="vocs_Anchor vocs_Link vocs_Link_accent_underlined" href="https://github.com/lupidan/apple-signin-unity" target="_blank" rel="noopener noreferrer" style="--vocs_ExternalLink_iconUrl:url(/.vocs/icons/arrow-diagonal.svg)"><code class="vocs_Code">apple-signin-unity</code> package</a>. This <a class="vocs_Anchor vocs_Link vocs_Link_accent_underlined" href="https://developer.apple.com/documentation/xcode/configuring-sign-in-with-apple#Add-the-Sign-in-with-Apple-capability-to-your-app" target="_blank" rel="noopener noreferrer" style="--vocs_ExternalLink_iconUrl:url(/.vocs/icons/arrow-diagonal.svg)">requires the <code class="vocs_Code">Sign in with Apple</code> capability in XCode</a> in order to function. Provided you have <a class="vocs_Anchor vocs_Link vocs_Link_accent_underlined" href="https://docs.sequence.xyz/sdk/unity/installation#package-manager---recommended" target="_blank" rel="noopener noreferrer" style="--vocs_ExternalLink_iconUrl:url(/.vocs/icons/arrow-diagonal.svg)">imported the <code class="vocs_Code">Setup</code> scripts via Package Manager &gt; Samples</a> and/or have <code class="vocs_Code">SignInWithApplePostprocessor.cs</code> under an <code class="vocs_Code">Editor</code> subfolder, this capability will be added to your XCode builds automatically.</p>
