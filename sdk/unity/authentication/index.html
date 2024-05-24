@@ -12,7 +12,7 @@
     
     
   
-    <script type="module" crossorigin src="/assets/index-Ben-Lkub.js"></script>
+    <script type="module" crossorigin src="/assets/index-B1vZgWRE.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/style-CIk26EQc.css">
   </head>
   <body>
@@ -25,6 +25,7 @@ We recommend having the <code class="vocs_Code">Canvas Scaler</code> component a
 <h2 class="vocs_H2 vocs_Heading"><div id="1-email-sign-in" class="vocs_Heading_slugTarget"></div>1. Email Sign In<a class="vocs_Anchor vocs_Autolink" aria-hidden="true" tabindex="-1" href="/sdk/unity/authentication#1-email-sign-in"><div data-autolink-icon="true" class="vocs_Div vocs_AutolinkIcon" style="--vocs_AutolinkIcon_iconUrl:url(/.vocs/icons/link.svg)"></div></a></h2>
 <p class="vocs_Paragraph">Available on all platforms, email sign in leverages <a class="vocs_Anchor vocs_Link vocs_Link_accent_underlined vocs_ExternalLink" href="https://aws.amazon.com/cognito/" target="_blank" rel="noopener noreferrer" style="--vocs_ExternalLink_iconUrl:url(/.vocs/icons/arrow-diagonal.svg)">Amazon Cognito</a> and provides the user with a 2FA challenge - a 6 digit code emailed to the entered address for the user to enter on the next page.
 Once the user successfully completes the 2FA challenge, the SDK will receive an idToken in JWT format from Amazon Cognito and proceed to establish the session with WaaS API.</p>
+<p class="vocs_Paragraph">Note: Email sign in is not available to projects on the Community tier in the Builder. You will need to add <code class="vocs_Code">Email</code> as a login option when <a class="vocs_Anchor vocs_Link vocs_Link_accent_underlined" href="/solutions/builder/embedded-wallet">setting up your embedded wallet in the Builder Console</a>. For more info on upgrading your Builder Project Subscription Plan, please <a class="vocs_Anchor vocs_Link vocs_Link_accent_underlined" href="/solutions/builder/project-settings#5-billing-settings">see here</a>.</p>
 <h2 class="vocs_H2 vocs_Heading"><div id="2-social-sign-in" class="vocs_Heading_slugTarget"></div>2. Social Sign in<a class="vocs_Anchor vocs_Autolink" aria-hidden="true" tabindex="-1" href="/sdk/unity/authentication#2-social-sign-in"><div data-autolink-icon="true" class="vocs_Div vocs_AutolinkIcon" style="--vocs_AutolinkIcon_iconUrl:url(/.vocs/icons/link.svg)"></div></a></h2>
 <p class="vocs_Paragraph">Available on all platforms except WebGL (currently), social sign in uses <a class="vocs_Anchor vocs_Link vocs_Link_accent_underlined vocs_ExternalLink" href="https://openid.net/developers/how-connect-works/" target="_blank" rel="noopener noreferrer" style="--vocs_ExternalLink_iconUrl:url(/.vocs/icons/arrow-diagonal.svg)">OIDC</a> with the <a class="vocs_Anchor vocs_Link vocs_Link_accent_underlined vocs_ExternalLink" href="https://auth0.com/docs/authenticate/login/oidc-conformant-authentication/oidc-adoption-implicit-flow" target="_blank" rel="noopener noreferrer" style="--vocs_ExternalLink_iconUrl:url(/.vocs/icons/arrow-diagonal.svg)">implicit flow</a> to allow users to login via their existing Google, Discord, Facebook, or Apple accounts.
 Once the user successfully signs in, an idToken is returned via deep link to the application.
