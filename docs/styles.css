@@ -248,6 +248,19 @@ td {
   min-width: 140px;
 }
 
+#container {
+  background-color: #1a1a1a;
+}
+
+.email-login button, .social-login button {
+  width: 100%;
+  padding: 10px;
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid white;
+  color: white;
+}
+
 .widget {
   display: flex;
   margin: auto;
