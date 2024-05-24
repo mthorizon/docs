@@ -82,10 +82,12 @@ export const sidebar = {
           {text: 'Overview', link: '/solutions/wallets/embedded-wallet/overview'},
           {text: 'Quickstart', link: '/solutions/wallets/embedded-wallet/quickstart'},
           {
-            text: 'Examples', collapsed: true, link: '/solutions/wallets/embedded-wallet/examples/manage-sessions', items: [
+            text: 'Examples', collapsed: true, items: [
+            {text: 'Authentication Providers', link: '/solutions/wallets/embedded-wallet/examples/authentication-providers'},
             {text: 'Manage Sessions', link: '/solutions/wallets/embedded-wallet/examples/manage-sessions'},
             {text: 'Use Wallets', link: '/solutions/wallets/embedded-wallet/examples/use-wallets'},
             {text: 'Validation', link: '/solutions/wallets/embedded-wallet/examples/validation'},
+            {text: 'Verification', link: '/solutions/wallets/embedded-wallet/examples/verification'},
             {text: 'Transaction Receipts', link: '/solutions/wallets/embedded-wallet/examples/transaction-receipts'},
             ]
           },
