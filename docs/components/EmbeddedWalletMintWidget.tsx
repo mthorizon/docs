@@ -121,46 +121,50 @@ function EmbeddedWalletMintWidget(props: any) {
   }
 
   return (
-    <div className="widget">
-      <div className="widget-body">
-        <img className='mint-image' src={'https://metadata.sequence.app/projects/15984/collections/232/tokens/0/image.png'}/>
-        <br/>
-        <div style={{ display: 'flex', alignItems: 'center', float:'left'}}>
-            {wallet && <button className='mint-button' id="mint-button" disabled={alreadyMinted || txHash != null} onClick={handleButtonClick}>{
-              !isError
-            ?
-              !alreadyMinted  
-            ? 
-              isMinting
-            ?
-              'Minting...'  
-            :
-              'Collect' 
-            : 
-              "Minted ✓" 
-            : 
-              'Error'
-            }</button>}
-            {wallet && <div  className='mint-button' id="mint-button" onClick={() => signOut()}>Sign Out</div>}
-        </div>
-        {wallet == null && <div  className='mint-button' id="mint-button">Gmail Sign In
-         <div style={{overflow: 'hidden', opacity: '0', marginTop: '-35px',width: '90px', position: 'absolute', zIndex: 1, height: '100px'}}>
-          <GoogleOAuthProvider clientId="908369456253-9ki3cl7bauhhu61hgtb66c1ioo0u2n24.apps.googleusercontent.com" nonce={sessionHash} key={sessionHash}>
-            <GoogleLogin 
-            nonce={sessionHash}
-            key={sessionHash}
-            onSuccess={handleGoogleLogin} shape="circle" width={230} />
-          </GoogleOAuthProvider>
+    <>
+      <h2 style={{fontSize: '20px', color: 'white', textAlign: 'center'}}>Free Embedded Wallet Mint</h2>
+      <div className="widget">
+        <div className="widget-body">
+          <img className='mint-image' src={'https://metadata.sequence.app/projects/15984/collections/232/tokens/0/image.png'}/>
+          <br/>
+          <div style={{ display: 'flex', alignItems: 'center', float:'left'}}>
+              {wallet && <button className='mint-button' id="mint-button" disabled={alreadyMinted || txHash != null} onClick={handleButtonClick}>{
+                !isError
+              ?
+                !alreadyMinted  
+              ? 
+                isMinting
+              ?
+                'Minting...'  
+              :
+                'Collect' 
+              : 
+                "Minted ✓" 
+              : 
+                'Error'
+              }</button>}
+              {wallet && <div  className='mint-button' id="mint-button" onClick={() => signOut()}>Sign Out</div>}
+          </div>
+          {wallet == null && <div  className='mint-button' id="mint-button">Gmail Sign In
+          <div style={{overflow: 'hidden', opacity: '0', marginTop: '-35px',width: '90px', position: 'absolute', zIndex: 1, height: '100px'}}>
+            <GoogleOAuthProvider clientId="908369456253-9ki3cl7bauhhu61hgtb66c1ioo0u2n24.apps.googleusercontent.com" nonce={sessionHash} key={sessionHash}>
+              <GoogleLogin 
+              nonce={sessionHash}
+              key={sessionHash}
+              onSuccess={handleGoogleLogin} shape="circle" width={230} />
+            </GoogleOAuthProvider>
+          </div> 
+          </div> }
         </div> 
-        </div> }
-      </div> 
-      <div className="widget-footer">
-        <br/>
-        {txHash ? <div className="dashed-box">
-          <a href={`https://sepolia.arbiscan.io/tx/${txHash}`} target="_blank">{`arbiscan.io: ${txHash.slice(0,8)}`}...</a>
-        </div> : <p>Create a wallet and mint a free collectible on {props.network.replace('-', ' ')} in seconds</p>}
+        <div className="widget-footer">
+          <br/>
+          {txHash ? <div className="dashed-box">
+            <a href={`https://sepolia.arbiscan.io/tx/${txHash}`} target="_blank">{`arbiscan.io: ${txHash.slice(0,8)}`}...</a>
+          </div> : <p>Create a wallet and mint a free collectible on {props.network.replace('-', ' ')} in seconds</p>}
+        </div>
       </div>
-    </div>
+    </>
+
   );
 }
 
