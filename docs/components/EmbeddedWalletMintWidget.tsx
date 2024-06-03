@@ -37,7 +37,6 @@ function EmbeddedWalletMintWidget(props: any) {
           if(token.tokenID == '0'){
             isMintedBoolean = true
             setAlreadyMinted(true)
-            document.getElementById('mint-button')!.style!.background! = '#3e3e3e'
           }
         })
       } else {
@@ -66,29 +65,14 @@ function EmbeddedWalletMintWidget(props: any) {
   }
 
   const handleButtonClick = async () => {
-    const nftBalances = await indexer.getTokenBalances({
-      contractAddress: contractAddress,
-      accountAddress: wallet,
-      includeMetadata: true
-    })
-
     setIsMinting(true)
-    let isMintedBoolean = false
+    setAlreadyMinted(true)
+    const url = 'https://docs-collectible.tpin.workers.dev';
+    const data = {
+      address: wallet
+    };
 
-    nftBalances.balances.map((token) => {
-      if(token.tokenID == '0'){
-        isMintedBoolean = true
-        setAlreadyMinted(true)
-      }
-    })
-
-    if(isMintedBoolean){
-      document.getElementById('mint-button')!.style!.background! = '#3e3e3e'
-    } else {
-      const url = 'https://docs-collectible.tpin.workers.dev';
-      const data = {
-        address: wallet
-      };
+    try {
       const res = await fetch(url, {
         method: 'POST',
         headers: {
@@ -96,13 +80,13 @@ function EmbeddedWalletMintWidget(props: any) {
         },
         body: JSON.stringify(data),
       })
-      if(res.status == 200){
         setTxHash(await res.text())
         setAlreadyMinted(true)
         setIsMinting(false)
-      } else {
-        setIsError(true)
-      }
+    }catch(err){
+      setIsError(true)
+      setIsMinting(false)
+      setAlreadyMinted(false)
       document.getElementById('mint-button')!.style!.background! = '#3e3e3e'
     }
   };
@@ -128,18 +112,18 @@ function EmbeddedWalletMintWidget(props: any) {
           <img className='mint-image' src={'https://metadata.sequence.app/projects/15984/collections/232/tokens/0/image.png'}/>
           <br/>
           <div style={{ display: 'flex', alignItems: 'center', float:'left'}}>
-              {wallet && <button className='mint-button' id="mint-button" disabled={alreadyMinted || txHash != null} onClick={handleButtonClick}>{
+              {wallet && <button className='mint-button' id="mint-button" onClick={handleButtonClick}>{
                 !isError
               ?
-                !alreadyMinted  
-              ? 
-                isMinting
+                alreadyMinted  
               ?
-                'Minting...'  
+                isMinting
+              ? 
+                'Minting...'
               :
-                'Collect' 
+                "Minted, mint again?" 
               : 
-                "Minted ✓" 
+                'Collect'
               : 
                 'Error'
               }</button>}
@@ -159,7 +143,7 @@ function EmbeddedWalletMintWidget(props: any) {
         <div className="widget-footer">
           <br/>
           {txHash ? <div className="dashed-box">
-            <a href={`https://sepolia.arbiscan.io/tx/${txHash}`} target="_blank">{`arbiscan.io: ${txHash.slice(0,8)}`}...</a>
+            <a href={`https://sepolia.basescan.org/tx/${txHash}`} target="_blank">{`sepolia.basescan.org: ${txHash.slice(0,8)}`}...</a>
           </div> : <p>Create a wallet and mint a free collectible on {props.network.replace('-', ' ')} in seconds</p>}
         </div>
       </div>
