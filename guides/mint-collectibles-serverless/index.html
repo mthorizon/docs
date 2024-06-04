@@ -12,7 +12,7 @@
     
     
   
-    <script type="module" crossorigin src="/assets/index-DYj1J6RE.js"></script>
+    <script type="module" crossorigin src="/assets/index-DhFKLycs.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/style-DihpUYed.css">
   </head>
   <body>
@@ -88,8 +88,8 @@ At any point in the guide, you can use the <code class="vocs_Code">wrangler dev<
 <p class="vocs_Paragraph">To do so, open your project, navigate to the <code class="vocs_Code">Contracts</code> page, select your <code class="vocs_Code">Linked contracts</code> and under <code class="vocs_Code">Write Contract</code> tab expand the <code class="vocs_Code">grantRole</code> method.</p>
 <p class="vocs_Paragraph">Complete with the following details:</p>
 <p class="vocs_Paragraph"><code class="vocs_Code">bytes32 role</code>: <code class="vocs_Code">0x9f2df0fed2c77648de5860a4cc508cd0818c85b8b8a1ab4ceeef8d981c8956a6</code></p>
-<p class="vocs_Paragraph"><code class="vocs_Code">address account</code>: <code class="vocs_Code">&lt;Generated Sequence Trnasactions API Wallet Address&gt;</code></p>
-<img src="/img/relayer/grant_role.png"/>
+<p class="vocs_Paragraph"><code class="vocs_Code">address account</code>: <code class="vocs_Code">&lt;Generated Sequence Transactions API Wallet Address&gt;</code></p>
+<img src="/img/relayer/grant_role.png" alt="Grant a role for the relayer"/>
 <p class="vocs_Paragraph">Where the <code class="vocs_Code">role</code> string inputted is the result of <code class="vocs_Code">keccak256(&quot;MINTER_ROLE&quot;)</code> in solidity or <code class="vocs_Code">ethers.utils.keccak256(ethers.utils.toUtf8Bytes(&quot;MINTER_ROLE&quot;))</code> in javascript</p>
 <p class="vocs_Paragraph">This makes it so that only your specific address can mint from the contract, it will error otherwise.</p>
 <p class="vocs_Paragraph">Complete the role update by clicking <code class="vocs_Code">write</code> and sign the sponsored transaction.</p>
