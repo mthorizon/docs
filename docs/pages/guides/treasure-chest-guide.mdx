@@ -19,7 +19,7 @@ In this guide we will go through the process of creating a web2/web3 enabled rea
 The tools will enable you to perform:
 
 1. [Sequence Builder Console Signup & Project Creation](/guides/treasure-chest-guide#1-sequence-builder-console-signup--project-creation): Create a project with the Builder
-2. [Access Key Management](/guides/treasure-chest-guide#2-access-key-management): Claim an public & secret access key to interact with the Sequence stack
+2. [Access Key Management](/guides/treasure-chest-guide#2-access-key-management): Claim a public, secret access key, and waas config key to interact with the Sequence stack
 3. [Embedded Wallet Integration](/guides/treasure-chest-guide#3-embedded-wallet-integration): Integrate an Embedded Wallet into the application
 4. [Deploy a Contract & Sponsor gas](/guides/treasure-chest-guide#4-deploy-a-contract--sponsor-gas): Deploy an items contract and sponsor gas
 5. [Deploy a Cloudflare Worker](/guides/treasure-chest-guide#5-deploy-a-cloudflare-worker): Deploy a cloudflare worker for gasless and no-confirmation transactions
@@ -54,7 +54,7 @@ Scroll down and select `+ Add Service Account`
 ![builder settings add service account](/img/builder/builder_settings_add_service_account.png)
 
 ### Select write permission
-Then change the access to `write` and `confirm`
+Then change the access to `Write` and `Confirm`
 
 ![builder settings add service account](/img/builder/builder_settings_add_service_account_confirm.png)
 
@@ -82,7 +82,7 @@ yarn create vite
 npm create vite
 ```
 
-Next, we'll install the correct packages to use Sequence Kit.
+Next, we'll install the correct packages to use the Embedded Wallet.
 
 ```shell
 pnpm install @0xsequence/waas
@@ -93,8 +93,7 @@ npm install @0xsequence/waas
 # or
 yarn add @0xsequence/waas
 ```
-
-In the `/src` folder you'll find a `main.tsx`, in there update the code to be the following, that incorporates the Sequence Embedded Wallet SDK
+All of the new files created in the follows steps, have them created in `/src`
 
 First create a file called something like `SequenceEmbeddedWallet.ts` with the following initialization code
 
@@ -149,7 +148,7 @@ Which can be installed with the following command, where the apple auth sign in 
 pnpm i @react-oauth/google react-apple-signin-auth
 ```
 
-And implemented with the previous imported files, in the following code
+And implemented with the previous imported files, in the following code in the `main.tsx` file
 
 ```typescript
 import React from 'react'
@@ -166,7 +165,7 @@ function Dapp() {
   const { sessionHash } = useSessionHash()
 
   return (
-	<GoogleOAuthProvider clientId="<GOOGLE_CLIENT_ID" nonce={sessionHash} key={sessionHash}>
+	<GoogleOAuthProvider clientId="<GOOGLE_CLIENT_ID>" nonce={sessionHash} key={sessionHash}>
 		<App />
 	</GoogleOAuthProvider>
   );
