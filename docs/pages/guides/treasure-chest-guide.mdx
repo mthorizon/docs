@@ -4,64 +4,75 @@ import { Callout } from "vocs/components";
 
 Time to complete: 50-60 minutes
 
-In this guide we will go through the process of integrating a static html/js maze into a web3 enabled react app, leveraging tools from the Sequence Stack to mint AI generated loot from treasure chests.
+In this guide we will go through the process of creating a web2/web3 enabled react app, leveraging tools from the Sequence Stack to mint AI generated loot from treasure chests using an Embedded Wallet for authentication.
 
 <Callout type="info">
-  You can play a live version of the game [here](https://dungeon-minter.vercel.app/)
+  You can play a live version of the game [here](https://0xsequence-demos.github.io/demo-dungeon-minter/)
 
   Where the full code can be found in the respective repositories
   - [Web3 react dapp](https://github.com/0xsequence-demos/demo-dungeon-minter)
-  - [Maze frontend](https://github.com/0xsequence-demos/integration-dungeon-minter-maze)
-  - [Diablo loot API](https://github.com/0xsequence-demos/integration-diablo-loot-api)
+  - [Template Embedded Wallet](https://github.com/0xsequence-demos/template-embedded-wallet-web2-auth)
   - [Cloudflare worker](https://github.com/0xsequence-demos/demo-cloudflare-worker-treasure-chests/)
+  - [Diablo loot API](https://github.com/0xsequence-demos/integration-diablo-loot-api)
 </Callout>
 
 The tools will enable you to perform:
 
 1. [Sequence Builder Console Signup & Project Creation](/guides/treasure-chest-guide#1-sequence-builder-console-signup--project-creation): Create a project with the Builder
 2. [Access Key Management](/guides/treasure-chest-guide#2-access-key-management): Claim an public & secret access key to interact with the Sequence stack
-3. [Sequence Kit Integration](/guides/treasure-chest-guide#3-sequence-kit-integration): Integrate Sequence kit into the application
-4. [iframe-to-Dapp Communication](/guides/treasure-chest-guide#4-iframe-to-dapp-communication): Send iframe messages from a seperately deployed frontend to a react app
-5. [Deploy a Contract & Sponsor gas](/guides/treasure-chest-guide#5-deploy-a-contract--sponsor-gas): Deploy an items contract and sponsor gas
-6. [Deploy a Cloudflare Worker](/guides/treasure-chest-guide#6-deploy-a-cloudflare-worker): Deploy a cloudflare worker for gasless and no-confirmation transactions
-7. [Generating AI Prompts & Images](/guides/treasure-chest-guide#7-generating-ai-prompts--images): Craft AI prompts from an API and generate images to be uploaded
-8. [Store Media to Sequence Metadata service](/guides/treasure-chest-guide#8-store-media-to-sequence-metadata-service): Upload collection and token metadata to Sequence
-9. [Securing Your Cloudflare Worker](/guides/treasure-chest-guide#9-securing-your-cloudflare-worker): Prevent outside requests to your cloudflare worker by restricting the referrer
-10. [(Optional) Naive Mint Restriction Per Wallet](/guides/treasure-chest-guide#10-optional-naive-mint-restriction-per-wallet): Restrict daily mints per wallet
+3. [Embedded Wallet Integration](/guides/treasure-chest-guide#3-embedded-wallet-integration): Integrate an Embedded Wallet into the application
+4. [Deploy a Contract & Sponsor gas](/guides/treasure-chest-guide#4-deploy-a-contract--sponsor-gas): Deploy an items contract and sponsor gas
+5. [Deploy a Cloudflare Worker](/guides/treasure-chest-guide#5-deploy-a-cloudflare-worker): Deploy a cloudflare worker for gasless and no-confirmation transactions
+6. [Generating AI Prompts & Images](/guides/treasure-chest-guide#6-generating-ai-prompts--images): Craft AI prompts from an API and generate images to be uploaded
+7. [Store Media to Sequence Metadata service](/guides/treasure-chest-guide#7-store-media-to-sequence-metadata-service): Upload collection and token metadata to Sequence
+8. [Securing Your Cloudflare Worker](/guides/treasure-chest-guide#8-securing-your-cloudflare-worker): Prevent outside requests to your cloudflare worker by restricting the referrer
+9. [(Optional) Naive Mint Restriction Per Wallet](/guides/treasure-chest-guide#9-optional-naive-mint-restriction-per-wallet): Restrict daily mints per wallet
 
 ## 1. Sequence Builder Console Signup & Project Creation
 
-First start by following [this walk-through](/solutions/builder/project-management) for how to sign up to the [Sequence Builder Console](https://sequence.build/) and to learn how to create a project.
+First start by following [this walkthrough](/solutions/builder/project-management) for how to sign up to the [Sequence Builder Console](https://sequence.build/) and to learn how to create a project.
 
-In order to use certain features, like `Gas Sponsoring` and the use of the `Sequence Relayer`, you'll need to upgrade your project plan to `Developer` [using this walk-through](/solutions/builder/project-settings#5-billing-settings)
+In order to use certain features, like `Gas Sponsoring` and the use of the `Transaction API`, you'll need to upgrade your project plan to `Developer` [using this walkthrough](/solutions/builder/project-settings#5-billing-settings)
 
 ## 2. Access Key Management
 
-Now that you have a project, you'll need to acquire 2 different Access Keys for your project.
-1. Public Access Key used for the wallet & transactions API, which can be done [here](/solutions/builder/getting-started#claim-an-api-access-key)
-2. Secret Access Key used for the Metadata Service, which can be done with the following instructions:
+Now that you have a project, you'll need to acquire 3 different Access Keys for your project.
+1. `Waas Config Key` used for the Embedded Wallet, which can be learned about [here](/solutions/builder/embedded-wallet)
+2. `Public Access Key` used for the Embedded Wallet & Transaction API, which can be done [here](/solutions/builder/getting-started#claim-an-api-access-key)
+3. `Secret Access Key` used for the Metadata Service, with the following steps
 
+::::steps
+### Access settings
 First start by accessing settings, and selecting the API Keys
 
 ![builder settings access keys](/img/builder/builder_settings_access_keys.png)
+
+### Add service account
 
 Scroll down and select `+ Add Service Account`
 
 ![builder settings add service account](/img/builder/builder_settings_add_service_account.png)
 
+### Select write permission
 Then change the access to `write` and `confirm`
 
 ![builder settings add service account](/img/builder/builder_settings_add_service_account_confirm.png)
 
 Finally `copy` the key and store it in a safe location, as you will not have access to this in the future from the Builder Console.
 
-## 3. Sequence Kit Integration
+::::
+
+## 3. Embedded Wallet Integration
+
+<Callout type="info">
+You can view and clone the template repository [here](https://github.com/0xsequence-demos/template-embedded-wallet-web2-auth)
+</Callout>
 
 We'll start from scratch building up the project with the necessary peices. 
 
 First start by creating a project folder with `mkdir <project>`, then `cd <project>` and create a `vite` project using:
 
-```
+```shell
 pnpm create vite
 
 # or 
@@ -73,131 +84,208 @@ npm create vite
 
 Next, we'll install the correct packages to use Sequence Kit.
 
-```
-npm install @0xsequence/kit @0xsequence/kit-wallet @0xsequence/kit-connectors wagmi ethers@5.7.2 viem 0xsequence @tanstack/react-query @0xsequence/design-system
+```shell
+pnpm install @0xsequence/waas
+
 # or
-pnpm install @0xsequence/kit @0xsequence/kit-wallet @0xsequence/kit-connectors wagmi ethers@5.7.2 viem 0xsequence @tanstack/react-query @0xsequence/design-system
+npm install @0xsequence/waas
+
 # or
-yarn add @0xsequence/kit @0xsequence/kit-wallet @0xsequence/kit-connectors wagmi ethers@5.7.2 viem 0xsequence @tanstack/react-query @0xsequence/design-system
+yarn add @0xsequence/waas
 ```
 
-In the `/src` folder you'll find a `main.tsx`, in there update the code to be the following, that incorporates the Sequence Kit connector and `@0xsequence/design-system` `ThemeProvider`
+In the `/src` folder you'll find a `main.tsx`, in there update the code to be the following, that incorporates the Sequence Embedded Wallet SDK
 
-This code uses `arbitrum-sepolia` as the network, as well as the following options to login: email, google, & apple.
+First create a file called something like `SequenceEmbeddedWallet.ts` with the following initialization code
+
+```typescript
+import { SequenceWaaS } from '@0xsequence/waas'
+
+const sequence = new SequenceWaaS({
+    projectAccessKey: import.meta.env.VITE_PROJECT_ACCESS_KEY!,
+    waasConfigKey:  import.meta.env.VITE_WAAS_CONFIG_KEY!,
+    network: 'arbitrum-nova'
+})
+
+export default sequence;
+```
+
+Then create another file called `useSessionHash.ts` that generates a session hash from the SDK unique to the user
+
+```typescript
+import sequence from './SequenceEmbeddedWallet.ts'
+import { useEffect, useState } from "react";
+
+export function useSessionHash() {
+    const [sessionHash, setSessionHash] = useState("")
+    const [error, setError] = useState<any>(undefined)
+
+    useEffect(() => {
+        const handler = async () => {
+            try {
+                setSessionHash(await sequence.getSessionHash())
+            } catch (error) {
+                console.error(error)
+                setError(error)
+            }
+        }
+        handler()
+        return sequence.onSessionStateChanged(handler)
+    }, [setSessionHash, setError])
+
+    return {
+        sessionHash,
+        error,
+        loading: !!sessionHash,
+    }
+}
+```
+
+Finally, to implement Google auth, you will need the `GoogleOAuthProvider` to wrap your application
+
+Which can be installed with the following command, where the apple auth sign in will be used later
+
+```shell
+pnpm i @react-oauth/google react-apple-signin-auth
+```
+
+And implemented with the previous imported files, in the following code
 
 ```typescript
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import './index.css'
 import App from './App.tsx'
+import { useSessionHash } from "./useSessionHash.ts";
 
-import { KitProvider } from '@0xsequence/kit'
-import { getDefaultConnectors } from '@0xsequence/kit-connectors'
-import { KitWalletProvider } from '@0xsequence/kit-wallet'
+import { ThemeProvider } from '@0xsequence/design-system'
+import { GoogleOAuthProvider } from '@react-oauth/google'
 
-import { createConfig, WagmiConfig} from 'wagmi'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { arbitrumSepolia} from 'wagmi/chains'
-
-const PROJECT_ACCESS_KEY = import.meta.env.VITE_PROJECT_ACCESS_KEY!
-const WALLET_CONNECT_ID = import.meta.env.VITE_WALLET_CONNECT_ID!
-
-const queryClient = new QueryClient()
 
 function Dapp() {
-	const chains = [arbitrumSepolia] as any
-  
-	const projectAccessKey = PROJECT_ACCESS_KEY
-
-	const connectors = getDefaultConnectors({
-		walletConnectProjectId: WALLET_CONNECT_ID,
-		defaultChainId: 421614,
-		//@ts-ignore
-		appName: 'Dungeon Minter Demo app',
-		projectAccessKey
-	  })
-	
-	  const transports: any = {}
-	
-	  const config = createConfig({
-		// @ts-ignore
-		transports,
-		connectors,
-		chains
-	  })
-  	const kitConfig: any = {
-		projectAccessKey: PROJECT_ACCESS_KEY,
-		position: 'center',
-		defaultTheme: 'dark',
-		displayedAssets: [
-			{
-				contractAddress: '0xaf8a08bf8b2945c2779ae507dade15985ea11fbc', // or include your contract address here
-				chainId: 421614
-			}
-		],
-		signIn: {
-			projectName: 'Demo Dungeon Minter',
-			showEmailInput: true,
-			socialAuthOptions: ['google', 'apple'],
-			walletAuthOptions: ['wallet-connect']
-		}
-	}
+  const { sessionHash } = useSessionHash()
 
   return (
-	<WagmiConfig config={config}>
-		<QueryClientProvider client={queryClient}> 
-			<KitProvider config={kitConfig}>
-				<KitWalletProvider>
-					<App />
-				</KitWalletProvider>
-			</KitProvider>
-	  	</QueryClientProvider>
-    </WagmiConfig>
+	<GoogleOAuthProvider clientId="<GOOGLE_CLIENT_ID" nonce={sessionHash} key={sessionHash}>
+		<App />
+	</GoogleOAuthProvider>
   );
 }
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-	<React.StrictMode>
-		<Dapp />
-	</React.StrictMode>,
+  <React.StrictMode>
+    <Dapp />
+  </React.StrictMode>
 )
 ```
 
-Once your `main.tsx` is ready, lets create a login button
+Once your `main.tsx` is ready, lets create the login buttons
 
-In `App.tsx` use the following code that checks to see if a user is connected, and makes 2 different screens appear given this information.
+In `App.tsx` use the following code that checks to see if a user is connected and presents a wallet address based on the signed in user, with the various social auth buttons and handlers
 
 ```typescript
-import {useEffect} from 'react'
+import { useState, useEffect } from 'react'
+import './App.css'
+import sequence from './SequenceEmbeddedWallet'
+import { useSessionHash } from './useSessionHash'
+import { CredentialResponse, GoogleLogin } from '@react-oauth/google';
+import AppleSignin from 'react-apple-signin-auth';
+import playImage from './assets/play.svg'
 
-import { useOpenConnectModal } from '@0xsequence/kit'
-import { useDisconnect, useAccount } from 'wagmi'
-import { useOpenWalletModal } from '@0xsequence/kit-wallet'
- 
-function App() {
+function LoginScreen () {
+  const { sessionHash } = useSessionHash()
 
-    const { setOpenConnectModal } = useOpenConnectModal()
-    const { setOpenWalletModal } = useOpenWalletModal()
-    const { isConnected, address } = useAccount() // address can be used to mint
-    const { disconnect } = useDisconnect()
+  const [wallet, setWallet] = useState<any>(null)
+  const [googleHover, setGoogleHover] = useState(false)
+  const [appleHover, setAppleHover] = useState(false)
+
+  const handleGoogleLogin = async (tokenResponse: CredentialResponse) => {
+    const res = await sequence.signIn({
+      idToken: tokenResponse.credential! // inputted id credential from google
+    }, "template")
+    setWallet(res.wallet)
+  }
+
+  const handleAppleLogin = async (response: any) => {
+    const res = await sequence.signIn({
+      idToken: response.authorization.id_token! // inputted id token from apple
+    }, "template")
  
-	useEffect(() => {
- 
-  }, [isConnected])
- 
+    setWallet(res.wallet)
+  }
+
+  // checks to see if there is a logged in user
+  useEffect(() => {
+    setTimeout(async () => {
+      if(await sequence.isSignedIn()){
+        setWallet(await sequence.getAddress())
+      }
+    }, 0)
+  }, [])
+
+  useEffect(() => {
+
+  }, [googleHover, appleHover, wallet])
+
   return (
     <>
       {
-      isConnected ? 
+        !wallet 
+      ? 
         <>
-          <button onClick={() => setOpenWalletModal(true)}>open wallet</button>
-          <button onClick={() => disconnect()}>disconnect</button>
-        </> 
-      : 
-        <>
-          <button onClick={() => setOpenConnectModal(true)}>connect</button>
+          <span className='sign-in-via'>SIGN IN VIA</span>
+          <br/>
+          <br/>
+          <br/>
+          <div className="login-container">
+          <div className='dashed-box-google'>
+              <p className='content'>
+                <div className='gmail-login' onMouseLeave={() => setGoogleHover(false)} onMouseEnter={() => {setGoogleHover(true)}} style={{overflow: 'hidden', opacity: '0',width: '90px', position: 'absolute', zIndex: 1, height: '100px'}}>
+                  {
+                  googleHover && <GoogleLogin 
+                    nonce={sessionHash}
+                    key={sessionHash}
+                    onSuccess={handleGoogleLogin} shape="circle" width={230} /> }
+                  </div>
+                  <span className='gmail-login'>Gmail</span>
+                  {googleHover && <img src={playImage} alt="Play" className="play-image-gmail" />}
+              </p>
+          </div>
+          <div className='dashed-box-apple'>
+            <p className='content' 
+            onMouseLeave={() => setAppleHover(false)} 
+            onMouseEnter={() => {setAppleHover(true)}}
+            style={{position:'relative'}}>
+                <span className='apple-login'>
+                  {/* @ts-ignore */}
+                  <AppleSignin
+                    key={sessionHash}
+                    authOptions={{
+                      clientId: '<replce with com. bundle id>',
+                      scope: 'openid email',
+                      redirectURI: '<must be a deployed URL>',
+                      usePopup: true,
+                      nonce: sessionHash
+                    }}
+                    onError={(error: any) => console.error(error)}
+                    onSuccess={handleAppleLogin}
+                  />Apple
+                </span>
+                {appleHover && <img src={playImage} alt="Play" className="play-image-apple" />}
+            </p>
+            </div>
+          </div>
         </>
+      : 
+        <p>{wallet}</p>
       }
     </>
+  )
+}
+
+function App() {
+  return (
+    <LoginScreen/>
   )
 }
 
@@ -208,8 +296,7 @@ Then, include a `.env` file in the root of your project, adding it to `.gitignor
 
 ```
 VITE_PROJECT_ACCESS_KEY=
-VITE_WALLET_CONNECT_ID=
-VITE_TRUSTED_IFRAME_ORIGIN=https://localhost:8002
+VITE_WAAS_CONFIG_KEY=
 ```
 
 <Callout type="warning">
@@ -218,56 +305,9 @@ All environment variables must start with `VITE_` to be included
 
 Run your code with the following command in the root folder and give it a try 
 
-```
+```shell
 pnpm run dev
 ```
-## 4. iframe-to-Dapp Communication
-
-The way the application is setup, a react app communicates to another frontend app process, so that integration between software environments can be made possible.
-
-This learning can be useful for building any iframe cross application design.
-
-With iframes, there's a native feature that allows you to pass messages between url and integrated frames.
-
-In order to accomplish this one must setup a `producer` message from the included child app, and a `consumer` recieving handler, with a restricted origin to prevent others from loading malicious iframes into your application.
-
-Begin by cloning down [this repository](https://github.com/moskalyk/maze) and running it with installing the packages `pnpm install` and running with `node server.js` to listen on `http:localhost:8002`
-
-### iframe Producer Message From Child Window
-
-With a single line of code contained within a click handler, one can send a message to the parent window, with a describing message that can pass any JSON object to the hoisting scope
-
-```js
-function onMouseClick(event){
-	...
-	// if clicked event intersects a treasure chest
-	window.parent.postMessage({portal: 'loot'}, 'http://localhost:5173/');
-}
-```
-
-### Dapp Consumer Handler In Parent Window
-
-Next we create a message event listener where the `window.addEventListener('message', callback)` is a method used in web development to listen for message events. It allows different browsing contexts, such as iframes, pop-up windows, or other tabs within the same browser, to communicate securely.
-
-```typescript
-const iframeToAppChannel = (event: any) => {
-	const trustedOrigin = import.meta.env.VITE_TRUSTED_IFRAME_ORIGIN // You would change this to your production deployment
-	
-	if (event.origin !== trustedOrigin) {
-		// Security check: Ensure that the message is from a trusted source. 
-		return;
-	}
-
-	if(event.data.portal == 'loot' && isConnected){
-		// generate loot for the user
-		generate() 
-	}
-}
-
-window.addEventListener('message', iframeToAppChannel);
-```
-
-Now if you were to trigger the click handler in the included iframe, the parent react app would recieve it for further processing, like with any connected wallet.  
 
 ## 5. Deploy A Contract & Sponsor Gas
 
@@ -299,17 +339,16 @@ Where in the following sections, we will complete the functions:
 - `ProcessInferencePool`: used to source loot metadata seed values from an external api
 - `Inference`: used to generate AI imagery and to check the status an in-progress inference
 - `Upload`: used to store metadata for future retrieval
+- `String`: string parsing class
 
 ```js
 let treasureChest = ProcessInferencePool(
 				Inference(
-					Time(
-						Strings(
-							Upload(
-								{
-									env: env
-								}
-							)
+					Strings(
+						Upload(
+							{
+								env: env
+							}
 						)
 					)
 				)
