@@ -68,7 +68,7 @@ Finally `copy` the key and store it in a safe location, as you will not have acc
 You can view and clone the template repository [here](https://github.com/0xsequence-demos/template-embedded-wallet-web2-auth)
 </Callout>
 
-We'll start from scratch building up the project with the necessary peices. 
+We'll start from scratch building up the project with the necessary pieces. 
 
 First start by creating a project folder with `mkdir <project>`, then `cd <project>` and create a `vite` project using:
 
@@ -291,7 +291,7 @@ function App() {
 export default App
 ```
 
-Then, include a `.env` file in the root of your project, adding it to `.gitignore`, then updating the file with the following values
+Then, include a `.env` file in the root of your project, adding it to `.gitignore`, then updating the file with the following values:
 
 ```
 VITE_PROJECT_ACCESS_KEY=
@@ -302,26 +302,26 @@ VITE_WAAS_CONFIG_KEY=
 All environment variables must start with `VITE_` to be included
 </Callout>
 
-Run your code with the following command in the root folder and give it a try 
+Run your code with the following command in the root folder and give it a try:
 
 ```shell
 pnpm run dev
 ```
 
-## 5. Deploy A Contract & Sponsor Gas
+## 4. Deploy A Contract & Sponsor Gas
 
 When deploying your contract, the recommended approach is to use an `ERC1155` over an `ERC721`. The benefits of using an `ERC1155`
 
 - random spaced `tokenID` to allow for parallelized minting
 - option via consent to apply governance to mint additional tokens of the same `tokenID`
 
-However, if you plan to only ever mint a single token of the generated media and you prefer technical security in managing parrallized minting over managing the security of the transactions API private key (which can always be rotated by setting a new collectible `role` via the [Sequence Builder](https://sequence.build/)) an ERC721 might be better suited.
+However, if you plan to only ever mint a single token of the generated media and you prefer technical security in managing parallelized minting over managing the security of the transactions API private key (which can always be rotated by setting a new collectible `role` via the [Sequence Builder](https://sequence.build/)) an ERC721 might be better suited.
 
 To deploy a contract, you can follow [this guide](/solutions/collectibles/contracts/deploy-an-item-collection) to deploy your ERC1155, and update your `wrangler.toml` with the `CONTRACT_ADDRESS`
 
 And to sponsor gas, follow [this guide](/solutions/builder/gas-tank#watch-the-gas-tank-in-action-in-builder)
 
-## 6. Deploy A Cloudflare Worker
+## 5. Deploy A Cloudflare Worker
 
 ### Minting A Token
 If you want to learn how to deploy a Cloudflare Worker from scratch, you can follow [this default guide](/guides/mint-collectibles-serverless) on minting a serverless gasless minter with your deployed `ERC1155` contract
@@ -354,13 +354,7 @@ let treasureChest = ProcessInferencePool(
 			)
 ```
 
-Using this design, we give appreciation to the following wizard and staff meme, to align with ones values and inherently transfer value of knowing who you are into your collection:
-
-<div style={{ display: "flex", justifyContent: "center", alignItems: "center", width: "100%" }}>
-	<img src="/img/guides/lootbox/you_shall_not_pass_meme.png" width="400px" alt="You Shall Not Pass Meme" />
-</div>
-
-## 7. Generating AI Prompts & Images
+## 6. Generating AI Prompts & Images
 
 In the template, we've included code to call an already deployed API and code to parse the response that is free to call yourself
 
@@ -480,7 +474,7 @@ and call the `getInferenceStatus` with the `inferenceId` passed in, where when y
 	...
 ```
 
-## 8. Store Media to Sequence Metadata Service
+## 7. Store Media to Sequence Metadata Service
 
 With our media `url` in hand, we can move onto storing the asset to the `Sequence Metadata Service`
 
@@ -494,7 +488,7 @@ Then once complete, pass the stored media url to the frontend
 	return new Response(JSON.stringify({... image: response.url, tokenID: response.tokenID}), { status: 200 });
 ```
 
-## 9. Securing Your Cloudflare Worker
+## 8. Securing Your Cloudflare Worker
 
 In order to secure your cloudflare worker to only process requests from a certain frontend origin, you can simple check the `request.headers` for the `Referrer` value and compare against the `CLIENT_URL` in the `wrangler.toml`
 
@@ -511,7 +505,7 @@ async function handleRequest(request: any, env: Env, ctx: ExecutionContext) {
 }
 ```
 
-## 10. (Optional) Naive mint restriction per wallet
+## 9. (Optional) Native Mint Restriction Per Wallet
 
 As an option to prevent overuse of the treasure chest minting from specific wallets, a parameter called `DAILY_MINT_RESTRICTION` can be set in the `wrangler.toml` as a maximum mint allowance per day. And, if you feel it's necessary adding an `ADMIN` to your protocol, to be able to in the future mint to a marketplace, this can be included too.
 
@@ -634,7 +628,3 @@ const hasDailyMintAllowance = async (env: Env, address: string) => {
 	return count < env.DAILY_MINT_RESTRICTION
 }
 ```
-
-<Callout type="info">
-	This is not a perfect solution, but a simple one. To further the security of the assets, a proof-of-personhood approach via trusted wallet graphs or WorldId scans can further the progress of the example.
-</Callout>
