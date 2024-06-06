@@ -1,6 +1,5 @@
 
 import {useEffect, useState} from 'react';
-import {sequence} from '0xsequence'
 import { SequenceIndexer } from '@0xsequence/indexer'
 import { CredentialResponse, GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
 import {useSessionHash} from './hooks/useSessionHash.ts'
@@ -12,8 +11,6 @@ function EmbeddedWalletMintWidget(props: any) {
   const indexer = new SequenceIndexer(`https://${props.network}-indexer.sequence.app`, 'AQAAAAAAADi4zbq6FAIlrlW4qD-o_xw0-5A')
 
   const { sessionHash } = useSessionHash()
-
-  sequence.initWallet('AQAAAAAAADi4zbq6FAIlrlW4qD-o_xw0-5A', {defaultNetwork: props.network})
 
   const [isMinting, setIsMinting] = useState(false)
   const [alreadyMinted, setAlreadyMinted] = useState(false)
