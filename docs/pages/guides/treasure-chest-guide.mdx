@@ -4,16 +4,17 @@ import { Callout } from "vocs/components";
 
 Time to complete: 50-60 minutes
 
-In this guide, we will create a web2/web3 enabled [React](https://react.dev/) dapp, leveraging tools from the Sequence Stack to mint AI generated loot from treasure chests using an Embedded Wallet for authentication, and Cloudflare workers for easy no-confirmation UX/UI transactions.
+In this guide, we will create a web3 application built in [React](https://react.dev/), leveraging tools from the Sequence Stack to mint AI generated loot from treasure chests using an Embedded Wallet for authentication, and Cloudflare workers for easy, no-confirmation transactions.
+
+We've wrapped this in a [dungeon crawler game](https://0xsequence-demos.github.io/demo-dungeon-minter/) to showcase these features in a game environment that you can play and earn rewards.
 
 <Callout type="info">
-  You can play a live version of the game [here](https://0xsequence-demos.github.io/demo-dungeon-minter/)
-
-  Where the full code can be found in the respective repositories
-  - [Web3 React dapp](https://github.com/0xsequence-demos/demo-dungeon-minter)
+ The full code can be found in the respective repositories:
+  - [Web3 React Dungeon Crawler Game](https://github.com/0xsequence-demos/demo-dungeon-minter)
   - [Template Embedded Wallet](https://github.com/0xsequence-demos/template-embedded-wallet-web2-auth)
-  - [Cloudflare worker](https://github.com/0xsequence-demos/demo-cloudflare-worker-treasure-chests/)
-  - [Diablo loot API](https://github.com/0xsequence-demos/integration-diablo-loot-api)
+  - [Cloudflare Worker](https://github.com/0xsequence-demos/demo-cloudflare-worker-treasure-chests/)
+  - [Diablo Loot API](https://github.com/0xsequence-demos/integration-diablo-loot-api)
+
 </Callout>
 
 The tools will enable you to perform:
@@ -85,6 +86,9 @@ npm create vite
 ```
 
 Next, we'll install the correct Wallet-as-a-Service (Waas) packages to use the Embedded Wallet:
+
+```shell
+pnpm install @0xsequence/waas
 
 ```shell
 pnpm install @0xsequence/waas
@@ -214,6 +218,7 @@ function LoginScreen () {
     setWallet(res.wallet)
   }
 
+  // checks to see if there is a logged in user
   useEffect(() => {
     setTimeout(async () => {
       if(await sequence.isSignedIn()){
@@ -290,6 +295,8 @@ function LoginScreen () {
           <span >{wallet}</span>
           </div>
         </>
+      : 
+        <p>{wallet}</p>
       }
     </>
   )
@@ -323,7 +330,7 @@ pnpm run dev
 
 ## 4. Deploy A Contract & Sponsor Gas
 
-We will deploy an token contract so we are able to link the AI-generated images to the metadata for any given token. When deploying your contract, the recommended approach is to use an `ERC1155` over an `ERC721`. The benefits of using an `ERC1155`:
+We will deploy an token contract so we are able to link the AI-generated images to the metadata for any given token. When deploying your contract, the recommended approach is to use an `ERC1155` over an `ERC721`. The benefits of using an `ERC1155`
 
 - Semi-Fungible: which is ideal for game assets that can have multiple copies of the same underlying item.
 - Gas Savings: for projects that require multiple tokens as a single ERC1155 can hold many different varieties.
@@ -334,7 +341,7 @@ To deploy a contract, you can follow [this guide](/solutions/collectibles/contra
 
 Then, for the minting function to work programmatically so that transactions are gasless for your relayer, you will need to make the Transactions API draw from your account credits on your upgrade billing plan by sponsoring your deployed smart contract address.
 
-To allow the Transactions API to relay transactions without a fee, sponsor gas by following [this guide](/solutions/builder/gas-tank#watch-the-gas-tank-in-action-in-builder) for the deployed contract.
+To allow the Transactions API to relay transactions without a fee, sponsor gas by following [this guide](/solutions/builder/gas-tank#watch-the-gas-tank-in-action-in-builder) for the deployed contract
 
 <Callout type="info">
 	All Sequence testnets are free
@@ -380,7 +387,13 @@ const generate = async () => {
 }
 ```
 
-Then complete the `getInferenceWithItem` function in order to get the instantiated inference reference from the Scenario API and pass in a `prompt` which is the generated loot `name` and `type`, as well as some additional parameters model parameters, which can be customized via the [Scenario API docs](https://docs.scenario.com/reference/postmodelsinferencesbymodelid):
+## 6. Generating AI Prompts & Images
+
+In the template, we've included code to call an already deployed API and code to parse the response that is free to call yourself
+
+With this API, we will showcase how to generate images from [Scenario.gg](https://scenario.gg/) by passing in a prompt.
+
+This can be accomplished by completing the `getInferenceWithItem` function and passing in a `prompt` which is basically the generated loot `name` and `type`, as well as some additional parameters
 
 <Callout type='info'>
 For this guide, we landed on the `EulerDiscreteScheduler` scheduler type from the Scenario API based on quality and time, but if you want to experiment with using additional schedulers, you can use [this custom local cli](https://github.com/moskalyk/scenario-gg-benchmark-cli) and check the results in the [Scenario.gg](https://scenario.gg/) dashboard
@@ -508,24 +521,24 @@ Again, we add the above function to the react code and pass the inferenceId. Whe
 ```
 
 <Callout type='info'>
-It should be noted, that you can design applications that return multiple images per prompt, and allow the user in userspace to choose the correct generation
+It should be noted, that you can design applications that return mulitple images per prompt, and allow the user in userspace to choose the correct generation
 </Callout>
 
 ## 7. Store Media to Sequence Metadata Service
 
-With our media `url` from the Scenario API in hand, we can move on to storing the asset to the `Sequence Metadata Service`. This enables you to link the AI-generated image to the specific token metadata - all through REST-API calls.
+With our media `url` from the Scenario API in hand, we can move onto storing the asset to the `Sequence Metadata Service`. This enables you to link the AI-generated image to the specific token metadata - all through REST-API calls.
 
 ### 2-Step Consent Process
 
 Since each Dungeon Minter treasure chest opening undergoes a 2-step consent based process to minting, for every media generated, an adjacent image is stored to Sequence before actual minting.
 
-In this consent flow, metadata is first stored, the `url` and `tokenID` is returned to the frontend, and the user later consents to mint the token where the `tokenID` with the `address` is passed back to the worker created in [Step 5](/guides/treasure-chest-guide#5-deploy-a-cloudflare-worker).
+In this consent flow, metadata is first stored, the `url` and `tokenID` is returned to the frontend, and the user later consents to minting the token where the `tokenID` with the `address` is passed back to the worker created in [Step 5](/guides/treasure-chest-guide#5-deploy-a-cloudflare-worker).
 
 ### Implementation
 
 Complete and integrate [this guide](/guides/metadata-guide) in order to build your serverless Media Service that uses Cloudflare workers.
 
-Cloudflare workers allow developers to run minimal infrastructure so that you can spend less time worrying about uptime and server use.
+Cloudflare workers allows developers to run minimal infrastructure so that you can spend less time worrying about up time and server use.
 
 Once complete, pass the stored media `tokenID` and `url` to the frontend:
 
@@ -601,7 +614,7 @@ Where `hasDailyMintAllowance` is broken down into 2 functions:
 
 In order to use the Sequence Indexer, we'll need to `pnpm install @0xsequence/indexer`
 
-Then, to implement we use a while loop that gets the first batch of transactions and the `page.after` value from the indexer, and continuously checks if the timestamp is less than 24 hours appending to a temporary array for each pass. This ensures we get all of the available transactions.
+Then, to implement we use a while loop that gets the first batch of transactions and the `page.after` value from the indexer, and continuously checks if the timestamp is less than 24 hours appending to a temporary array for each pass. This ensures we get all of the available transactions:
 
 ```typescript
 import { SequenceIndexer } from '@0xsequence/indexer'
@@ -666,7 +679,7 @@ const fullPaginationDay = async (env: Env, address: string) => {
 }
 ```
 ### Mint Count For A Day
-All collectibles minted from the `ERC721` and `ERC1155` standard Sequence contracts are `from` the `0x` address
+All collectibles minted from the `ERC721` and `ERC1155` standard Sequence contracts are `from` the `0x` address:
 
 ```typescript
 const mintCount = (env: Env, txs: any) => {
