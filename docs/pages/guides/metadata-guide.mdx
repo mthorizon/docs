@@ -99,7 +99,7 @@ const res1 = await collectionsService.createToken({
 In the request, set the `metadadaField` (assetType) to `image`, with the other necessary fields completed to return an asset response to be used in the next step
 
 ```typescript
-const res2 = await collectionsService.createAsset({
+const jsonCreateAsset = await collectionsService.createAsset({
 	projectId: projectID,
 	asset: {
 		id: Number(String(randomTokenIDSpace).slice(0,10)),

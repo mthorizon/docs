@@ -4,13 +4,13 @@ import { Callout } from "vocs/components";
 
 Time to complete: 50-60 minutes
 
-In this guide we will go through the process of creating a web2/web3 enabled react app, leveraging tools from the Sequence Stack to mint AI generated loot from treasure chests using an Embedded Wallet for authentication.
+In this guide, we will create a web2/web3 enabled [React](https://react.dev/) dapp, leveraging tools from the Sequence Stack to mint AI generated loot from treasure chests using an Embedded Wallet for authentication, and Cloudflare workers for easy no-confirmation UX/UI transactions.
 
 <Callout type="info">
   You can play a live version of the game [here](https://0xsequence-demos.github.io/demo-dungeon-minter/)
 
   Where the full code can be found in the respective repositories
-  - [Web3 react dapp](https://github.com/0xsequence-demos/demo-dungeon-minter)
+  - [Web3 React dapp](https://github.com/0xsequence-demos/demo-dungeon-minter)
   - [Template Embedded Wallet](https://github.com/0xsequence-demos/template-embedded-wallet-web2-auth)
   - [Cloudflare worker](https://github.com/0xsequence-demos/demo-cloudflare-worker-treasure-chests/)
   - [Diablo loot API](https://github.com/0xsequence-demos/integration-diablo-loot-api)
@@ -22,38 +22,40 @@ The tools will enable you to perform:
 2. [Access Key Management](/guides/treasure-chest-guide#2-access-key-management): Claim a public, secret access key, and waas config key to interact with the Sequence stack
 3. [Embedded Wallet Integration](/guides/treasure-chest-guide#3-embedded-wallet-integration): Integrate an Embedded Wallet into the application
 4. [Deploy a Contract & Sponsor gas](/guides/treasure-chest-guide#4-deploy-a-contract--sponsor-gas): Deploy an items contract and sponsor gas
-5. [Deploy a Cloudflare Worker](/guides/treasure-chest-guide#5-deploy-a-cloudflare-worker): Deploy a cloudflare worker for gasless and no-confirmation transactions
+5. [Deploy a Cloudflare Worker](/guides/treasure-chest-guide#5-deploy-a-cloudflare-worker): Deploy a Cloudflare worker for gasless and no-confirmation transactions
 6. [Generating AI Prompts & Images](/guides/treasure-chest-guide#6-generating-ai-prompts--images): Craft AI prompts from an API and generate images to be uploaded
 7. [Store Media to Sequence Metadata service](/guides/treasure-chest-guide#7-store-media-to-sequence-metadata-service): Upload collection and token metadata to Sequence
-8. [Securing your Cloudflare Worker](/guides/treasure-chest-guide#8-securing-your-cloudflare-worker): Prevent outside requests to your cloudflare worker by restricting the referrer
+8. [Securing your Cloudflare Worker](/guides/treasure-chest-guide#8-securing-your-cloudflare-worker): Prevent outside requests to your Cloudflare worker by restricting the referrer
 9. [(Optional) Naive Mint Restriction Per Wallet](/guides/treasure-chest-guide#9-optional-naive-mint-restriction-per-wallet): Restrict daily mints per wallet
 
 ## 1. Sequence Builder Console Signup & Project Creation
 
 First start by following [this walkthrough](/solutions/builder/project-management) for how to sign up to the [Sequence Builder Console](https://sequence.build/) and to learn how to create a project.
 
-In order to use certain features, like `Gas Sponsoring` and the use of the `Transaction API`, you'll need to upgrade your project plan to `Developer` [using this walkthrough](/solutions/builder/project-settings#5-billing-settings)
+To use certain features, like `Gas Sponsoring` and the use of the `Transactions API`, you'll need to upgrade your project plan to `Developer` [using this walkthrough](/solutions/builder/project-settings#5-billing-settings)
 
 ## 2. Access Key Management
 
-Now that you have a project, you'll need to acquire 3 different Access Keys for your project.
+Now that you have a project, you'll need to acquire 3 different Access Keys for your project in order to authenticate your application with the Sequence Stack:
 1. `Waas Config Key` used for the Embedded Wallet, which can be learned about [here](/solutions/builder/embedded-wallet)
-2. `Public Access Key` used for the Embedded Wallet & Transaction API, which can be done [here](/solutions/builder/getting-started#claim-an-api-access-key)
+2. `Public Access Key` used for the Embedded Wallet & Transactions API, which can be done [here](/solutions/builder/getting-started#claim-an-api-access-key)
 3. `Secret Access Key` used for the Metadata Service, with the following steps
 
+### Secret Access Key Creation
+
 ::::steps
-### Access settings
+#### Access Settings
 First start by accessing settings, and selecting the API Keys
 
 ![builder settings access keys](/img/builder/builder_settings_access_keys.png)
 
-### Add service account
+#### Add Service Account
 
 Scroll down and select `+ Add Service Account`
 
 ![builder settings add service account](/img/builder/builder_settings_add_service_account.png)
 
-### Select write permission
+#### Select Write Permission
 Then change the access to `Write` and `Confirm`
 
 ![builder settings add service account](/img/builder/builder_settings_add_service_account_confirm.png)
@@ -68,9 +70,9 @@ Finally `copy` the key and store it in a safe location, as you will not have acc
 You can view and clone the template repository [here](https://github.com/0xsequence-demos/template-embedded-wallet-web2-auth)
 </Callout>
 
-We'll start from scratch building up the project with the necessary pieces. 
+We'll start from scratch building up the project with the necessary pieces, to enable the use of a Sequence Embedded Wallet which enables users to be onboarded to your application using web2 authentication providers.
 
-First start by creating a project folder with `mkdir <project>`, then `cd <project>` and create a `vite` project using:
+First start by creating a project folder with `mkdir <project>`, then `cd <project>` and create a `vite` project using React:
 
 ```shell
 pnpm create vite
@@ -82,7 +84,7 @@ yarn create vite
 npm create vite
 ```
 
-Next, we'll install the correct packages to use the Embedded Wallet.
+Next, we'll install the correct Wallet-as-a-Service (Waas) packages to use the Embedded Wallet
 
 ```shell
 pnpm install @0xsequence/waas
@@ -93,9 +95,10 @@ npm install @0xsequence/waas
 # or
 yarn add @0xsequence/waas
 ```
-All of the new files created in the follows steps, have them created in `/src`
 
-First create a file called something like `SequenceEmbeddedWallet.ts` with the following initialization code
+For all of the new files created in the follows steps, have them be created in `/src`
+
+First, create a file called something like `SequenceEmbeddedWallet.ts` with the following initialization code:
 
 ```typescript
 import { SequenceWaaS } from '@0xsequence/waas'
@@ -140,13 +143,13 @@ export function useSessionHash() {
 }
 ```
 
-Finally, to implement Google auth, you will need the `GoogleOAuthProvider` to wrap your application. The following command will install it, plus Apple Auth sign in, which will be used later:
+Finally, to implement Google auth, you will need the `GoogleOAuthProvider` to wrap your application. The following command will install it and Apple Auth sign in, which will be used later:
 
 ```shell
 pnpm i @react-oauth/google react-apple-signin-auth
 ```
 
-And implemented with the previous imported files, in the following code in the `main.tsx` file
+Then, the starter code is implemented with the previous imported files, in the following code within the `main.tsx` file:
 
 ```typescript
 import React from 'react'
@@ -176,11 +179,11 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 )
 ```
 
-Once your `main.tsx` is ready, lets create the login buttons, that will look like this
+Once your `main.tsx` is ready, lets create the login buttons, which will look like this:
 
 ![embedded wallet social login](/img/guides/treasure-chest/guide_treasure_chest_embedded_wallet_template.png)
 
-In `App.tsx` use the following code that checks to see if a user is connected and presents a wallet address based on the signed in user, with the various social auth buttons and handlers
+In `App.tsx` use the following code that checks to see if a user is connected and presents a wallet address based on the signed in user, with the various social auth buttons and handlers:
 
 ```typescript
 import { useState, useEffect } from 'react'
@@ -248,7 +251,7 @@ function LoginScreen () {
           <div className="login-container">
           <div className='dashed-box-google'>
               <p className='content'>
-                <div className='gmail-login' style={{overflow: 'hidden', opacity: '0',width: '90px', position: 'absolute', zIndex: 1, height: '100px'}}>
+                <div className='gmail-login' style={{overflow: 'hidden', opacity: '0', width: '90px', position: 'absolute', zIndex: 1, height: '100px'}}>
                   <GoogleLogin 
                     nonce={sessionHash}
                     key={sessionHash}
@@ -301,7 +304,7 @@ function App() {
 export default App
 ```
 
-Then, include a `.env` file in the root of your project, adding it to `.gitignore`, then updating the file with the following values from the Sequence Builder:
+Then, include a `.env` file in the root of your project, adding it to `.gitignore`, and updating the file with the following values from the Sequence Builder:
 
 ```
 VITE_PROJECT_ACCESS_KEY=
@@ -309,7 +312,7 @@ VITE_WAAS_CONFIG_KEY=
 ```
 
 <Callout type="warning">
-All environment variables must start with `VITE_` to be included
+All environment variables must start with `VITE_` to be included in the environment of a vite application
 </Callout>
 
 Run your code with the following command in the root folder and give it a try:
@@ -323,25 +326,38 @@ pnpm run dev
 We will deploy an token contract so we are able to link the AI-generated images to the metadata for any given token. When deploying your contract, the recommended approach is to use an `ERC1155` over an `ERC721`. The benefits of using an `ERC1155`
 
 - semi-fungible which is ideal for game assets that can have multiple copies of the same underlying item.
-- massive gas savings for proejcts that require multiple tokens as a single ERC1155 can hold many different varieties.
+- massive gas savings for projects that require multiple tokens as a single ERC1155 can hold many different varieties.
+
+In terms of the gas savings benefit, instead of deploying a new contract for each token type, a single ERC1155 token contract can hold the entire system state, reducing deployment costs and complexity.
 
 To deploy a contract, you can follow [this guide](/solutions/collectibles/contracts/deploy-an-item-collection) to deploy your ERC1155, and update your `wrangler.toml` with the `CONTRACT_ADDRESS`
 
-And to allow the Transaction API to relay transactions without a fee, sponsor gas by following [this guide](/solutions/builder/gas-tank#watch-the-gas-tank-in-action-in-builder) for the deployed contract.
+Then, for the minting function to work programmatically so that transactions are gasless for your relayer, you will need to make the Transactions API draw from your account credits on your upgrade billing plan by sponsoring your deployed smart contract address.
+
+To allow the Transactions API to relay transactions without a fee, sponsor gas by following [this guide](/solutions/builder/gas-tank#watch-the-gas-tank-in-action-in-builder) for the deployed contract
+
+<Callout type="info">
+	All Sequence testnets are free
+</Callout>
 
 ## 5. Deploy A Cloudflare Worker
 
-Once we have our token contract deployed, we will also deploy a serverless worker that handles token mints using the Sequence Transaction API for us in a secure & scalable way. 
-
+Following the previous step, the Sequence Transactions API can be implemented on a serverless Cloudflare worker so a game or app user interaction is seamless without a confirmation signature or gas payment. You'll also benefit from not having to be worried about transaction speed, throughput and re-orgs by the relayer, and experience automatic scaling with Cloudflare.
 
 ### Minting A Token
 If you want to learn how to deploy a Cloudflare Worker from scratch, you can follow [this guide](/guides/mint-collectibles-serverless) on minting a serverless gasless minter with your deployed `ERC1155` contract
 
+<Callout type="danger">
+Ensure that if you're using a Sequence Standard ERC1155 Items Contract, you grant the `MINTER_ROLE` for your relayer account address.
+</Callout>
+
 ## 6. Generating AI Prompts & Images
 
-In the template, we've included code to call an already publicly available, deployed API which randomly generates diablo-like loot along with the code to parse the response.
+When beginning your journey into AI image generation, you will require a source of model prompts to produce media. For this guide and demo, we've sourced prompts from the items contained in the [Diablo game](https://d07riv.github.io/diabloweb/)
 
-With this API, we will showcase how to generate images using the prompt from the deployed diablo API within the `generate` function.
+In the [template](https://github.com/0xsequence-demos/demo-cloudflare-worker-treasure-chests/), we've included code to call an already deployed API and code to parse the response that is free to call yourself
+
+With this API, we will showcase how to generate images using the prompt from the deployed Diablo API within the `generate` function.
 
 ```typescript
 const generate = async () => {
@@ -364,10 +380,10 @@ const generate = async () => {
 }
 ```
 
-Then the `getInferenceWithItem` function is called where we pass in a `prompt` which is the generated loot `name` and `type` returned from the diablo API, as well as some additional parameters.
+Then complete the `getInferenceWithItem` function in order to get the instantiated inference reference from the Scenario API and pass in a `prompt` which is the generated loot `name` and `type`, as well as some additional parameters model parameters, which can be customized via the [Scenario API docs](https://docs.scenario.com/reference/postmodelsinferencesbymodelid)
 
 <Callout type='info'>
-We used the `EulerDiscreteScheduler` parameter for the scheduler type which is a good balance between quality and image generation time, however if you want to experiment with different scheduler parameters, you can use [this custom local cli](https://github.com/moskalyk/scenario-gg-benchmark-cli) and check the results in the [Scenario.gg](https://scenario.gg/) dashboard.
+For this guide, we landed on the `EulerDiscreteScheduler` scheduler type from the Scenario API based on quality and time, but if you want to experiment with using additional schedulers, you can use [this custom local cli](https://github.com/moskalyk/scenario-gg-benchmark-cli) and check the results in the [Scenario.gg](https://scenario.gg/) dashboard
 </Callout>
 
 ```typescript
@@ -421,7 +437,7 @@ Then we simply implement the above functions in the react code:
 	...
 ```
 
-Then once we have the `inferenceId` we can poll the inference status and return when complete. This way we can notify the user on the client-side about the status of the image generation process which can take a few moments:
+Once we have the `inferenceId` we can call poll the inference status and return when complete, signified by the `succeeded` status descriptor
 
 ```typescript
 const getInferenceObjectWithPolling = async (env: Env, id: any) => {
@@ -441,7 +457,7 @@ const getInferenceObjectWithPolling = async (env: Env, id: any) => {
 		while (!['succeeded', 'failed'].includes(status)) {
 			// Fetch the inference details
 			try {
-				const inferenceResponse = await fetch(`https://api.cloud.scenario.com/v1/models/Fm1gtd_gRwmopwj2gyWtUA/inferences/${inferenceId}`, {
+				const inferenceResponse = await fetch(`https://api.cloud.scenario.com/v1/models/${env.SCENARIO_MODEL_ID}/inferences/${inferenceId}`, {
 					method: 'GET',
 					headers
 				})
@@ -491,34 +507,40 @@ Again, we add the above function to the react code and pass the inferenceId. Whe
 	...
 ```
 
+<Callout type='info'>
+It should be noted, that you can design applications that return mulitple images per prompt, and allow the user in userspace to choose the correct generation
+</Callout>
+
 ## 7. Store Media to Sequence Metadata Service
 
 With our media `url` in hand, we can move onto storing the asset to the `Sequence Metadata Service`. This enables you to link the AI-generated image to the specific token metadata - all through REST-API calls!
 
-Complete and integrate [this guide](/guides/metadata-guide) in order to learn about the Sequence Metadata API.
+Complete and integrate [this guide](/guides/metadata-guide) in order to build a Serverless Media Service that uses Cloudflare Workers.
 
-Then once complete, pass the stored media url to the frontend:
+Cloudflare workers allows developers to run minimal infrastructure so that you can spend less time worrying about up time and server use.
+
+Once complete, pass the stored media url to the frontend
 
 ```typescript
 	...
-	const response = await uploadAsset(...) // Example function taken from Sequence Metadata guide
-	return new Response(JSON.stringify({... image: response.url, tokenID: response.tokenID}), { status: 200 });
+	const response = await uploadAsset(env, projectID, collectionID, jsonCreateAsset.asset.id, String(randomTokenIDSpace), imageUrl)
+	return new Response(JSON.stringify({image: response.url }), { status: 200 });
 ```
 
 ## 8. Securing your Cloudflare Worker
 
-In order to secure your cloudflare worker to only process requests from a certain frontend origin, you can simple check the `request.headers` for the `Referrer` value and compare against the `CLIENT_URL` in the `wrangler.toml`
+To secure your Cloudflare worker to only process requests from a certain frontend origin, you can simply check the `request.headers` for the `Referrer` value and compare it against the `CLIENT_URL` in the `wrangler.toml`
 
 ```typescript
 async function handleRequest(request: any, env: Env, ctx: ExecutionContext) {
 	const originUrl = new URL(request.url);
 	const referer = request.headers.get('Referer');
 
-	if(referer.toString() == env.CLIENT_URL){
-		...
-	} else {
+	if(referer.toString() != env.CLIENT_URL){
 		return new Response('Bad Origin', { status: 500 }); // Handle errors
-	}
+	} 
+
+	...
 }
 ```
 
@@ -540,7 +562,7 @@ Happy building!
 
 ## 9. (Optional) Native Mint Restriction Per Wallet
 
-As an option to prevent overuse of the treasure chest minting from specific wallets, a parameter called `DAILY_MINT_RESTRICTION` can be set in the `wrangler.toml` as a maximum mint allowance per day. And, if you feel it's necessary adding an `ADMIN` to your protocol, to be able to in the future mint to a marketplace, this can be included too.
+As an option to prevent overuse of the treasure chest minting from specific wallets, a parameter called `DAILY_MINT_RESTRICTION` can be set in the `wrangler.toml` as a maximum mint allowance per day. And, if you feel it's necessary to add an `ADMIN` to your protocol to be able to mint an infinite amount.
 
 These features can be implemented in the code with the following steps:
 
@@ -551,11 +573,9 @@ async function handleRequest(request: any, env: Env, ctx: ExecutionContext) {
 	const { address, tokenID }: any = payload
 
 	// check for admin
-	if(address.toLowerCase() != env.ADMIN.toLowerCase()){
+	if(address.toLowerCase() != env.ADMIN.toLowerCase() && !await hasDailyMintAllowance(env, address)){
 		// check for daily mint allowance
-		if(!await hasDailyMintAllowance(env, address)){
-			return new Response(JSON.stringify({limitExceeded: true}), { status: 400 })
-		}
+		return new Response(JSON.stringify({limitExceeded: true}), { status: 400 })
 	}
 	...
 }
@@ -572,7 +592,7 @@ Where `hasDailyMintAllowance` is broken down into 2 functions:
 
 In order to use the Sequence Indexer, we'll need to `pnpm install @0xsequence/indexer`
 
-Then, to implement we use a while loop that gets the first batch of transactions and the `page.after` value from the indexer, and continously checks if the timestamp is less than 24 hours appending to a temporary array for each pass. This ensures we get all of the available transactions.
+Then, to implement we use a while loop that gets the first batch of transactions and the `page.after` value from the indexer, and continuously checks if the timestamp is less than 24 hours appending to a temporary array for each pass. This ensures we get all of the available transactions.
 
 ```typescript
 import { SequenceIndexer } from '@0xsequence/indexer'
@@ -662,4 +682,8 @@ const hasDailyMintAllowance = async (env: Env, address: string) => {
 }
 ```
 
+## Conclusion
 
+You should now understand how to mint AI art for your Sequence and Scenario.gg powered game. Users will be able to sign in with web2 social auth using an Embedded Wallet not having to worry about private keys, and, expose users to a whole new dimension of in-game play.
+
+Happy building!
