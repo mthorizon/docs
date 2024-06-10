@@ -15,19 +15,10 @@ export const topNav = [
 ]
 },
   {
-    text: 'Guides',
+    text: 'Resources',
     items: [
-      { text: 'Web3 Game with WebGL', link: '/guides/webgl-guide', match: '/guides/webgl-guide', items: [
-        { text: 'Overview', link: '/guides/webgl-guide', match: '/guides/webgl-guide' }, 
-      ] 
-    },
-      { text: 'Web3 Game with Unity', link: '/guides/unity-guide', match: '/guides/unity-guide' },
-      { text: 'Collectible Minting', link: '/guides/mint-collectibles-serverless', match: '/guides/mint-collectibles-serverless' },
-      { text: 'Collection Management', link: '/guides/metadata-guide', match: '/guides/metadata-guide' },
-      { text: 'AI Treasure Chests', link: '/guides/treasure-chest-guide', match: '/guides/treasure-chest-guide' },
-      { text: 'Custom Marketplace', link: '/guides/custom-marketplace', match: '/guides/custom-marketplace' },
-      { text: 'Embedded Wallet', link: '/guides/templates/template-in-game-wallet', match: '/guides/templates/template-in-game-wallet' },
-      { text: 'Transaction Engine', link: '/guides/templates/building-relaying-server', match: '/guides/templates/building-relaying-server' },
+    { text: 'Guides', link: '/guides/guide-overview', match: '/guides/guide-overview' },
+    { text: 'Templates', link: '/guides/template-overview', match: '/guides/template-overview' },
     ]
   },
   { 
@@ -301,6 +292,7 @@ export const sidebar = {
 
       // ]
     },
+    { text: 'Build a Backend Transaction Manager', collapsed: true, link: '/guides/templates/building-relaying-server' },
     {
       text: 'Build a Custom Marketplace',
       collapsed: true,
@@ -322,13 +314,12 @@ export const sidebar = {
     //   link: '/guides/discord'
     // },
     {
-      text: 'Templates',
-      items: [
-        { text: 'Embedded Wallet Demo', link: '/guides/templates/template-embedded-wallet' },
-        { text: 'React Native Embedded Wallet Demo', link: '/guides/templates/template-embedded-wallet-react-native' },
-        { text: 'Build a Backend Transaction Manager', link: '/guides/templates/building-relaying-server' }
-        // { text: 'Marketplace API Demo', link: '/guides/templates/template-marketplace-api' }
-      ]
+      text: 'Templates', link: '/guides/template-overview'
+      // items: [
+      //   { text: 'Embedded Wallet Demo', link: '/guides/templates/template-embedded-wallet' },
+      //   { text: 'Build a Backend Transaction Manager', link: '/guides/templates/building-relaying-server' }
+      //   // { text: 'Marketplace API Demo', link: '/guides/templates/template-marketplace-api' }
+      // ]
     }
 ],
 
