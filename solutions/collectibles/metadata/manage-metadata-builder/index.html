@@ -12,7 +12,7 @@
     
     
   
-    <script type="module" crossorigin src="/assets/index-CmemVn_m.js"></script>
+    <script type="module" crossorigin src="/assets/index-DOqPSoXf.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/style-bPriZN0b.css">
   </head>
   <body>
@@ -59,7 +59,7 @@
 <h2 class="vocs_H2 vocs_Heading"><div id="step-9-set-the-base-metadata-uri" class="vocs_Heading_slugTarget"></div>Step 9: Set the Base Metadata URI<a class="vocs_Anchor vocs_Autolink" aria-hidden="true" tabindex="-1" href="/solutions/collectibles/metadata/manage-metadata-builder#step-9-set-the-base-metadata-uri"><div data-autolink-icon="true" class="vocs_Div vocs_AutolinkIcon" style="--vocs_AutolinkIcon_iconUrl:url(/.vocs/icons/link.svg)"></div></a></h2>
 <p class="vocs_Paragraph">Scroll to <code class="vocs_Code">setBaseMetadataURI</code>, expand it, and under <code class="vocs_Code">tokenBaseURI</code> paste the URL for the JSON folder preview you got from Pinata earlier. It should look something like this:</p>
 <div class="vocs_CodeBlock"><div class="vocs_Pre_wrapper"><pre style="background-color:#fff;--shiki-dark-bg:#22272e;color:#24292e;--shiki-dark:#adbac7" tabindex="0" class="shiki shiki-themes github-light github-dark-dimmed vocs_Pre"><code class="vocs_Code"><span class="line vocs_Span"><span class="vocs_Span">https://azure-wooden-lemur-911.mypinata.cloud/ipfs/QmW5gvYGWb98GsN8VjTRWu4pLn6jryEXNxZKNWpPhVwtDm/</span></span></code></pre></div></div>
-<p class="vocs_Paragraph">Click “Write” and you will be prompted to sign again. This will modify the contract on chain to set the metadata base. Essentially any token ID you provide will be appended to this URL, along with the <code class="vocs_Code">.json</code> suffix. So if you mint token ID 123, it will look for <code class="vocs_Code">tokenBaseURI + 123.json</code>.</p>
+<p class="vocs_Paragraph">Click “Write” and you will be prompted to sign again. This will modify the contract on-chain to set the metadata base. Essentially any token ID you provide will be appended to this URL, along with the <code class="vocs_Code">.json</code> suffix. So if you mint token ID 123, it will look for <code class="vocs_Code">tokenBaseURI + 123.json</code>.</p>
 <p class="vocs_Paragraph"><img src="/img/guides/manage-contract-metadata-builder/7.jpeg" alt="Base Metadata Setup"/></p>
 <h2 class="vocs_H2 vocs_Heading"><div id="step-10-minting-time" class="vocs_Heading_slugTarget"></div>Step 10: Minting Time<a class="vocs_Anchor vocs_Autolink" aria-hidden="true" tabindex="-1" href="/solutions/collectibles/metadata/manage-metadata-builder#step-10-minting-time"><div data-autolink-icon="true" class="vocs_Div vocs_AutolinkIcon" style="--vocs_AutolinkIcon_iconUrl:url(/.vocs/icons/link.svg)"></div></a></h2>
 <p class="vocs_Paragraph">Finally, it&#x27;s time to mint! Scroll up to <code class="vocs_Code">mint</code>, expand it, and fill in the details:</p>
