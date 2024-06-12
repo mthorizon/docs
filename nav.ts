@@ -294,6 +294,11 @@ export const sidebar = {
     },
     { text: 'Build a Backend Transaction Service', collapsed: true, link: '/guides/building-relaying-server' },
     {
+      text: 'Build a Serverless Analytics Dashboard',
+      collapsed: true,
+      link: '/guides/analytics-guide',
+    },
+    {
       text: 'Build a Custom Marketplace',
       collapsed: true,
       link: '/guides/custom-marketplace',
