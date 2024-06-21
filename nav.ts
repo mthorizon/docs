@@ -85,7 +85,7 @@ export const sidebar = {
           },
           {text: 'Architecture', link: '/solutions/wallets/embedded-wallet/architecture'},
           {
-            text: 'Implementation Details', collapsed: true, link: '/solutions/wallets/embedded-wallet/implementation-details/action-payloads', items: [
+            text: 'Implementation Details', collapsed: true, items: [
             {text: 'Action payloads', link: '/solutions/wallets/embedded-wallet/implementation-details/action-payloads'},
             {text: 'Response payloads', link: '/solutions/wallets/embedded-wallet/implementation-details/response-payloads'},
             {text: 'Trust Contract Recovery Flow', link: '/solutions/wallets/embedded-wallet/implementation-details/trust-contract-recovery-flow'},
@@ -99,7 +99,7 @@ export const sidebar = {
         items: [
           {text: 'Overview', link: '/solutions/wallets/universal-wallet/overview'},
           {text: 'Quickstart', link: '/solutions/wallets/universal-wallet/quickstart'},
-          {text: 'Examples', collapsed: true, link: '/solutions/wallets/universal-wallet/examples/connect-wallet', items: [
+          {text: 'Examples', collapsed: true, items: [
             {text: 'Connect Wallet', link: '/solutions/wallets/universal-wallet/examples/connect-wallet'},
             {text: 'Authenticate Users with Message Signature', link: '/solutions/wallets/universal-wallet/examples/auth-address'},
             {text: 'Signing & Verifying Messages', link: '/solutions/wallets/universal-wallet/examples/sign-message'},
@@ -118,8 +118,9 @@ export const sidebar = {
           {text: 'Key Management', link: '/solutions/wallets/universal-wallet/key-management'}
         ]
         },
-        { text: 'Wallet Linking', collapsed: false, link: '/solutions/wallets/link-wallets/overview', 
+        { text: 'Wallet Linking', collapsed: true, 
         items: [
+          {text: 'Overview', link: '/solutions/wallets/link-wallets/overview'},
           {text: 'Integration Guide', link: '/solutions/wallets/link-wallets/integration-guide'}
         ]
       }
@@ -132,7 +133,7 @@ export const sidebar = {
       items: [
         { text: 'Overview', link: '/solutions/marketplaces/overview' },
         { text: 'White-label Marketplace', link: '/solutions/marketplaces/white-label-marketplace' },
-        { text: 'Build your Custom Marketplace', collapsed: true, link: '/solutions/marketplaces/orderbook/overview', items: [
+        { text: 'Build your Custom Marketplace', collapsed: true, items: [
           {text: 'Overview', link: '/solutions/marketplaces/orderbook/overview'},
           {text: 'Quickstart', link: '/solutions/marketplaces/orderbook/quickstart'},
           
@@ -143,7 +144,7 @@ export const sidebar = {
     {
       text: 'Collectibles',
       items: [
-        { text: 'Deployable Contracts' , collapsed: true, link: '/solutions/collectibles/contracts/deploy-an-item-collection', items: [
+        { text: 'Deployable Contracts' , collapsed: true, items: [
           { text: 'Deploy a Collectible Contract', link: '/solutions/collectibles/contracts/deploy-an-item-collection'},
           // {text: 'Mint In-Game Items and Achievements (ERC1155)', link: '/solutions/collectibles/contracts/900-mint-items-from-ERC1155'},
           // {text: 'Mint Digital Collectibles (ERC721)', link: '/solutions/collectibles/contracts/902-mint-collectibles-from-ERC721'},
@@ -151,7 +152,7 @@ export const sidebar = {
         ],
       },
         { 
-          text: 'Metadata', collapsed: true, link: '/solutions/collectibles/metadata/manage-metadata-builder', items: [
+          text: 'Metadata', collapsed: true, items: [
           { text: 'Manage Metadata in Builder', link: '/solutions/collectibles/metadata/manage-metadata-builder' }
         ],
       }
@@ -162,13 +163,13 @@ export const sidebar = {
       text: 'Payments',
       items: [
         // { text: 'NFT Checkout', link: '/solutions/nft-checkout' },
-        { text: 'On-ramps', link: '/solutions/payments/onramps/fiat-on-ramps' },
+        { text: 'On-ramps', link: '/solutions/payments/onramps/fiat-on-ramps', match: '/solutions/payments/onramps/fiat-on-ramps' },
       ]
     },
     {
       text: 'Builder Console',
-      collapsed: true,
       link: '/solutions/builder/overview',
+      match: '/solutions/builder/overview',
       items: [
         {text: 'Overview', link: '/solutions/builder/overview'},
         {text: 'Get Started', link: '/solutions/builder/getting-started'},
@@ -177,7 +178,7 @@ export const sidebar = {
         {text: 'Contracts', link: '/solutions/builder/contracts'},
         {text: 'Gas Tank', link: '/solutions/builder/gas-tank'},
         {text: 'Wallet SDKs', link: '/solutions/builder/wallet-sdks'},
-        {text: 'Embedded Wallet', link: '/solutions/builder/embedded-wallet', collapsed: true, items: [
+        {text: 'Embedded Wallet', collapsed: true, items: [
           {text: 'Overview', link: '/solutions/builder/embedded-wallet'},
           {text: 'Google Configuration', link: '/solutions/builder/embedded-wallet/google-configuration'},
           {text: 'Apple Configuration', link: '/solutions/builder/embedded-wallet/apple-configuration'},
@@ -196,9 +197,9 @@ export const sidebar = {
         { text: 'Chain Support', link: '/solutions/technical-references/chain-support' },
         // { text: 'EIP5189 vs. 4337', link: '/solutions/technical-references/5189-4337' },
         { text: 'Why Smart Contract Wallets?', link: '/solutions/technical-references/wallet-contracts/why' },
-        { text: 'Contract Internals', collapsed: true, link: '/solutions/technical-references/internals/deployment', items: [
+        { text: 'Contract Internals', collapsed: true, items: [
           {text: 'Deployment', link: '/solutions/technical-references/internals/deployment'},
-          { text: 'Sequence v1', collapsed: true, link: '/solutions/technical-references/internals/v1/deploy', items: [
+          { text: 'Sequence v1', collapsed: true, items: [
             {text: 'Deploy', link: '/solutions/technical-references/internals/v1/deploy'},
             {text: 'Wallet Factory', link: '/solutions/technical-references/internals/v1/wallet-factory'},
             {text: 'Wallet Configuration', link: '/solutions/technical-references/internals/v1/wallet-configuration'},
@@ -206,7 +207,7 @@ export const sidebar = {
             {text: 'Signature Encoding', link: '/solutions/technical-references/internals/v1/signature-encoding'},
             {text: 'Wallet Context', link: '/solutions/technical-references/internals/v1/wallet-context'},
           ]},
-          { text: 'Sequence v2', collapsed: true, link: '/solutions/technical-references/internals/v2/deploy', items: [
+          { text: 'Sequence v2', collapsed: true, items: [
             {text: 'Deploy', link: '/solutions/technical-references/internals/v2/deploy'},
             {text: 'Wallet Configuration', link: "/solutions/technical-references/internals/v2/configuration"},
           ]},
@@ -345,7 +346,7 @@ export const sidebar = {
       text: 'Game Engine',
       // collapsed: true,
       items: [
-        { text: 'Unity', link: '/sdk/unity/overview', items: [
+        { text: 'Unity', collapsed: true, match: '/sdk/unity/overview', items: [
           { text: 'Overview', link: '/sdk/unity/overview' },
           { text: 'Installation', link: '/sdk/unity/installation' },
           { text: 'Setup', link: '/sdk/unity/setup' },
@@ -367,7 +368,7 @@ export const sidebar = {
            },
           ]
         },
-        { text: 'Unreal', link: '/sdk/unreal/overview', items: [
+        { text: 'Unreal', collapsed: true, match: '/sdk/unreal/overview', items: [
           { text: 'Overview', link: '/sdk/unreal/overview' },
           { text: 'Installation', link: '/sdk/unreal/installation' }, 
           { text: 'Upgrading', link: '/sdk/unreal/upgrading' },
@@ -391,7 +392,7 @@ export const sidebar = {
     {
       text: 'Web3',
       items: [
-        { text: 'Sequence Kit', link: '/sdk/sequence-kit/overview', items: [
+        { text: 'Sequence Kit', collapsed: true, items: [
           { text: 'Overview', link: '/sdk/sequence-kit/overview' },
           { text: 'Quickstart', link: '/sdk/sequence-kit/getting-started' },
           { text: 'Configuration', link: '/sdk/sequence-kit/configuration' },
@@ -400,7 +401,7 @@ export const sidebar = {
           { text: 'Custom Connectors', link: '/sdk/sequence-kit/custom-connectors' }
         ]
        },
-        { text: 'TypeScript', link: '/sdk/typescript/guides/overview', items: [
+        { text: 'TypeScript', collapsed: true, items: [
           {text: 'Overview', link: '/sdk/typescript/guides/overview'},
           {text: 'Connect Wallet', link: '/sdk/typescript/guides/connect-wallet'},
           {text: 'Authenticate Users with Message Signature', link: '/sdk/typescript/guides/auth-address'},
@@ -412,7 +413,7 @@ export const sidebar = {
           {text: 'Sending ERC-1155 (Collectible) Tokens', link: '/sdk/typescript/guides/send-erc1155'},
           {text: 'Sending a Batch of Transactions', link: '/sdk/typescript/guides/send-batch-transactions'},
           {text: 'Building Backends with Sequence', link: '/sdk/typescript/guides/building-backends'},
-          {text: 'Wallet Connectors', items: [
+          {text: 'Wallet Connectors', collapsed: true, items: [
             {text: 'Overview', link: '/sdk/typescript/connectors/overview'},
             {text: 'Wagmi', link: '/sdk/typescript/connectors/wagmi'},
             {text: 'RainbowKit', link: '/sdk/typescript/connectors/rainbow-kit'},
@@ -449,7 +450,7 @@ export const sidebar = {
       items: [
         { text: 'Overview', link: '/api/transactions/overview' },
         { text: 'Installation', link: '/api/transactions/installation' },
-        {text: 'Examples', collapsed: false, link: '/api/transactions/examples/fetch-fee-options', items: [
+        {text: 'Examples', collapsed: false, items: [
           { text: 'Fetch Fee Options', link: '/api/transactions/examples/fetch-fee-options' },
           { text: 'Send Transactions', link: '/api/transactions/examples/send-transactions' },
           { text: 'Fetch Transaction Receipts', link: '/api/transactions/examples/fetch-transaction-receipts' },
