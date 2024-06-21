@@ -74,6 +74,12 @@ export const GuidesOverview = () => (
         link="/guides/metadata-guide"
         image="/img/guides/overview/storage.png"
       />
+      <GuideCard
+        title="Link a Embedded Wallet associated with your game to an External Wallet"
+        body="Combine Sequence Embedded Wallets and signature verification to authorize an external wallet session in a web app, linking two verified wallet instances together."
+        link="/solutions/wallets/link-wallets/integration-guide"
+        image="/img/guides/overview/wallet_linking_guide_overview.png"
+      />
        <GuideCard
         title="Confirmation Free Signatures using a Universal Sequence Wallet"
         body="This code demonstrates how to create a simple Rock Paper Scissors game using the Sequence Wallet and session keys for streamlined user interactions."
