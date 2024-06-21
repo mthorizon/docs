@@ -70,7 +70,7 @@ export const sidebar = {
       text: 'Wallets',
       items: [
         { text: 'Overview', link: '/solutions/wallets/overview' },
-        { text: 'Embedded Wallet', collapsed: true, link: '/solutions/wallets/embedded-wallet/overview', match: '/solutions/wallets/embedded-wallet/overview', items: [
+        { text: 'Embedded Wallet', link: '/solutions/wallets/embedded-wallet/overview', match: '/solutions/wallets/embedded-wallet/overview', items: [
           {text: 'Overview', link: '/solutions/wallets/embedded-wallet/overview'},
           {text: 'Quickstart', link: '/solutions/wallets/embedded-wallet/quickstart'},
           {
@@ -95,7 +95,7 @@ export const sidebar = {
           },
         ]
       },
-        { text: 'Universal Wallet', collapsed: true, link: '/solutions/wallets/universal-wallet/overview',
+        { text: 'Universal Wallet', link: '/solutions/wallets/universal-wallet/overview',
         items: [
           {text: 'Overview', link: '/solutions/wallets/universal-wallet/overview'},
           {text: 'Quickstart', link: '/solutions/wallets/universal-wallet/quickstart'},
@@ -345,7 +345,7 @@ export const sidebar = {
       text: 'Game Engine',
       // collapsed: true,
       items: [
-        { text: 'Unity', collapsed: true, link: '/sdk/unity/overview', items: [
+        { text: 'Unity', link: '/sdk/unity/overview', items: [
           { text: 'Overview', link: '/sdk/unity/overview' },
           { text: 'Installation', link: '/sdk/unity/installation' },
           { text: 'Setup', link: '/sdk/unity/setup' },
@@ -367,7 +367,7 @@ export const sidebar = {
            },
           ]
         },
-        { text: 'Unreal', collapsed: true, link: '/sdk/unreal/overview', items: [
+        { text: 'Unreal', link: '/sdk/unreal/overview', items: [
           { text: 'Overview', link: '/sdk/unreal/overview' },
           { text: 'Installation', link: '/sdk/unreal/installation' }, 
           { text: 'Upgrading', link: '/sdk/unreal/upgrading' },
@@ -391,7 +391,7 @@ export const sidebar = {
     {
       text: 'Web3',
       items: [
-        { text: 'Sequence Kit', collapsed: true, link: '/sdk/sequence-kit/overview', items: [
+        { text: 'Sequence Kit', link: '/sdk/sequence-kit/overview', items: [
           { text: 'Overview', link: '/sdk/sequence-kit/overview' },
           { text: 'Quickstart', link: '/sdk/sequence-kit/getting-started' },
           { text: 'Configuration', link: '/sdk/sequence-kit/configuration' },
@@ -400,7 +400,7 @@ export const sidebar = {
           { text: 'Custom Connectors', link: '/sdk/sequence-kit/custom-connectors' }
         ]
        },
-        { text: 'TypeScript', collapsed: true, link: '/sdk/typescript/guides/overview', items: [
+        { text: 'TypeScript', link: '/sdk/typescript/guides/overview', items: [
           {text: 'Overview', link: '/sdk/typescript/guides/overview'},
           {text: 'Connect Wallet', link: '/sdk/typescript/guides/connect-wallet'},
           {text: 'Authenticate Users with Message Signature', link: '/sdk/typescript/guides/auth-address'},
@@ -412,7 +412,7 @@ export const sidebar = {
           {text: 'Sending ERC-1155 (Collectible) Tokens', link: '/sdk/typescript/guides/send-erc1155'},
           {text: 'Sending a Batch of Transactions', link: '/sdk/typescript/guides/send-batch-transactions'},
           {text: 'Building Backends with Sequence', link: '/sdk/typescript/guides/building-backends'},
-          {text: 'Wallet Connectors', collapsed: true, items: [
+          {text: 'Wallet Connectors', items: [
             {text: 'Overview', link: '/sdk/typescript/connectors/overview'},
             {text: 'Wagmi', link: '/sdk/typescript/connectors/wagmi'},
             {text: 'RainbowKit', link: '/sdk/typescript/connectors/rainbow-kit'},
@@ -424,7 +424,7 @@ export const sidebar = {
           }
         ]
       },
-        { text: 'Go', collapsed: true, link: '/sdk/go/overview', items: [
+        { text: 'Go', link: '/sdk/go/overview', items: [
           {text: 'Overview', link: '/sdk/go/overview'},]
         
         }
