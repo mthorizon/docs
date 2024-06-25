@@ -67,7 +67,7 @@ export const sidebar = {
   // Overview
   '/solutions': [
     {
-      text: 'Wallets',
+      text: 'Onboarding',
       items: [
         { text: 'Overview', link: '/solutions/wallets/overview' },
         { text: 'Embedded Wallet', link: '/solutions/wallets/embedded-wallet/overview', match: '/solutions/wallets/embedded-wallet/overview', items: [
@@ -351,7 +351,7 @@ export const sidebar = {
           { text: 'Installation', link: '/sdk/unity/installation' },
           { text: 'Setup', link: '/sdk/unity/setup' },
           { text: 'Authentication', link: '/sdk/unity/authentication' },
-          { text: 'Write to blockchain', link: '/sdk/unity/write-to-blockchain' },
+          { text: 'Write to Blockchain', link: '/sdk/unity/write-to-blockchain' },
           { text: 'Read from Blockchain', link: '/sdk/unity/read-from-blockchain' },
           { text: 'Sign Messages', link: '/sdk/unity/sign-messages' },
           { text: 'Deploy Contracts', link: '/sdk/unity/deploy-contracts' },
@@ -371,12 +371,14 @@ export const sidebar = {
         { text: 'Unreal', collapsed: true, match: '/sdk/unreal/overview', items: [
           { text: 'Overview', link: '/sdk/unreal/overview' },
           { text: 'Installation', link: '/sdk/unreal/installation' }, 
-          { text: 'Upgrading', link: '/sdk/unreal/upgrading' },
-          { text: 'Setup', link: '/sdk/unreal/setup' },
+          { text: 'GUI Setup', link: '/sdk/unreal/setup' },
           { text: 'Authentication', link: '/sdk/unreal/authentication' },
+          { text: 'Write to Blockchain', link: '/sdk/unreal/write-to-blockchain' },
+          { text: 'Read from Blockchain', link: '/sdk/unreal/read-from-blockchain' },
+          { text: 'Sign Messages', link: '/sdk/unreal/sign-messages' },
           { text: 'Packaging', link: '/sdk/unreal/packaging' },
-          { text: 'API', link: '/sdk/unreal/api' }
-          ] 
+          { text: 'API', link: '/sdk/unreal/api' }         
+         ] 
         }
       ]
     },
