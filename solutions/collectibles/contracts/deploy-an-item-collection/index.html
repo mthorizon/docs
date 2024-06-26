@@ -12,7 +12,7 @@
     
     
   
-    <script type="module" crossorigin src="/assets/index-BpEGeK_S.js"></script>
+    <script type="module" crossorigin src="/assets/index-BUrdSGE_.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/style-bPriZN0b.css">
   </head>
   <body>
@@ -36,10 +36,10 @@ add a <code class="vocs_Code">symbol</code> to an ERC721 NFT Collection</p></asi
 <p class="vocs_Paragraph">Complete the contract details by specifying a <code class="vocs_Code">Contract Name</code> and <code class="vocs_Code">Owner</code> for your contract, with the option to input Royalties</p>
 <p class="vocs_Paragraph"><img src="/img/collectibles/deploy_game_item.png" alt="deploy game item"/></p>
 <aside class="vocs_Callout vocs_Callout_danger"><p class="vocs_Paragraph">Note:</p><p class="vocs_Paragraph">While you can change the <code class="vocs_Code">name</code> later in the builder interface where it will update across the sequence stack, popular explorers do not reindex the information, so what you put first remains</p></aside>
-<h2 class="vocs_H2 vocs_Heading"><div id="step-4-deploy-you-contract" class="vocs_Heading_slugTarget"></div>Step 4: Deploy you contract<a class="vocs_Anchor vocs_Autolink" aria-hidden="true" tabindex="-1" href="/solutions/collectibles/contracts/deploy-an-item-collection#step-4-deploy-you-contract"><div data-autolink-icon="true" class="vocs_Div vocs_AutolinkIcon" style="--vocs_AutolinkIcon_iconUrl:url(/.vocs/icons/link.svg)"></div></a></h2>
+<h2 class="vocs_H2 vocs_Heading"><div id="step-4-deploy-your-contract" class="vocs_Heading_slugTarget"></div>Step 4: Deploy your contract<a class="vocs_Anchor vocs_Autolink" aria-hidden="true" tabindex="-1" href="/solutions/collectibles/contracts/deploy-an-item-collection#step-4-deploy-your-contract"><div data-autolink-icon="true" class="vocs_Div vocs_AutolinkIcon" style="--vocs_AutolinkIcon_iconUrl:url(/.vocs/icons/link.svg)"></div></a></h2>
 <p class="vocs_Paragraph">Deploy your contract from the popup window at <a class="vocs_Anchor vocs_Link vocs_Link_accent_underlined vocs_ExternalLink" href="http://sequence.app/sign-transaction" target="_blank" rel="noopener noreferrer" style="--vocs_ExternalLink_iconUrl:url(/.vocs/icons/arrow-diagonal.svg)">http://sequence.app/sign-transaction</a>, and sign the message by selecting <code class="vocs_Code">confirm</code></p>
 <img src="/img/collectibles/sign_deploy_transaction.png" width="200" alt="Deploy your contract by signing the message in the popup window from the Sequence Wallet"/>
-<aside class="vocs_Callout vocs_Callout_info"><p class="vocs_Paragraph">All testnets will be free to transact on</p></aside>
+<aside class="vocs_Callout vocs_Callout_info"><p class="vocs_Paragraph">All testnets will be free to transact on.</p></aside>
 <h2 class="vocs_H2 vocs_Heading"><div id="step-5-add-a-minter-role-to-the-contract" class="vocs_Heading_slugTarget"></div>Step 5: Add a Minter Role to the contract<a class="vocs_Anchor vocs_Autolink" aria-hidden="true" tabindex="-1" href="/solutions/collectibles/contracts/deploy-an-item-collection#step-5-add-a-minter-role-to-the-contract"><div data-autolink-icon="true" class="vocs_Div vocs_AutolinkIcon" style="--vocs_AutolinkIcon_iconUrl:url(/.vocs/icons/link.svg)"></div></a></h2>
 <p class="vocs_Paragraph">First start by selecting your contract you just deployed in the <code class="vocs_Code">contracts</code> section</p>
 <p class="vocs_Paragraph"><img src="/img/collectibles/select_deployed_contract.png" alt="select contract"/></p>
@@ -50,7 +50,7 @@ add a <code class="vocs_Code">symbol</code> to an ERC721 NFT Collection</p></asi
 <p class="vocs_Paragraph">Complete with the following details:</p>
 <p class="vocs_Paragraph"><code class="vocs_Code">bytes32 role</code>: <code class="vocs_Code">0x9f2df0fed2c77648de5860a4cc508cd0818c85b8b8a1ab4ceeef8d981c8956a6</code>
 <code class="vocs_Code">address account</code>: <code class="vocs_Code">&lt;Wallet Address&gt;</code></p>
-<p class="vocs_Paragraph">Where the wallet address is just copied from the top right hand corner to be able to send tokens to your wallet</p>
+<p class="vocs_Paragraph">Where the wallet address is the address that you would like to give permissions to mint to. This could be your EOA wallet in Metamask, Sequence wallet, or any other.</p>
 <p class="vocs_Paragraph"><img src="/img/collectibles/copy_address_game_item.png" alt="copy address"/></p>
 <p class="vocs_Paragraph">Complete by selecting <code class="vocs_Code">write</code> and signing the transaction in the popup window, like before</p>
 <p class="vocs_Paragraph">With a confirmation message showing <code class="vocs_Code">Response Success</code></p>
@@ -62,7 +62,7 @@ relayer wallet sending transactions, which would be inputted in the account
 field, more on how to accomplish this
 <a class="vocs_Anchor vocs_Link vocs_Link_accent_underlined" href="/guides/mint-collectibles-serverless#mint-collectibles-using-a-gasless-serverless-transactions-api">here</a></p></aside>
 <h2 class="vocs_H2 vocs_Heading"><div id="step-6-mint-tokens-to-your-wallet-address" class="vocs_Heading_slugTarget"></div>Step 6: Mint tokens to your wallet address<a class="vocs_Anchor vocs_Autolink" aria-hidden="true" tabindex="-1" href="/solutions/collectibles/contracts/deploy-an-item-collection#step-6-mint-tokens-to-your-wallet-address"><div data-autolink-icon="true" class="vocs_Div vocs_AutolinkIcon" style="--vocs_AutolinkIcon_iconUrl:url(/.vocs/icons/link.svg)"></div></a></h2>
-<p class="vocs_Paragraph">Navigate to the <code class="vocs_Code">mint</code> card in the <code class="vocs_Code">Write Contract</code> section and input the <code class="vocs_Code">to</code> being your wallet address, the <code class="vocs_Code">tokenId</code> (typically starting at 0), and <code class="vocs_Code">amount</code> of tokens, and finally the <code class="vocs_Code">data</code> section you can just input <code class="vocs_Code">0x00</code>, which typically represent Additional data with no specified format.</p>
+<p class="vocs_Paragraph">Navigate to the <code class="vocs_Code">mint</code> card in the <code class="vocs_Code">Write Contract</code> section and input the <code class="vocs_Code">to</code> being the wallet address you would like to receive the token to, the <code class="vocs_Code">tokenId</code> (typically starting at 0), and <code class="vocs_Code">amount</code> of tokens, and finally the <code class="vocs_Code">data</code> section you can just input <code class="vocs_Code">0x00</code>, which typically represent Additional data with no specified format.</p>
 <p class="vocs_Paragraph"><img src="/img/collectibles/mint_game_item.png" alt="mint tokens"/></p>
 <h2 class="vocs_H2 vocs_Heading"><div id="step-7-confirm-your-minted-collectible" class="vocs_Heading_slugTarget"></div>Step 7: Confirm your minted collectible<a class="vocs_Anchor vocs_Autolink" aria-hidden="true" tabindex="-1" href="/solutions/collectibles/contracts/deploy-an-item-collection#step-7-confirm-your-minted-collectible"><div data-autolink-icon="true" class="vocs_Div vocs_AutolinkIcon" style="--vocs_AutolinkIcon_iconUrl:url(/.vocs/icons/link.svg)"></div></a></h2>
 <p class="vocs_Paragraph">And you&#x27;re done!</p>
