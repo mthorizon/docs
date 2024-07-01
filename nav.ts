@@ -372,7 +372,7 @@ export const sidebar = {
           { text: 'On-Ramp Funds via Credit Card', link: '/sdk/unity/onboard-user-funds'},
           { text: 'Connect with External Wallets', link: '/sdk/unity/connecting-external-wallets' },
           { text: 'Wallet UI', link: '/sdk/unity/wallet-ui' },
-          { text: 'Advanced', collapsed: true,  items: [
+          { text: 'Advanced Blockchain Interactions', collapsed: true,  items: [
             { text: 'Introduction', link: '/sdk/unity/Advanced/introduction' },
             { text: 'Wallets', link: '/sdk/unity/Advanced/wallets' },
             { text: 'Clients', link: '/sdk/unity/Advanced/clients' },
