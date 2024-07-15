@@ -49,7 +49,7 @@ Access settings for your deployment and update the exposed port to `3000`:
 
 #### Perform a Mint Transaction
 
-Using a command line interface, call using cURL to mint to a wallet address:
+Using a command line interface, call the server using cURL to mint to a wallet address, where a `tokenID` parameter is only used if the contract is an ERC1155:
 
 ```shell
 curl -X POST https://<DEPLOYED_RAILWAY_URL>/mint \
@@ -70,7 +70,7 @@ The Transaction Manager template will accept requests from all origins.
 </Callout>
 ::::
 
-## Template Source Code
+## Boilerplate Source Code
 
 Want to further customize and take your code to production? There's a single step to make this production ready for Web applications:
 
@@ -78,6 +78,54 @@ Want to further customize and take your code to production? There's a single ste
 
 Update the following line of code from `*` to include the `requesting origin domain` of the deployed application in the following [line of code.](https://github.com/0xsequence-demos/tx-manager/blob/master/server/server.ts#L44)
 
-:::info
+<Callout type='info'>
 Get started quickly with the source code of the [template](https://github.com/0xsequence-demos/tx-manager) using the Transactions API.
-:::
+</Callout>
+
+## Use Docker to Run Anywhere
+
+If you have the following installed: git, nodejs / NPM, and docker with docker runnning, you can simply run the following steps:
+
+<Callout type="info">
+See the full [steps here](https://github.com/0xsequence-demos/tx-manager/tree/master?tab=readme-ov-file#3-how-to-run-with-docker) if certain tools are not installed.
+</Callout>
+::::steps
+#### Clone Repository
+
+```sh
+git clone git@github.com:0xsequence-demos/tx-manager.git
+```
+
+#### Set Environment Variables
+
+Copy environment file
+
+```sh
+cp server/.env.example server/.env
+```
+
+And set values [following steps 2-4](/solutions/transaction-manager/overview#sequence-builder-project-management)
+
+#### Run Dockerfile
+
+In the root of the project, run:
+
+```sh
+npm start:docker 
+```
+
+Or, on a server to run in the background:
+
+```sh
+npm start:docker:detached
+```
+
+#### Mint 
+Using a command line interface, call the server using cURL to mint to a wallet address, where a `tokenID` parameter is only used if the contract is an ERC1155:
+
+```shell
+curl -X POST http://<URL>/mint \
+-H "Content-Type: application/json" \
+-d '{"evmAddress": "<EVM_WALLET_ADDRESS>", "tokenID": "<TOKEN_ID>", "contractAddress":"<COLLECTIBLE_CONTRACT_ADDRESS>", "isERC1155": "<true_OR_false>", "amount":<AMOUNT> }'
+```
+::::
