@@ -66,7 +66,7 @@ const chains = getDefaultChains() // optionally, supply an array of chain ID's g
 const transports = Object.fromEntries(chains.map(chain => [chain.id, http()]))
 ```
 
-## Create Embedded Wallet Connector
+## Create Embedded Wallet Connectors
 
 A connector is an interface bridge between a wallet and the `wagmi` library for social and externally owned account (EOA) wallets.
 
