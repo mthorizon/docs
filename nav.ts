@@ -562,7 +562,17 @@ export const sidebar = {
             { text: 'Overview', link: '/sdk/unity/overview' },
             { text: 'Installation', link: '/sdk/unity/installation' },
             { text: 'Setup', link: '/sdk/unity/setup' },
-            { text: 'Authentication', link: '/sdk/unity/authentication' },
+            { 
+              text: 'Authentication',
+              collapsed: false,
+              items: [
+                { text: 'Introduction', link: '/sdk/unity/authentication/intro' },
+                { text: 'Email + OTP', link: '/sdk/unity/authentication/email' },
+                { text: 'OIDC - Social Sign In', link: '/sdk/unity/authentication/oidc' },
+                { text: 'PlayFab', link: '/sdk/unity/authentication/playfab' },
+                { text: 'Guest', link: '/sdk/unity/authentication/guest' },
+              ]
+            },
             { text: 'Write to blockchain', link: '/sdk/unity/write-to-blockchain' },
             { text: 'Read from Blockchain', link: '/sdk/unity/read-from-blockchain' },
             { text: 'Sign Messages', link: '/sdk/unity/sign-messages' },
@@ -573,6 +583,7 @@ export const sidebar = {
               text: 'Connect with External Wallets',
               link: '/sdk/unity/connecting-external-wallets',
             },
+            { text: 'Upgrading from v2 to v3', link: '/sdk/unity/v2-to-v3-upgrade-guide' },
             { text: 'Wallet UI', link: '/sdk/unity/wallet-ui' },
             {
               text: 'Advanced Blockchain Interactions',
