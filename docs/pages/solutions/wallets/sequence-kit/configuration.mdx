@@ -130,3 +130,25 @@ For a full list of official connectors, see the [connectors](https://github.com/
 If provided, this will determine which assets are to be displayed in the in-game wallet modal main view.
 By passing a list of displayed assets, only assets from the provided list will be displayed in the main view.
 In the case that no assets are provided, all owned assets can be displayed in the main view.
+
+# Create Universal Default Connectors
+As a alternative to [Step 4](/solutions/wallets/sequence-kit/getting-started#create-embedded-wallet-connector) in the quickstart guide, when creating a `wagmi` `connectors` variable for Universal Wallet, EOA, and Wallet Connect 2.0 integration, import the `getDefaultConnectors` function from the `@0xsequence/kit` package, and include a Wallet Connect ID obtained from [here](https://cloud.walletconnect.com/app), a default chain ID, app name, and the `projectAccessKey`.
+
+```typescript [config.ts]
+import { getDefaultConnectors } from '@0xsequence/kit'
+...
+export const projectAccessKey = '<access-key>'
+
+const connectors = getDefaultConnectors({
+  walletConnectProjectId: 'wallet-connect-id',
+  defaultChainId: 1,
+  appName: 'demo app',
+  projectAccessKey
+})
+
+export const config = createConfig({
+  transports,
+  connectors,
+  chains
+})
+```
