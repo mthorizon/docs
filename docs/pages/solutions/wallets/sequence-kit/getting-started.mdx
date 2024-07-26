@@ -1,6 +1,6 @@
 ---
 title: Sequence Kit Installation and Integration Guide
-description: Learn how to get started with Sequence Kit by installing the necessary packages.
+description: Learn how to get started with Sequence Kit by installing the necessary packages and using the wagmi connectors to utilize an Embedded Wallet or Native EOA Wallet for authentication.
 sidebar_label: Getting Started
 ---
 
@@ -10,7 +10,6 @@ import {Callout} from 'vocs/components'
 # Getting Started with Sequence Kit
 
 In this guide, we will walk you through installing Sequence Kit, triggering the connection modal, and displaying the Inventory in your application.
-
 ## Installing Sequence Kit Packages
 
 Sequence Kit is modular, allowing you to install only the necessary packages. To get started, install the `@0xsequence/kit` core package, as well as install other dependencies such as `wagmi`, `viem`, and `0xsequence`.
@@ -67,38 +66,17 @@ const chains = getDefaultChains() // optionally, supply an array of chain ID's g
 const transports = Object.fromEntries(chains.map(chain => [chain.id, http()]))
 ```
 
-## Create Wallet Connectors
+## Create Embedded Wallet Connectors
 
 A connector is an interface bridge between a wallet and the `wagmi` library for social and externally owned account (EOA) wallets.
 
-Sequence Kit can be configured with a:
-- [Universal Wallet](/solutions/wallets/sequence-kit/getting-started#create-universal-default-connectors) 
-- [Embedded Wallet](/solutions/wallets/sequence-kit/getting-started#create-embedded-wallet-default-connectors) 
-
-We offer helper functions for preparing the connectors with `getDefaultConnectors` or `getDefaultWaasConnectors`.
-
-### Create Universal Default Connectors
-Import the `getDefaultConnectors` function from the `@0xsequence/kit` package, and include a Wallet Connect ID obtained from [here](https://cloud.walletconnect.com/app), a default chain ID, app name, and the `projectAccessKey` from one of the above steps.
-
-```typescript [config.ts]
-import { getDefaultConnectors } from '@0xsequence/kit'
-...
-const connectors = getDefaultConnectors({
-  walletConnectProjectId: 'wallet-connect-id',
-  defaultChainId: 1,
-  appName: 'demo app',
-  projectAccessKey
-})
-```
-
-### Create Embedded Wallet Default Connectors
 <Callout type="info">
-  Compared to the [Universal default approach](/solutions/wallets/sequence-kit/getting-started#create-universal-default-connectors) the Embedded Wallet adds a few more WaaS Authentication config options
+  Compared to the [Universal default connector approach](/solutions/wallets/sequence-kit/getting-started#create-universal-default-connectors) the Embedded Wallet Connector requires a few more WaaS Authentication configuration options, with benefits in UI/UX.
 </Callout>
 
-If you would like to integrate the Embedded Wallet solution into your application, first obtain a WaaS Config Key from the Sequence Builder, which is explained [here](/solutions/builder/embedded-wallet) as well as other Login Provider configuration.
+First obtain a WaaS Config Key from the Sequence Builder, which is explained [here](/solutions/builder/embedded-wallet), Wallet Connect ID obtained from [here](https://cloud.walletconnect.com/app), as well as other Login Provider configuration, which can be understood [here](/solutions/builder/embedded-wallet#login-providers).
 
-Then, use the following code to create a `wagmi` connectors variable:
+Then, use the following code to create a `wagmi` connectors variable `connectors`:
 
 ```typescript [config.ts]
 import { getDefaultWaasConnectors } from '@0xsequence/kit'
@@ -117,7 +95,7 @@ const connectors = getDefaultWaasConnectors({
 
 ## Create Wagmi Config
 
-Now integrate all 3 variables from the prior steps
+Now integrate all 3 variables from the prior steps:
 ```typescript [config.ts]
 export const config = createConfig({
   transports,
@@ -129,19 +107,31 @@ export const config = createConfig({
 #### Full configuration
 
 ```jsx [config.ts]
-import { getDefaultChains, getDefaultConnectors } from '@0xsequence/kit'
+import { getDefaultChains, getDefaultWaasConnectors } from '@0xsequence/kit'
 import { createConfig, http } from 'wagmi'
 
-export const projectAccessKey = '<access-key>'
+export const projectAccessKey = 'AQAAAAAAAEGvyZiWA9FMslYeG_yayXaHnSI'
 
 const chains = getDefaultChains() // optionally, supply an array of chain ID's getDefaultChains([1,137])
 const transports = Object.fromEntries(chains.map(chain => [chain.id, http()]))
 
-const connectors = getDefaultConnectors({
-  walletConnectProjectId: 'wallet-connect-id',
+// works locally on http://localhost:4444
+const waasConfigKey = 'eyJwcm9qZWN0SWQiOjE2ODE1LCJlbWFpbFJlZ2lvbiI6ImNhLWNlbnRyYWwtMSIsImVtYWlsQ2xpZW50SWQiOiI2N2V2NXVvc3ZxMzVmcGI2OXI3NnJoYnVoIiwicnBjU2VydmVyIjoiaHR0cHM6Ly93YWFzLnNlcXVlbmNlLmFwcCJ9' 
+const googleClientId = '970987756660-35a6tc48hvi8cev9cnknp0iugv9poa23.apps.googleusercontent.com' 
+
+// apple authentication only works on deployed applications
+const appleClientId = 'com.horizon.sequence.waas'
+const appleRedirectURI =  'https://' + window.location.origin + window.location.pathname
+
+const connectors = getDefaultWaasConnectors({
+  walletConnectProjectId: "c65a6cb1aa83c4e24500130f23a437d8",
   defaultChainId: 1,
   appName: 'demo app',
-  projectAccessKey
+  projectAccessKey,
+  waasConfigKey
+  googleClientId,
+  appleClientId,
+  appleRedirectURI,
 })
 
 export const config = createConfig({
@@ -269,12 +259,8 @@ import { useOpenWalletModal } from '@0xsequence/kit-wallet'
 const MyComponent = () => {
   const { setOpenWalletModal } = useOpenWalletModal()
 
-  const onClick = () => {
-    setOpenWalletModal(true)
-  }
-
   return (
-    <button onClick={onClick}>open inventory</button>
+    <button onClick={() => setOpenWalletModal(true)}>open inventory</button>
   )
 }
 ```
