@@ -68,13 +68,13 @@ You can view an example project for implementing this flow with web2 authenticat
 
 ### Guest Embedded Wallet
 
-Simply, with a boolean passed in with `guest` key set to `true`, an ephemeral wallet will be created for use in the application with all other normal WaaS functions possible.
+Simply, with a boolean passed in with `guest` key set to `true`, an ephemeral wallet will be created for use in the application with all Embedded Wallet functions possible.
 
 ```typescript [App.tsx]
 await sequence.signIn({ guest: true }, "Session name");
 ```
 <Callout type="danger">
-After the browser cache has been cleared, you will have a new guest wallet generated for the user. Therefore, assets stored in the guest wallet after a browser cache clear will not be accessible by the user.
+Assets stored in the guest wallet after a browser cache has been cleared - or if they have uninstalled the app - will not be accessible by the user. We generally recommend after any value has been transferred or is available for the user to claim, that you prompt the user to sign in with a social provider to ensure asset continuity.
 </Callout>
 
 ## Wallet Access
