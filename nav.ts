@@ -131,6 +131,10 @@ export const sidebar = {
                   text: 'Manage Sessions',
                   link: '/solutions/wallets/embedded-wallet/examples/manage-sessions',
                 },
+                {
+                  text: 'Account Federation',
+                  link: '/solutions/wallets/embedded-wallet/examples/account-federation',
+                },
                 { text: 'On-ramp', link: '/solutions/wallets/embedded-wallet/examples/on-ramp' },
                 {
                   text: 'Fee Options',
