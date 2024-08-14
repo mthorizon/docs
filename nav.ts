@@ -117,6 +117,10 @@ export const sidebar = {
                   text: 'Apple Setup',
                   link: '/solutions/builder/embedded-wallet/apple-configuration',
                 },
+                {
+                  text: 'PlayFab Setup',
+                  link: '/solutions/builder/embedded-wallet/playfab-configuration',
+                },
               ],
             },
             {
@@ -124,25 +128,25 @@ export const sidebar = {
               collapsed: true,
               items: [
                 {
-                  text: 'Use Wallets',
-                  link: '/solutions/wallets/embedded-wallet/examples/use-wallets',
+                  text: 'Authentication',
+                  link: '/solutions/wallets/embedded-wallet/examples/authentication',
                 },
                 {
-                  text: 'Manage Sessions',
-                  link: '/solutions/wallets/embedded-wallet/examples/manage-sessions',
+                  text: 'Use Wallets',
+                  link: '/solutions/wallets/embedded-wallet/examples/use-wallets',
                 },
                 {
                   text: 'Account Federation',
                   link: '/solutions/wallets/embedded-wallet/examples/account-federation',
                 },
+                {
+                  text: 'Manage Sessions',
+                  link: '/solutions/wallets/embedded-wallet/examples/manage-sessions',
+                },
                 { text: 'On-ramp', link: '/solutions/wallets/embedded-wallet/examples/on-ramp' },
                 {
                   text: 'Fee Options',
                   link: '/solutions/wallets/embedded-wallet/examples/fee-options',
-                },
-                {
-                  text: 'Validation',
-                  link: '/solutions/wallets/embedded-wallet/examples/validation',
                 },
                 {
                   text: 'Verification',
