@@ -11,8 +11,7 @@ import { Callout } from "vocs/components";
 This guide walks through how to setup and deploy the contracts for launching a primary sale - suitable for an NFT Drop, in-game store, and more.
 
 <Callout type="warning">
-Prerequisite:
-this guide assumes that you have already [signed up for Builder and created a Project](/solutions/builder/getting-started).
+The Primary Sale feature is currently in early access. To enable them, please visit https://sequence.build/earlyaccess and turn on the functionality.
 </Callout>
 
 ::::steps
@@ -49,15 +48,19 @@ For this walkthrough, we will assume you are creating a public mint.
 
 ### Step 5: Add MinterRole for Sales Contract to Collection Contract
 
-Navigate to the previously deployed Collectibles contract, select the Write Contract tab, and call the `grantRole` function to grant the Sale contract the `MINTER_ROLE`.
+Copy the Sales contract address, then you can navigate to the specific contract and select the settings to view Permissions.
 
-You will want to pass in:
+![contract settings](/img/builder/builder_contract_specific_settings.png)
 
-- `0x9f2df0fed2c77648de5860a4cc508cd0818c85b8b8a1ab4ceeef8d981c8956a6` for the role field, which is the keccak256 hash of the string `MINTER_ROLE`.
-- Address of the Sale Contract you previously deployed.
+Once you have the modal open, select the `Permissions` tab and you can `Edit`, or, `+ Add Collaborator`.
 
-Then click 
-![Grant Minter Role](/img/collectibles/primary-sales/docs_minter_role.png)
+![add collaborator](/img/builder/builder_contract_specific_permissions.png)
+
+Then complete the form with the Sales contract address to add as a collaborator and select the dropdown to assign the `Minter` role.
+
+![assign role](/img/builder/builder_contract_permissions_dropdown.png)
+
+Finally, complete and sign the transaction update the contract Access Control.
 
 ### Step 6: 
 Now that you've got your contracts configured, let's try to do a test mint! 
