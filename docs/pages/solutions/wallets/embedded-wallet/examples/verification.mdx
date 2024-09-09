@@ -21,7 +21,7 @@ A common use case is that you authenticate the user on the client, but you want 
 Once a user has authenticated with an embedded wallet on the client, simply call the corresponding function in order get a JWT from Sequence.
 ```typescript
 const { idToken } = await sequence.getIdToken();
-```
+``` 
 
 ### Pass JWT to Backend
 
@@ -89,4 +89,4 @@ if (!verified.email || typeof verified.email !== "string") {
 
 ### Update your backend
 
-From here, you now have verified the information corresponding to the JWT and can safely update your backend as needed!
+From here, you now have verified the information corresponding to the JWT and can safely update your backend as needed.
