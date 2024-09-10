@@ -1,0 +1,132 @@
+---
+title: Creating a Primary Sales with Sequence Embedded Wallet Integration
+description: This guide covers the creation of a Primary Sales of Sequence. It includes steps for create sales contract, create nft contract, create collection, wallet authentication, purchase and mint.
+---
+
+import { Callout } from "vocs/components";
+
+# Primary Sales
+
+In this guide, we will go through the process of creating a Primary Sales contract using a few simple tools from the Sequence stack.
+
+1. [Primary Sales Contract](/solutions/collectibles/contracts/deploy-primary-sales-contract/): How to set up and deploy contracts for launching a primary sale — suitable for an NFT drop, in-game store, and more.
+2. [Embedded Wallet](/solutions/wallets/embedded-wallet/overview): Use Sequence Kit and Sequence WaaS to authenticate a user.
+
+## You can easily clone the Primary Sales repository using your credentials with the Sequence CLI
+
+### If you don't have Sequence CLI follow this step
+
+```bash
+# pnpm
+pnpm add -g sequence-cli
+
+# npm
+npm install -g sequence-cli
+
+# yarn
+yarn global add sequence-cli
+```
+
+### When you already have Sequence Cli in your machine run
+
+```bash
+npx sequence-cli marketplace (coming soon)
+```
+
+## You can clone Primary Sales Repository from Github
+
+```shell
+git clone https://github.com/0xsequence/primary-drop-sale-boilerplate/
+```
+
+Copy `.env.example` to `.env` and fill with your project information. To test things out, you can use the pre-provided keys in the `.env.example` file:
+
+```shell
+cp .env.example .env
+```
+
+<Callout type="warning">
+  Be sure your .env file has been created in the root of your project to include client secrets
+</Callout>
+
+Then install and run:
+
+```shell
+pnpm install && pnpm dev
+```
+
+## Once you have the project installed and running you can use your own Primary Sales Contract there following the next steps
+
+::::steps
+### Step 1: Deploy a Primary Sales Contract in Sequence Builder
+
+To do that follow this [guide](/solutions/collectibles/contracts/deploy-primary-sales-contract)
+
+### Step 2: Set the chains where your primary sales contracts are deployed.
+
+To place available chains you should go to "src/views/constants/index.ts" and create new varibles for each chainId for your project. Example:
+
+```ts
+export const CHAIN_ID_AMOY = 80002;
+export const CHAIN_ID_ARBITRUM_SEPOLIA = 421614;
+```
+
+Now go to path "src/utils/primarySellHelpers.tsx" and modify the getChainId function with your chains and the default return. Example:
+
+```ts
+import {
+  CHAIN_ID_AMOY,
+  CHAIN_ID_ARBITRUM_SEPOLIA,
+} from "../views/constants";
+
+export function getChainId(chainId: number | undefined): number {
+  switch (chainId) {
+    case CHAIN_ID_AMOY:
+      return CHAIN_ID_AMOY;
+    case CHAIN_ID_ARBITRUM_SEPOLIA:
+      return CHAIN_ID_ARBITRUM_SEPOLIA;
+    default:
+      return CHAIN_ID_AMOY;
+  }
+}
+```
+<Callout type="info">
+  You can see all the available chains. Please <a href="/solutions/technical-references/chain-support" target="_blank" rel="noopener noreferrer" style={{ fontWeight: 700 }}>Click here</a>
+</Callout>
+
+### Step 3: Set your primary sales contracts deployed into the project.
+
+To place you Contract Sales into the project you should go to "src/views/constants/index.ts" and create new varibles for each Sales Contract for your project. Example:
+
+```ts
+export const SALES_CONTRACT_ADDRESS_AMOY =
+  "0x0327b2f274e04d292e74a06809bcd687c63a4ba4";
+export const SALES_CONTRACT_ADDRESS_ARBITRUM_SEPOLIA =
+  "0x326d2fbe4808dd2a3e205aecc5e25a6322ad0a81";
+```
+Now go to path "src/utils/primarySellHelpers.tsx" and modify the getSalesContractAddress function with your Sales Contract addresses and the default return. Example:
+
+```ts
+import {
+  CHAIN_ID_AMOY,
+  CHAIN_ID_ARBITRUM_SEPOLIA,
+  SALES_CONTRACT_ADDRESS_AMOY,
+  SALES_CONTRACT_ADDRESS_ARBITRUM_SEPOLIA,
+} from "../views/constants";
+
+export function getSalesContractAddress(
+  chainId: number | undefined,
+): `0x${string}` {
+  switch (chainId) {
+    case CHAIN_ID_AMOY:
+      return SALES_CONTRACT_ADDRESS_AMOY;
+    case CHAIN_ID_ARBITRUM_SEPOLIA:
+      return SALES_CONTRACT_ADDRESS_ARBITRUM_SEPOLIA;
+    default:
+      return SALES_CONTRACT_ADDRESS_AMOY;
+  }
+}
+```
+
+### Step 4: Work In Progress...
+::::
