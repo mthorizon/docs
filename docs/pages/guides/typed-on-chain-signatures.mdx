@@ -1,0 +1,253 @@
+---
+title: EIP712 and EIP1271 Signatures Enabling Message Verification
+description: How to perform signature verification of messages on-chain and for non-deployed wallet contracts to ensure the integrity of data on a blockchain 
+---
+
+import {Callout} from 'vocs/components'
+
+# Verify Typed (EIP712) and Magic (EIP1271) Signature Message Verification
+
+Time to complete: XX minutes
+
+In this guide we'll walk you through how to use provided source codefor an EVM based contract, the inner workings of a Universal Signature Validator contract, and how to perform in-app signature verification with typed data providing expensive application capaibilities to message integrity across the ecosystem.
+
+The general flow for this application can be seen in the following sequence diagram:
+
+![]()
+
+This can be accomplished with 6 steps:
+
+1. [Create a Builder Project & Obtain an Access Key]()
+2. [Initialize React Vite Application]()
+3. [Use Sequence Wallet for User Sign in]()
+4. [Use EIP712 Typed Data to Generate EIP6492 Signatures]()
+5. [Deploy Contract for EIP1271 Validation]()
+6. [Render Response from Verifying Contract]()
+
+## 1. Initialize React Vite Application
+
+First, follow [this guide](/solutions/builder/getting-started) to create a project in the Sequence Builder.
+
+## 2. Initialize React Vite Application
+
+Next, begin by initializing a new project that will hold all the code neccessary to capture signatures and verification responses from the blockchain:
+
+```shell
+pnpm create vite
+```
+
+This should create a blank project that you can start adding elements and logic to.
+
+## 3. Use Sequence Wallet for User Sign in
+
+Install the necessary packages required for the project to function:
+
+```shell
+pnpm i 0xsequence ethers
+```
+
+Then enable a user to sign in with on your chosein network and the obtained project access key from step 1.
+
+```typescript
+
+import { sequence } from '0xsequence'
+
+sequence.initWallet(PROJECT_ACCESS_KEY, {
+    defaultNetwork: 'sepolia',
+});
+
+const signIn = async () => {
+    const wallet = sequence.getWallet()
+    const details = await wallet.connect({app: 'sequence signature validation demo'})
+
+    if(details){
+        console.log('is signed in')
+        console.log(details)
+    }
+}
+
+return (
+    ...
+    <button onClick={() => signIn()}>sign in</button>
+    ...
+)
+```
+
+## 4. Use EIP712 Typed Data to Generate EIP6492 Signatures
+
+Next, we'll define a custom typed data in typescript and using the utilities library from Sequence constructing a `TypedData` type
+
+```
+import { sequence } from '0xsequence'
+
+interface Person {
+  name: string;
+  wallet: string;
+  message: string;
+}
+
+const verifySignature = () => {
+    const typedData: sequence.utils.TypedData = {
+        domain: {
+            // Domain settings must match verifying contract
+            name: "Sequence Signature Validation Demo",
+            version: "1",
+            chainId,
+            verifyingContract: VERIFYING_CONTRACT_ADDRESS,
+        },
+        types: {
+            Person: [
+                { name: "name", type: "string" },
+                { name: "wallet", type: "address" },
+                { name: "message", type: "string" },
+            ],
+        },
+        message: person,
+        primaryType: "Person",
+    };
+    ...
+}
+
+```
+
+Then we will sign the type message object with the various referenced properties:
+
+```
+    const wallet = await sequence.getWallet()
+    const signer = wallet.getSigner(DEFAULT_NETWORK_CHAIN_ID);
+
+    const signature = await signer.signTypedData(
+        typedData.domain,
+        typedData.types,
+        typedData.message,
+        {
+            chainId,
+            eip6492: true, // enabling signatures for non-deployed wallet contracts
+        }
+    );
+
+    console.log("signature", signature);
+```
+
+Great, attach the function to a button and see the signature be generated after a user has clicked the button:
+
+```
+<button onClick={() => submitSignature()}>verify signature</button>
+```
+
+## 5. Deploy Contract for EIP1271 Validation
+
+We will now provide source code that you can use in something like [Remix](https://remix.ethereum.org/) to deploy a contract, or even something like [Foundry](https://book.getfoundry.sh/reference/forge/forge):
+
+::::steps
+
+#### Universal Validator
+
+The Universal Validator can hypothetically be deployed once, and share for many applications, making it composable and reusable.
+
+You can find the source code [here]() that you can use to deploy
+
+### Custom Contract Verifer
+
+```javascript
+contract EIP712Verifier is EIP712 {
+    using ECDSA for bytes32;
+
+    IERC6492 public immutable ERC6492_SIG_VALIDATOR;
+
+    bytes32 private constant _ERC6492_DETECTION_SUFFIX =
+        0x6492649264926492649264926492649264926492649264926492649264926492;
+    bytes32 private constant _PERSON_TYPEHASH = keccak256(bytes("Person(string name,address wallet,string message)"));
+
+    constructor(address erc6492SigValidator) {
+        ERC6492_SIG_VALIDATOR = IERC6492(erc6492SigValidator);
+    }
+    ...
+}
+
+```
+### Hey
+
+```
+    /// @dev Verifies the signature of a person.
+    function verifySignature(address signer, Person memory person, bytes calldata signature)
+        external
+        returns (bool success)
+    {
+        bytes32 digest = personDigest(person);
+        return validateSigner(signer, digest, signature);
+    }
+```
+
+```
+    /// @dev Returns the EIP712 hash of a person.
+    function personDigest(Person memory person) public view returns (bytes32 digest) {
+        bytes32 structHash = keccak256(
+            abi.encode(_PERSON_TYPEHASH, keccak256(bytes(person.name)), person.wallet, keccak256(bytes(person.message)))
+        );
+        digest = EIP712._hashTypedData(structHash);
+    }
+```
+
+
+```
+/// @dev Validates the ERC1271 signature of a signer.
+    function validateSigner(address signer, bytes32 digest, bytes calldata signature) internal returns (bool success) {
+        if (signature.length >= 32) {
+            bool isCounterfactual =
+                bytes32(signature[signature.length - 32:signature.length]) == _ERC6492_DETECTION_SUFFIX;
+            if (isCounterfactual) {
+                return ERC6492_SIG_VALIDATOR.isValidSig(signer, digest, signature);
+            }
+        }
+
+        try IERC1271(signer).isValidSignature(digest, signature) returns (bytes4 magicValue) {
+            return magicValue == IERC1271.isValidSignature.selector;
+        } catch {}
+        return false;
+    }
+```
+::::
+
+## 6. Render Response from Verifying Contract
+
+```
+async function checkSignatureValidity(
+    address: string,
+    person: Person,
+    signature: string
+  ): Promise<boolean> {
+    const provider = new ethers.JsonRpcProvider(
+      "https://nodes.sequence.app/sepolia/AQAAAAAAAJbeftY2hQWuQG48gxVfoHYXKcw"
+    );
+    console.log(address, person, signature);
+    const contract = new ethers.Contract(
+      VERIFYING_CONTRACT_ADDR,
+      ABI,
+      provider
+    );
+    console.log("signature", signature);
+    try {
+      const data = contract.interface.encodeFunctionData("verifySignature", [
+        address,
+        person,
+        signature,
+      ]);
+      console.log("data", data);
+      console.log("checking on chain");
+      // Call the `isValidSignature` function from the contract
+      const result = await contract.verifySignature.staticCall(
+        address,
+        person,
+        signature
+      );
+      console.log(`Signature is ${result ? "valid" : "invalid"}`);
+      return result;
+    } catch (error) {
+      console.error("Error calling isValidSignature:", error);
+    }
+    return false;
+  }
+```
+
+## Conclusion
