@@ -519,7 +519,7 @@ export const sidebar = {
           // ]
         },
         {
-          text: 'Build Typed Data On-chain Verification Signatures',
+          text: 'Build On-chain Typed Data & Signature Validation',
           collapsed: true,
           link: '/guides/typed-on-chain-signatures',
           // items: [
