@@ -7,10 +7,15 @@ import { Callout } from "vocs/components";
 
 # Primary Sales
 
-In this guide, we will go through the process of creating a Primary Sales contract using a few simple tools from the Sequence stack.
+In this guide, we will go through the process of creating a Primary Sales project using a few simple tools from the Sequence stack.
+
 
 1. [Primary Sales Contract](/solutions/collectibles/contracts/deploy-primary-sales-contract/): How to set up and deploy contracts for launching a primary sale — suitable for an NFT drop, in-game store, and more.
 2. [Embedded Wallet](/solutions/wallets/embedded-wallet/overview): Use Sequence Kit and Sequence WaaS to authenticate a user.
+
+<Callout type="info">
+  Currently, the boilerplate is compatible with ERC155 contracts. Compatibility with ERC721 will be added soon.
+</Callout>
 
 ## You can easily clone the Primary Sales repository using your credentials with the Sequence CLI
 
@@ -55,164 +60,69 @@ Then install and run:
 pnpm install && pnpm dev
 ```
 
-## Once you have the project installed and running you can use your own Primary Sales Contract there following the next steps
+## Once you have the project installed and running you can use your own Primary Sales Contracts there following the next steps
 
 ::::steps
 ### Step 1: Deploy a Primary Sales Contract in Sequence Builder
 
 To do that follow this [guide](/solutions/collectibles/contracts/deploy-primary-sales-contract)
 
-### Step 2: Set the chains where your primary sales contracts are deployed.
+### Step 2: Set the Sales Configurations for the project
 
-To place available chains you should go to "src/views/constants/index.ts" and create new varibles for each chainId for your project. Example:
-
-```ts
-export const CHAIN_ID_AMOY = 80002;
-export const CHAIN_ID_ARBITRUM_SEPOLIA = 421614;
-```
-
-Now go to path "src/utils/primarySellHelpers.tsx" and modify the getChainId function with your chains and the default return. Example:
+To set your own sales configuration, go to `src/utils/primarySells/constants.ts` and modify the salesConfigurations variable by adding each contract sale in an array for your project. Example:
 
 ```ts
-import {
-  CHAIN_ID_AMOY,
-  CHAIN_ID_ARBITRUM_SEPOLIA,
-} from "../views/constants";
-
-export function getChainId(chainId: number | undefined): number {
-  switch (chainId) {
-    case CHAIN_ID_AMOY:
-      return CHAIN_ID_AMOY;
-    case CHAIN_ID_ARBITRUM_SEPOLIA:
-      return CHAIN_ID_ARBITRUM_SEPOLIA;
-    default:
-      return CHAIN_ID_AMOY;
-  }
-}
+export const salesConfigurations = [
+  {
+    networkName: "amoy",
+    // NFT Contract address linked to your primary sales contract
+    nftTokenAddress: "0x888a322db4b8033bac3ff84412738c096f87f9d0",
+    // Primary Sales Contract Address
+    salesContractAddress: "0x0327b2f274e04d292e74a06809bcd687c63a4ba4",
+    // Chain ID of the contracts
+    chainId: 80002,
+    // Modify here to show different items
+    itemsForSale: [
+      {
+        tokenId: "0", 
+      },
+      {
+        tokenId: "1",
+      },
+    ],
+  },
+  {
+    networkName: "arbitrum sepolia",
+    // NFT Contract address linked to your primary sales contract
+    nftTokenAddress: "0xd4bb59d0ba1f7b2beea4c6d9b9f151ee1da02665",
+    // Primary Sales Contract Address
+    salesContractAddress: "0x326d2fbe4808dd2a3e205aecc5e25a6322ad0a81",
+    // Chain ID of the contracts
+    chainId: 421614,
+    // Modify here to show different items
+    itemsForSale: [
+      {
+        tokenId: "0",
+      },
+    ],
+  },
+] as SaleConfigurationProps[];
 ```
+
 <Callout type="info">
   You can see all the available chains. Please <a href="/solutions/technical-references/chain-support" target="_blank" rel="noopener noreferrer" style={{ fontWeight: 700 }}>Click here</a>
 </Callout>
 
-### Step 3: Set your primary sales contracts deployed into the project.
+### Step 3: Set a default chain id for the project
 
-To place your Contract Sales into the project you should go to "src/views/constants/index.ts" and create new varibles for each Sales Contract for your project. Example:
-
-```ts
-export const SALES_CONTRACT_ADDRESS_AMOY =
-  "0x0327b2f274e04d292e74a06809bcd687c63a4ba4";
-export const SALES_CONTRACT_ADDRESS_ARBITRUM_SEPOLIA =
-  "0x326d2fbe4808dd2a3e205aecc5e25a6322ad0a81";
-```
-Now go to path "src/utils/primarySellHelpers.tsx" and modify the getSalesContractAddress function with your Sales Contract addresses and the default return. Example:
+To set your own sales configuration, go to `src/utils/primarySells/constants.ts` and modify the `defaultChainId` variable with the default `chainId` you want to display in the project. It must match a `chainId` present in your `salesConfigurations` variable. Example:
 
 ```ts
-import {
-  CHAIN_ID_AMOY,
-  CHAIN_ID_ARBITRUM_SEPOLIA,
-  SALES_CONTRACT_ADDRESS_AMOY,
-  SALES_CONTRACT_ADDRESS_ARBITRUM_SEPOLIA,
-} from "../views/constants";
-
-export function getSalesContractAddress(
-  chainId: number | undefined,
-): `0x${string}` {
-  switch (chainId) {
-    case CHAIN_ID_AMOY:
-      return SALES_CONTRACT_ADDRESS_AMOY;
-    case CHAIN_ID_ARBITRUM_SEPOLIA:
-      return SALES_CONTRACT_ADDRESS_ARBITRUM_SEPOLIA;
-    default:
-      return SALES_CONTRACT_ADDRESS_AMOY;
-  }
-}
-```
-
-### Step 4: Set your nft token contracts deployed and linked with your primary sales contracts into the project.
-
-To place your Nft Token Contracts into the project you should go to "src/views/constants/index.ts" and create new varibles for each Nft Token Contract for your project. Example:
-
-```ts
-export const NFT_TOKEN_ADDRESS_AMOY =
-  "0x888a322db4b8033bac3ff84412738c096f87f9d0";
-export const NFT_TOKEN_ADDRESS_ARBITRUM_SEPOLIA =
-  "0xd4bb59d0ba1f7b2beea4c6d9b9f151ee1da02665";
-```
-
-Now go to the path "src/utils/primarySellHelpers.tsx" and modify the `getNftTokenAddress` function with your NFT token contract addresses and the default return value. Example:
-
-```ts
-import {
-  CHAIN_ID_AMOY,
-  CHAIN_ID_ARBITRUM_SEPOLIA,
-  NFT_TOKEN_ADDRESS_AMOY,
-  NFT_TOKEN_ADDRESS_ARBITRUM_SEPOLIA,
-} from "../views/constants";
-
-export function getNftTokenAddress(chainId: number | undefined): `0x${string}` {
-  switch (chainId) {
-    case CHAIN_ID_AMOY:
-      return NFT_TOKEN_ADDRESS_AMOY;
-    case CHAIN_ID_ARBITRUM_SEPOLIA:
-      return NFT_TOKEN_ADDRESS_ARBITRUM_SEPOLIA;
-    default:
-      return NFT_TOKEN_ADDRESS_AMOY;
-  }
-}
-```
-
-### Step 5: Set the token IDs you want to sell for each primary sales contract.
-
-They should not exceed the value of the token IDs you have already created, as a token ID that has not been previously created in the NFT contract will not exist.
-
-To place your token IDs into the project, you should go to src/views/constants/index.ts and create new variables for each token IDs array for your sales in your project. Example:
-
-```ts
-export interface SaleItem {
-  tokenId: string;
-}
-
-export const itemsForSalesAmoy: SaleItem[] = [
-  {
-    tokenId: "0",
-  },
-  {
-    tokenId: "1",
-  },
-];
-
-export const itemsForSalesArbitrumSepolia: SaleItem[] = [
-  {
-    tokenId: "0",
-  },
-];
-```
-
-Now go to the path "src/utils/primarySellHelpers.tsx" and modify the getItemsForSale function with your variables for token IDs and the default return value. Example:
-
-```ts
-import {
-  CHAIN_ID_AMOY,
-  CHAIN_ID_ARBITRUM_SEPOLIA,
-  itemsForSalesAmoy,
-  itemsForSalesArbitrumSepolia,
-} from "../views/constants";
-
-
-export function getItemsForSale(chainId: number | undefined): SaleItem[] {
-  switch (chainId) {
-    case CHAIN_ID_AMOY:
-      return itemsForSalesAmoy;
-    case CHAIN_ID_ARBITRUM_SEPOLIA:
-      return itemsForSalesArbitrumSepolia;
-    default:
-      return itemsForSalesAmoy;
-  }
-}
+// In this case, the chosen `defaultChainId` is 80002 (amoy), which is present in the previously declared `salesConfigurations` variable.
+export const defaultChainId = 80002;
 ```
 
 ### Final step
 
 Your primary sales should now appear and function correctly from this point onward.
-
 ::::
