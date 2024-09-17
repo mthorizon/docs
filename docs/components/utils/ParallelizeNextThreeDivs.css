@@ -1,0 +1,27 @@
+.isolate-next-1-of-3 + div + div,
+.isolate-next-1-of-3 + div + div + div,
+.isolate-next-2-of-3 + div,
+.isolate-next-2-of-3 + div + div + div,
+.isolate-next-3-of-3 + div,
+.isolate-next-3-of-3 + div + div,
+.hide-next-3 + div,
+.hide-next-3 + div + div,
+.hide-next-3 + div + div + div {
+  max-height: 0px !important;
+  opacity: 0% !important;
+}
+
+.dont-mind-me {
+  margin: 0px !important;
+}
+
+.next-three-divs-are-hideable + div,
+.next-three-divs-are-hideable + div + div,
+.next-three-divs-are-hideable + div + div + div {
+  max-height: 2000px;
+  overflow: hidden;
+  transition: max-height 0.25s ease-in-out,
+  opacity 0.25s ease-in-out;
+  opacity: 100%;
+  margin: 0px !important;
+}

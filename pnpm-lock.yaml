@@ -35,6 +35,9 @@ importers:
       ethers:
         specifier: 6.13.0
         version: 6.13.0
+      mdx-observable:
+        specifier: ^0.2.0
+        version: 0.2.0(react@18.3.1)
       react:
         specifier: latest
         version: 18.3.1
@@ -2698,6 +2701,11 @@ packages:
 
   mdast-util-to-string@4.0.0:
     resolution: {integrity: sha512-0H44vDimn51F0YwvxSJSm0eCDOJTRlmN0R1yBh4HLj9wiV1Dn0QoXGbvFAWj2hSItVTlCmBF1hqKlIyUBVFLPg==}
+
+  mdx-observable@0.2.0:
+    resolution: {integrity: sha512-AvAnVq3EROTLZkBbfi7lMQs0MFdKCrzBPDhJEnfSpgkXGGX06fdiSRXCIL/zMo6A4CsvnudWAbcv3e3zcMt2OA==}
+    peerDependencies:
+      react: ^16.2
 
   media-query-parser@2.0.2:
     resolution: {integrity: sha512-1N4qp+jE0pL5Xv4uEcwVUhIkwdUO3S/9gML90nqKA7v7FcOS5vUtatfzok9S9U1EJU8dHWlcv95WLnKmmxZI9w==}
@@ -7637,6 +7645,10 @@ snapshots:
   mdast-util-to-string@4.0.0:
     dependencies:
       '@types/mdast': 4.0.4
+
+  mdx-observable@0.2.0(react@18.3.1):
+    dependencies:
+      react: 18.3.1
 
   media-query-parser@2.0.2:
     dependencies:
