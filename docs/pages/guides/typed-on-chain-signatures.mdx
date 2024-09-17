@@ -9,7 +9,7 @@ import {Callout} from 'vocs/components'
 
 Time to complete: 10-20 minutes
 
-In this guide we'll walk you through how to use provided source code for an EVM based contract, explain the inner workings of a custom on-chain message verifier contract that composes the Universal Signature Validator ([ERC-6492](https://ercs.ethereum.org/ERCS/erc-6492)), and how to perform in-app signature verification with typed data.
+In this guide we'll walk you through how to use provided source code for an EVM based contract and explain the inner workings of a custom on-chain message verifier contract that composes the Universal Signature Validator ([ERC-6492](https://ercs.ethereum.org/ERCS/erc-6492)), and how to perform in-app signature verification with typed data.
 
 This can be accomplished with 6 steps:
 
@@ -17,7 +17,7 @@ This can be accomplished with 6 steps:
 2. [Initialize React Vite Application](/guides/typed-on-chain-signatures#2-initialize-react-vite-application)
 3. [Use Sequence Wallet for User Sign in](/guides/typed-on-chain-signatures#3-use-sequence-wallet-for-user-sign-in)
 4. [Use EIP712 Typed Data to Generate EIP6492 Signatures](/guides/typed-on-chain-signatures#4-use-eip712-typed-data-to-generate-eip6492-signatures)
-5. [Deploy Contract for EIP1271 Validation](/guides/typed-on-chain-signatures#5-deploy-contract-for-eip1271-validation)
+5. [Deploy Contract for EIP712 Verification and EIP1271 Validation](/guides/typed-on-chain-signatures#5-deploy-contract-for-eip712-verification-and-eip1271-validation)
 6. [Render Response from Verifying & Validating Contract](/guides/typed-on-chain-signatures#6-render-response-from-verifying--validating-contract)
 
 The general flow for this application can be seen in the following sequence diagram:
@@ -25,7 +25,7 @@ The general flow for this application can be seen in the following sequence diag
 ![sequence flow for eip712 eip1271 verfying and validating signatures](/img/guides/eip712-eip1271-signatures/eip712-eip1271-signatures.png)
 
 <Callout type="info">
-See the [full code for the demo](https://github.com/0xsequence-demos/EIP712-EIP1271-signatures-demo) for more information and an example [demo can be found here](https://eip712-eip1271-signatures-demo.pages.dev/).
+See the [full code for the demo](https://github.com/0xsequence-demos/demo-EIP712-EIP1271-signatures) for more information and an example [demo can be found here](https://demo-eip712-eip1271-signatures.pages.dev/).
 </Callout>
 
 ## 1. Create a Builder Project & Obtain an Access Key
@@ -50,7 +50,7 @@ Install the necessary packages required for the project to function:
 pnpm install 0xsequence ethers
 ```
 
-Then enable a user to sign in with on your chosen network and the obtained project access key from step 1.
+Then enable a user to sign in with on your chosen network and the obtained project access key from [step 1](/guides/typed-on-chain-signatures#1-create-a-builder-project--obtain-an-access-key).
 
 ```typescript
 
@@ -83,7 +83,7 @@ function App() {
 
 Next, we'll define a custom typed data in typescript and using the utilities library from Sequence constructing a `TypedData` type, where we will be verifying a message structure with `name`, `wallet`, and `message` parameters:
 
-In this example `VERIFYING_CONTRACT_ADDRESS` is the smart contract we deployed on `sepolia` but we will show you in the next step what this contract does:
+In this example `VERIFYING_CONTRACT_ADDRESS` is the smart contract we deployed on `sepolia` but we will show you in the next step what this contract does so you can deploy yourself any any network:
 
 ```typescript
 import { sequence } from '0xsequence'
@@ -100,9 +100,9 @@ const CHAIN_ID = 11155111
 const submitSignature = () => {
     const wallet = sequence.getWallet()
 
-    const message = 'hey' 
+    const message = 'hey' // message can be dynamic
     const person: Person = {
-        name: "user",
+        name: "user", // name can be dynamic
         wallet: wallet.getAddress(),
         message: message,
     };
@@ -156,21 +156,21 @@ Great, attach the function to a button and see the signature be generated after 
 <button onClick={() => submitSignature()}>verify signature</button>
 ```
 
-## 5. Deploy Contract for EIP1271 Validation
+## 5. Deploy Contract for EIP712 Verification and EIP1271 Validation
 
-We will now provide source code that you can use in something like [Remix](https://remix.ethereum.org/) to deploy a contract, or even something like [Foundry](https://book.getfoundry.sh/reference/forge/forge) for deploying with the [Sequence Builder](https://sequence.build)
+We will now provide source code that you can use in something like [Remix](https://remix.ethereum.org/) to deploy a contract, or even something like [Foundry](https://book.getfoundry.sh/reference/forge/forge) for building and deploying with the [Sequence Builder](https://sequence.build)
 
 ::::steps
 
 ### Universal Signature Validator
 
-The Universal Signature Validator can hypothetically be deployed once, and shared with many applications, making it composable and reusable. It's use is for both off-chain and on-chain smart contract wallets for [EIP6492](https://eips.ethereum.org/EIPS/eip-6492) enabled wallets.
+The Universal Signature Validator can hypothetically be deployed once for a specific network, and shared with many applications, making it composable and reusable. It's use is for both off-chain and on-chain smart contract wallets for [EIP6492](https://eips.ethereum.org/EIPS/eip-6492) enabled wallets.
 
-You can find [the source code here](https://github.com/0xsequence-demos/EIP712-EIP1271-signatures-demo/blob/master/contracts/src/UniversalSigValidator.sol) that you can use to deploy.
+You can find [the source code here](https://github.com/0xsequence-demos/EIP712-EIP1271-signatures-demo/blob/master/contracts/src/UniversalSignatureValidator.sol) that you can use to deploy.
 
 ### Custom Contract Verifier
 
-The next contract we'll explain more in-depth with the various functions, as this contract can be customized. Begin with the following basics with the Universal Signature Validator passed in the constructor in the first step:
+The next contract we'll explain more in-depth with the various functions, as this contract can be customized for the specific application. Begin with the following basics with the Universal Signature Validator passed in the constructor in the first step:
 
 ```javascript
 import {IERC1271} from "./interfaces/IERC1271.sol";
@@ -179,7 +179,7 @@ import {IERC6492} from "./interfaces/IERC6492.sol";
 import {ECDSA} from "@openzeppelin/contracts/utils/cryptography/ECDSA.sol";
 import {EIP712} from "@openzeppelin/contracts/utils/cryptography/EIP712.sol";
 
-struct Person {
+struct Person { // can be customized
     string name;
     address wallet;
     string message;
@@ -188,15 +188,15 @@ struct Person {
 contract EIP712Verifier is EIP712 {
     using ECDSA for bytes32;
 
-    IERC6492 public immutable ERC6492_SIG_VALIDATOR; // the universal signature validator
+    IERC6492 public immutable ERC6492_SIGNATURE_VALIDATOR; // the universal signature validator
 
     bytes32 private constant _ERC6492_DETECTION_SUFFIX = 0x6492649264926492649264926492649264926492649264926492649264926492;
 
     // this line of code must be customized to the struct you're verifying
     bytes32 private constant _PERSON_TYPEHASH = keccak256(bytes("Person(string name,address wallet,string message)"));
 
-    constructor(address erc6492SigValidator) {
-        ERC6492_SIG_VALIDATOR = IERC6492(erc6492SigValidator);
+    constructor(address erc6492SignatureValidator) {
+        ERC6492_SIGNATURE_VALIDATOR = IERC6492(erc6492SignatureValidator);
     }
     ...
 }
@@ -213,15 +213,15 @@ function verifySignature(address signer, Person memory person, bytes calldata si
     returns (bool success)
 {
     bytes32 digest = personDigest(person);
-    return ERC6492_SIG_VALIDATOR.isValidSig(signer, digest, signature);
+    return ERC6492_SIGNATURE_VALIDATOR.isValidSig(signer, digest, signature);
 }
 ```
 
 #### Custom Person Digest
 
-In the following function we recreate the struct hash with the passed in parameters, which can be extended to include more or less parameters:
+In the following function we recreate the struct hash with the passed in parameters, which can be extended to include more or less parameters with varying types:
 
-For more information on constructing the digest see the [EIP712 specification](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-712.md).
+For more information on constructing the digest, see the [EIP712 specification](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-712.md).
 
 ```javascript
 /// @dev Returns the EIP712 hash of a person.
@@ -244,7 +244,7 @@ function validateSigner(address signer, bytes32 digest, bytes calldata signature
         bool isCounterfactual =
             bytes32(signature[signature.length - 32:signature.length]) == _ERC6492_DETECTION_SUFFIX;
         if (isCounterfactual) {
-            return ERC6492_SIG_VALIDATOR.isValidSig(signer, digest, signature);
+            return ERC6492_SIGNATURE_VALIDATOR.isValidSig(signer, digest, signature);
         }
     }
 
@@ -270,13 +270,15 @@ Create a provider using the project access key:
 ```typescript
 import { ethers } from 'ethers'
 
+const CHAIN_HANDLE = 'sepolia'
+
 const provider = new ethers.JsonRpcProvider(
-    `https://nodes.sequence.app/sepolia/${PROJECT_ACCESS_KEY}`
+    `https://nodes.sequence.app/${CHAIN_HANDLE}/${PROJECT_ACCESS_KEY}`
 );
 ```
 
 ### Initialize an Ethers Contract
-Import the ABI that was generated from step 5 (or copy [from the git source code](https://github.com/0xsequence-demos/EIP712-EIP1271-signatures-demo/blob/master/src/abi.ts)), include the provider, and input the verifying contract address:
+Import the ABI that was generated from [step 5](/guides/typed-on-chain-signatures#5-deploy-contract-for-eip712-verification-and-eip1271-validation) (or copy [from the git source code](https://github.com/0xsequence-demos/EIP712-EIP1271-signatures-demo/blob/master/src/abi.ts)), include the provider, and input the verifying contract address:
 
 ```typescript
 import { ABI } from "./abi";
@@ -324,4 +326,4 @@ return result;
 
 ## Conclusion
 
-Now that we have message structs being passed to a blockchain and messages verified with their inputs, we can extend the application to a multitude of use cases that ensure users are signing the right information (e.g. permitting to spend ERC20's, perform off-chain bidding, etc.).
+Now that we have message structs being passed to a blockchain and messages verified with their inputs, we can extend the application to a multitude of use cases that ensure users are signing the right information (e.g. permitting to spend ERC20's, perform off-chain bidding, QR code containing signature approved minting, etc.).
