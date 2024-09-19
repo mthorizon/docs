@@ -547,6 +547,11 @@ export const sidebar = {
           //   { text: '(Optional) Enable Embedded Wallet', link: '/guides/custom-marketplace#7-optional-integrate-embedded-wallet-into-sequence-kit' },
           // ]
         },
+        {
+          text: 'How to install, run and manage Primary Sales',
+          collapsed: true,
+          link: '/guides/primary-sales',
+        },
       ],
     },
     // {
