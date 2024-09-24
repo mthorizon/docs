@@ -548,7 +548,7 @@ export const sidebar = {
           // ]
         },
         {
-          text: 'Manage Primary Sales',
+          text: 'Sell your Game Items',
           collapsed: true,
           link: '/guides/primary-sales',
         },
