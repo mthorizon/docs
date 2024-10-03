@@ -4,7 +4,6 @@ import { sidebar, topNav } from './nav'
 export default defineConfig({
   title: 'Sequence',
 
-
   iconUrl: { light: '/img/favicon.ico', dark: '/img/favicon.ico' },
   logoUrl: {
     light: '/img/sequence-composite-light.svg',
