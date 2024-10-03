@@ -1,4 +1,4 @@
-import { useState, type ReactElement } from 'react'
+import { useState, type ReactElement, useEffect } from 'react'
 import { sequence } from '0xsequence'
 import clsx from 'clsx'
 import {
@@ -14,18 +14,31 @@ const builderURL = import.meta.env.DEV
   ? 'http://localhost:8080/https://api.sequence.build' // Routing with a cors-anywhere proxy
   : 'https://api.sequence.build' // Production URL
 
-const BuilderAuthenticationButton = (): ReactElement => {
+function BuilderAuthenticationButton(): ReactElement {
   const [isConnected, setIsConnected] = useState(false)
   const [showModal, setShowModal] = useState(false)
   const [projects, setProjects] = useState<any[]>([])
+  const [selectedProjectId, setSelectedProjectId] = useState<string | null>(null)
 
   const handleConnect = async () => {
     try {
       const connected = await connect('Sequence Docs', setProjects)
       if (connected) {
+        const projectsResponse = await listProjects()
+        setProjects(projectsResponse.projects)
         setIsConnected(true)
         setShowModal(true) // Open the dialog here
       }
+    } catch (error) {
+      console.error('Connection failed:', error)
+    }
+  }
+
+  const handleConnected = async () => {
+    try {
+        const projectsResponse = await listProjects()
+        setProjects(projectsResponse.projects)
+        setShowModal(true) // Open the dialog here
     } catch (error) {
       console.error('Connection failed:', error)
     }
@@ -35,21 +48,31 @@ const BuilderAuthenticationButton = (): ReactElement => {
     try {
       const projectAccessKey = await getDefaultAccessKey(projectId)
       localStorage.setItem('sequenceProjectAccessKey', projectAccessKey.accessKey.accessKey)
-      console.log(projectAccessKey.accessKey.accessKey)
+      localStorage.setItem('selectedProjectId', projectId)
+      setSelectedProjectId(projectId)
       setShowModal(false)
-      window.location.reload()
+      setIsConnected(true)
     } catch (error) {
       console.error('Error getting project access key:', error)
     }
   }
 
+  // Load the selected project ID from localStorage on component mount
+  useEffect(() => {
+    const storedProjectId = localStorage.getItem('selectedProjectId')
+    if (storedProjectId) {
+      setSelectedProjectId(storedProjectId)
+      setIsConnected(true)
+    }
+  }, [])
+
   return (
     <>
       <button
         className="hover-fade font-bold text-white max-w-max h-min text-center rounded-full bg-gradient-to-r from-[#4411E1] to-[#7537F9] px-[20px] py-[4px] text-[12px] top-auth-button_position"
-        onClick={handleConnect}
+        onClick={isConnected ? () => handleConnected() : handleConnect}
       >
-        Login
+        {isConnected && selectedProjectId ? `Project: ${selectedProjectId}` : 'Login'}
       </button>
       <Dialog open={showModal} onOpenChange={setShowModal}>
         <DialogContent className="sm:max-w-[600px] bg-black text-white border-gray-800">
