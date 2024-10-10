@@ -569,6 +569,11 @@ export const sidebar = {
           collapsed: true,
           link: '/guides/primary-sales',
         },
+        {
+          text: 'Make a primary drop sale',
+          collapsed: true,
+          link: '/guides/primary-drop-sale',
+        },
       ],
     },
     // {
