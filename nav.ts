@@ -570,9 +570,9 @@ export const sidebar = {
           link: '/guides/primary-sales',
         },
         {
-          text: 'Make a primary drop sale',
+          text: 'Manage Primary Drop Sales',
           collapsed: true,
-          link: '/guides/primary-drop-sale',
+          link: '/guides/primary-drop-sales',
         },
       ],
     },
