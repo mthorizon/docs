@@ -570,7 +570,7 @@ export const sidebar = {
           link: '/guides/primary-sales',
         },
         {
-          text: 'Manage Primary Drop Sales',
+          text: 'Create NFT Drop Sale',
           collapsed: true,
           link: '/guides/primary-drop-sales',
         },
