@@ -371,5 +371,21 @@
         ]
       }
     }
+  ],"/rpc/Indexer/GetTopOrders": [
+    {
+      "networkURL": "https://marketplace-api.sequence.app/arbitrum-sepolia",
+      "summary": "On arbitrum sepolia, get top orders for a collection from the Sequence Marketplace Protocol",
+      "request": {
+        "collectionAddress": "0x8e3e38fe7367dd3b52d1e281e4e8400447c8d8b9",
+        "currencyAddresses": [
+            "0xa9c88358862211870db6f18bc9b3f6e4f8b3eae7"
+        ],
+        "orderbookContractAddress": "0xB537a160472183f2150d42EB1c3DD6684A55f74c",
+        "tokenIDs": ["0","1", "2", "3", "4", "5"],
+        "isListing": true,
+        "priceSort": "DESC"
+      },
+      "response": {"orders":[{"orderId":"81","tokenContract":"0x1693ffc74edbb50d6138517fe5cd64fd1c917709","tokenId":"0","isListing":true,"quantity":"1","quantityRemaining":"1","currencyAddress":"0xa9c88358862211870db6f18bc9b3f6e4f8b3eae7","pricePerToken":"1000000000000000000","expiry":"1711640001857","orderStatus":"OPEN","createdBy":"0xc2be9cf6d9ee4fd211f88620760e829792659b16","createdAt":1711035010,"orderbookContractAddress":"0xb537a160472183f2150d42eb1c3dd6684a55f74c"},{"orderId":"94","tokenContract":"0x1693ffc74edbb50d6138517fe5cd64fd1c917709","tokenId":"1","isListing":true,"quantity":"1","quantityRemaining":"1","currencyAddress":"0xa9c88358862211870db6f18bc9b3f6e4f8b3eae7","pricePerToken":"10000","expiry":"1712748883331","orderStatus":"OPEN","createdBy":"0xe6eb28398ccbe46aa505b62b96822c2ce8daabf4","createdAt":1712143580,"orderbookContractAddress":"0xb537a160472183f2150d42eb1c3dd6684a55f74c"},{"orderId":"93","tokenContract":"0x1693ffc74edbb50d6138517fe5cd64fd1c917709","tokenId":"3","isListing":true,"quantity":"1","quantityRemaining":"1","currencyAddress":"0xa9c88358862211870db6f18bc9b3f6e4f8b3eae7","pricePerToken":"1000000000000000000","expiry":"1712679744655","orderStatus":"OPEN","createdBy":"0xc2be9cf6d9ee4fd211f88620760e829792659b16","createdAt":1712074784,"orderbookContractAddress":"0xb537a160472183f2150d42eb1c3dd6684a55f74c"}]}
+    }
   ]
 }
