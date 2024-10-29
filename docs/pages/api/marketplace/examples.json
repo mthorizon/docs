@@ -165,7 +165,6 @@
         "response": {"options":{"crypto":"all"}}
       }
   ],
-  
   "/rpc/Marketplace/CheckoutOptionsSalesContract": [
     {
       "networkURL": "https://marketplace-api.sequence.app/arbitrum-sepolia",
