@@ -15,9 +15,11 @@ const importSpec = async (specType: any) => {
       return (await import('../../../docs/pages/api/marketplace/marketplace.gen.yaml')).default
     case 'metadata':
       return (await import('../../../docs/pages/api/metadata/metadata.gen.yaml')).default
+    case 'infrastructure':
+        return (await import('../../../docs/pages/api/api/api.gen.yaml')).default
     case 'transactions':
       // need to change to transactions once deployed
-      return (await import('../../../docs/pages/api/indexer/indexer.gen.yaml')).default
+      return (await import('../../../docs/pages/api/relayer/relayer.gen.yaml')).default
 
     // Add more cases for other spec types as needed
     default:
@@ -42,7 +44,6 @@ function APIComponent({ specType }: any) {
           content: specContent // {{ edit_4 }}
         },
         authentication: {
-          preferredSecurityScheme: 'ApiKeyAuth',
           apiKey: {
             token: apiKey,
           },

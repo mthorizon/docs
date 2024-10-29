@@ -26,6 +26,22 @@ const saveOpenAPIDocument = (filePath, document) => {
 }
 
 const addExamplesToOpenAPI = (doc, examples) => {
+  // Check if the document title contains 'Metadata'
+  if (doc.info.title.includes('Metadata')) {
+    doc.tags = [
+      {
+        name: 'public',
+        description:
+          'Endpoints accessible by passing your project-access-key in the header. This is injected whenever you login automatically.',
+      },
+      {
+        name: 'secret',
+        description:
+          'Endpoints that require a Sequence service token intended to be secret. You can manually generate one on Sequence Builder and pass it as a Bearer Token.',
+      },
+    ]
+  }
+
   for (const [endpoint, example] of Object.entries(examples)) {
     const path = doc.paths[endpoint]
     if (!path) {
@@ -36,18 +52,21 @@ const addExamplesToOpenAPI = (doc, examples) => {
     for (const [exampleName, ex] of Object.entries(example)) {
       if (ex.request && Object.keys(ex.request).length > 0) {
         const response = path.post.requestBody
-        response.content['application/json'].examples = {}
-        response.content['application/json'].examples[exampleName] = {}
-        response.content['application/json'].examples[exampleName].value = ex.request
-        response.content['application/json'].examples[exampleName].summary = ex.summary
+        response.content['application/json'].example = ex.request
       }
 
       if (ex.response && Object.keys(ex.response).length > 0) {
         const response = path.post.responses['200']
-        response.content['application/json'].examples = {}
-        response.content['application/json'].examples[exampleName] = {}
-        response.content['application/json'].examples[exampleName].value = ex.response
-        response.content['application/json'].examples[exampleName].summary = ex.summary
+        response.content['application/json'].example = ex.response
+      }
+
+      if (ex.description && Object.keys(ex.description).length > 0) {
+        path.post.description = ex.description
+      }
+
+      if (ex.tag && Object.keys(ex.tag).length > 0) {
+        path.post.tags = {}
+        path.post.tags = ex.tag
       }
     }
   }

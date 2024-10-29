@@ -69,6 +69,11 @@ export const topNav = [
         link: '/api/marketplace/overview',
         match: '/api/marketplace/overview',
       },
+      {
+        text: 'Infrastructure API',
+        link: '/api/infrastructure/overview',
+        match: '/api/infrastructure/overview',
+      },
       { text: 'Node Gateway', link: '/api/node-gateway', match: '/api/node-gateway' },
     ],
   },
@@ -495,6 +500,21 @@ export const sidebar = {
           link: '/guides/building-transaction-heavy-games-with-unity',
         },
         {
+          text: 'How to sell On-Chain Items in your Unreal Project',
+          collapsed: true,
+          link: '/guides/unreal-primary-sales',
+        },
+        {
+          text: 'How to do Primary Sales for On-Chain Items in Unity',
+          collapsed: true,
+          link: '/guides/unity-primary-sales',
+        },
+        {
+          text: 'How to build a Game with Unreal Engine',
+          collapsed: true,
+          link: '/guides/unreal-ew-guide',
+        },
+        {
           text: 'Build a Collectible Minting Service',
           collapsed: true,
           link: '/guides/mint-collectibles-serverless',
@@ -768,7 +788,7 @@ export const sidebar = {
       items: [
         { text: 'Overview', link: '/api/transactions/overview' },
         { text: 'Installation', link: '/api/transactions/installation' },
-        // { text: 'Endpoints', link: '/api/transactions/endpoints' },
+        { text: 'Endpoints', link: '/api/transactions/endpoints' },
         {
           text: 'Examples',
           collapsed: false,
@@ -843,6 +863,14 @@ export const sidebar = {
             { text: 'REST API', link: '/api/metadata/rest-api' },
           ],
         },
+      ],
+    },
+    {
+      text: 'Infrastructure',
+      collapsed: false,
+      items: [
+        { text: 'Overview', link: '/api/infrastructure/overview' },
+        { text: 'Endpoints', link: '/api/infrastructure/endpoints' },
       ],
     },
     {
