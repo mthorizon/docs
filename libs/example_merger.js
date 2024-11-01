@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import * as fs from 'node:fs'
 import path from 'node:path'
 import * as yaml from 'js-yaml'
@@ -73,7 +75,7 @@ const addExamplesToOpenAPI = (doc, examples) => {
 }
 
 export const merge = (openApiFilepath) => {
-  // /docs/pages/api/marketplace/marketplace.gen.yaml
+  // /docs/pages/api/marketplace/rpc.gen.yaml
   const openAPIDoc = loadOpenAPIDocument(openApiFilepath)
 
   const dir = path.dirname(openApiFilepath)
