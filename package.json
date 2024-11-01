@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vocs dev",
+    "dev": "pnpm run prepare-openapi-docs && vocs dev",
     "build": "pnpm run prepare-openapi-docs && vocs build --searchIndex false",
     "preview": "vocs preview",
     "format": "biome format . --write",
