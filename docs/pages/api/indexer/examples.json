@@ -1,7 +1,7 @@
 {
   "/rpc/Indexer/GetNativeTokenBalance": [
     {
-      "summary": "On Sepolia Mainnet, get Ether balance for an account",
+      "description": "On Sepolia Mainnet, get Ether balance for an account",
       "request": {
         "accountAddress": "0xe6eB28398CCBe46aA505b62b96822c2Ce8DAABf4"
       },
@@ -640,7 +640,7 @@
   ],
   "/rpc/Indexer/GetBalanceUpdates": [
     {
-      "summary": "Get balance updates for a contract",
+      "description": "Get balance updates for a contract",
       "request": {
         "contractAddress": "0x369db37255c76aec060d070eabeb0661e51a42a9",
         "lastBlockNumber": 0
@@ -815,7 +815,7 @@
   ],
   "/rpc/Indexer/AddWebhookListener": [
     {
-      "summary": "Add a webhook listener",
+      "summary": "Add a webhook listener. Example on XR Sepolia.",
       "request": {
         "filters": {
           "accounts": ["0xe6eB28398CCBe46aA505b62b96822c2Ce8DAABf4"],
@@ -847,7 +847,7 @@
   ],
   "/rpc/Indexer/GetAllWebhookListeners": [
     {
-      "summary": "Get all webhook listeners for a project",
+      "summary": "Get all webhook listeners for a project. Example on XR Sepolia.",
       "request": {
         "projectId": 31396
       },
@@ -876,7 +876,7 @@
   ],
   "/rpc/Indexer/GetWebhookListener": [
     {
-      "summary": "Get a specific webhook listener",
+      "summary": "Get a specific webhook listener. Example on XR Sepolia.",
       "request": {
         "id": 160497579,
         "projectId": 31396
@@ -902,7 +902,7 @@
   ],
   "/rpc/Indexer/UpdateWebhookListener": [
     {
-      "summary": "Update a webhook listener",
+      "summary": "Update a webhook listener. Example on XR Sepolia.",
       "request": {
         "filters": {
           "accounts": ["0xe6eB28398CCBe46aA505b62b96822c2Ce8DAABf4"],
@@ -933,9 +933,44 @@
       "tag": ["secret"]
     }
   ],
+  "/rpc/Indexer/ToggleWebhookListener": [
+    {
+      "summary": "Pauses a specific webhook listener. Example on XR Sepolia.",
+      "request": {
+        "id": 160497579,
+        "projectId": 31396
+      },
+      "response": {"webhookListener":{"id":2435835685,"projectID":31396,"url":"https://webhook.site/#!/view/a2859143-0a52-4b69-98f2-a58733e4dcf0","filters":{"events":["Transfer(address indexed from,address indexed to,uint256 indexed tokenId)"],"contractAddresses":["0x9bec34c1f7098e278afd48fedcf13355b854364a"],"accounts":["0xe6eb28398ccbe46aa505b62b96822c2ce8daabf4"],"tokenIDs":["100"]},"name":"webhook.site #b5cf2f","updatedAt":"2024-11-04T18:00:16.400106745Z","active":false}},
+      "tag": ["secret"]
+    }
+  ],
+  "/rpc/Indexer/PauseAllWebhookListeners": [
+    {
+      "summary": "Pauses all webhook listeners. Example on XR Sepolia.",
+      "request": {
+        "projectId": 31396
+      },
+      "response": {
+        "status": true
+      },
+      "tag": ["secret"]
+    }
+  ],
+  "/rpc/Indexer/ResumeAllWebhookListeners": [
+    {
+      "summary": "Pauses all webhook listeners. Example on XR Sepolia.",
+      "request": {
+        "projectId": 31396
+      },
+      "response": {
+        "status": true
+      },
+      "tag": ["secret"]
+    }
+  ],
   "/rpc/Indexer/RemoveWebhookListener": [
     {
-      "summary": "Remove a webhook listener",
+      "summary": "Remove a webhook listener. Example on XR Sepolia.",
       "request": {
         "id": 160497579,
         "projectId": 31396
@@ -948,7 +983,7 @@
   ],
   "/rpc/Indexer/GetOrderbookOrders": [
     {
-      "summary": "Get orderbook orders",
+      "summary": "Get orderbook orders. Example on Arbitrum Sepolia.",
       "request": {
         "page": {
           "page": 1,
@@ -1008,7 +1043,7 @@
   "/rpc/Indexer/GetTopOrders": [
     {
       "networkURL": "https://marketplace-api.sequence.app/arbitrum-sepolia",
-      "summary": "On arbitrum sepolia, get top orders for a collection from the Sequence Marketplace Protocol",
+      "summary": "Get top orders for a collection from the Sequence Marketplace Protocol. Example on Arbitrum Sepolia.",
       "request": {
         "collectionAddress": "0x8e3e38fe7367dd3b52d1e281e4e8400447c8d8b9",
         "currencyAddresses": ["0xa9c88358862211870db6f18bc9b3f6e4f8b3eae7"],
