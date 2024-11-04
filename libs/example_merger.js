@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import * as fs from 'node:fs'
 import path from 'node:path'
 import * as yaml from 'js-yaml'
@@ -26,8 +28,12 @@ const saveOpenAPIDocument = (filePath, document) => {
 }
 
 const addExamplesToOpenAPI = (doc, examples) => {
-  // Check if the document title contains 'Metadata'
-  if (doc.info.title.includes('Metadata')) {
+  // Check if the document title contains 'Metadata' or 'Indexer'
+  if (
+    doc.info.title.includes('Metadata') ||
+    doc.info.title.includes('Indexer') ||
+    doc.info.title.includes('Analytics')
+  ) {
     doc.tags = [
       {
         name: 'public',
@@ -50,30 +56,69 @@ const addExamplesToOpenAPI = (doc, examples) => {
     }
 
     for (const [exampleName, ex] of Object.entries(example)) {
-      if (ex.request && Object.keys(ex.request).length > 0) {
-        const response = path.post.requestBody
-        response.content['application/json'].example = ex.request
-      }
+      const methods = ['post', 'put']
 
-      if (ex.response && Object.keys(ex.response).length > 0) {
-        const response = path.post.responses['200']
-        response.content['application/json'].example = ex.response
-      }
+      for (const method of methods) {
+        if (path[method]) {
+          if (ex.request && Object.keys(ex.request).length > 0) {
+            const requestBody = path[method].requestBody
 
-      if (ex.description && Object.keys(ex.description).length > 0) {
-        path.post.description = ex.description
-      }
+            if (requestBody) {
+              if (requestBody.content['application/octet-stream']) {
+                // Remove content of application/octet-stream
+                requestBody.content['application/octet-stream'] = undefined
+                requestBody.content['multipart/form-data'] =
+                  requestBody.content['multipart/form-data'] || {}
+                requestBody.content['multipart/form-data'].example = ex.request
+              }
 
-      if (ex.tag && Object.keys(ex.tag).length > 0) {
-        path.post.tags = {}
-        path.post.tags = ex.tag
+              if (requestBody.content['multipart/form-data']) {
+                requestBody.content['multipart/form-data'].example = ex.request
+              }
+
+              if (requestBody.content['application/json']) {
+                requestBody.content['application/json'].example = ex.request
+              }
+            }
+          }
+
+          if (ex.response && Object.keys(ex.response).length > 0) {
+            const response = path[method].responses['200']
+
+            if (response) {
+              if (!response.content) {
+                response.content = {
+                  'application/json': {
+                    example: ex.response,
+                  },
+                }
+              } else {
+                if (response.content['application/json']) {
+                  response.content['application/json'].example = ex.response
+                } else {
+                  response.content['application/json'] = {
+                    example: ex.response,
+                  }
+                }
+              }
+            }
+          }
+
+          if (ex.description && Object.keys(ex.description).length > 0) {
+            path[method].description = ex.description
+          }
+
+          if (ex.tag && Object.keys(ex.tag).length > 0) {
+            path[method].tags = ex.tag
+          }
+        }
       }
     }
   }
 }
 
 export const merge = (openApiFilepath) => {
-  // /docs/pages/api/marketplace/marketplace.gen.yaml
+  // /docs/pages/api/marketplace/rpc.gen.yaml
   const openAPIDoc = loadOpenAPIDocument(openApiFilepath)
 
   const dir = path.dirname(openApiFilepath)

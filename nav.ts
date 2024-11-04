@@ -370,6 +370,10 @@ export const sidebar = {
               link: '/solutions/collectibles/contracts/deploy-ERC20-currency',
             },
             {
+              text: 'Deploy a Soulbound Token Contract',
+              link: '/solutions/collectibles/contracts/deploy-soulbound-token',
+            },
+            {
               text: 'Deploy a Primary Sales Contract',
               link: '/solutions/collectibles/contracts/deploy-primary-sales-contract',
             },
@@ -609,6 +613,11 @@ export const sidebar = {
           text: 'Sell your Game Items via a Web Shop',
           collapsed: true,
           link: '/guides/primary-sales',
+        },
+        {
+          text: 'Create NFT Drop Sales',
+          collapsed: true,
+          link: '/guides/primary-drop-sales-erc721',
         },
       ],
     },
@@ -854,7 +863,7 @@ export const sidebar = {
       collapsed: false,
       items: [
         { text: 'Overview', link: '/api/analytics/overview' },
-        // { text: 'Endpoints', link: '/api/analytics/endpoints' },
+        { text: 'Endpoints', link: '/api/analytics/endpoints' },
         {
           text: 'Examples',
           collapsed: false,
